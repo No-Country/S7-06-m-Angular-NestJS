@@ -40,13 +40,14 @@ export class AuthService {
   async login(loginUserDto:LoginUserDto){
 
      const{email,password}=loginUserDto
-     const user=await this.authRepository.findOne({where:{email},select:{email:true,password:false,id:true}})
+     const user=await this.authRepository.findOne({where:{email},select:{email:true,password:true,id:true}})
      if(!user){
       throw new UnauthorizedException("Error invalidated credentials")
      }
      if(!bcrypt.compareSync(password,user.password)){
       throw new UnauthorizedException("Error invalidated password")
      }
+     delete user.password
      return user
 
   }
