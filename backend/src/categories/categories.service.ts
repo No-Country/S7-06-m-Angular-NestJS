@@ -21,13 +21,13 @@ constructor(
     return await this.categoryRepositorie.find();
   }
 
-  async findOneCategory(id:number){
+  async findOneCategory(id:string){
   const category=await this.categoryRepositorie.findOne({where:{id}})
   if(!category)throw new BadRequestException("id category dont exist")
   return category
   }
 
-  remove(id: number) {
+  remove(id: string) {
     const category=this.categoryRepositorie.findOne({where:{id}})
     if(!category)throw new BadRequestException("id dont exist")
      this.categoryRepositorie.delete({id});

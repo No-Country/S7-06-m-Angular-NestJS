@@ -10,8 +10,8 @@ description:string
 @IsNumber()
 price:number
 
-@IsNumber()
-categoriesId:number
+@IsString()
+categoriesId:string
 
 @IsBoolean()
 stock?:boolean
