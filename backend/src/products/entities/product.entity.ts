@@ -1,19 +1,19 @@
-import { Entity,PrimaryColumn,Column } from "typeorm";
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
-@Entity("products")
+@Entity('products')
 export class Product {
-@PrimaryColumn("uuid")
-id:string
+  @PrimaryColumn('uuid')
+  id: string;
 
-@Column("text",{unique:true})
-name:string
+  @Column('text', { unique: true })
+  name: string;
 
-@Column("text")
-description:string
+  @Column('text')
+  description: string;
 
-@Column("float")
-price:number
+  @Column('float')
+  price: number;
 
-@Column("boolean",{default:true})
-stock:boolean
+  @Column('boolean', { default: true })
+  stock: boolean;
 }

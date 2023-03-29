@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  nestjs-api:
+    image: r4zu91/api-ecommerce
+    container_name: nestjs-api
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DB_HOST}
+    command: npm run start:dev
+    ports:
+      - '${PORT}:${PORT}'
+
   postgres:
     image: postgres:14.3
     container_name: postgresDB

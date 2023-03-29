@@ -1,16 +1,15 @@
-import { IsString,IsNumber,IsBoolean } from "class-validator";
+import { IsString, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateProductDto {
+  @IsString()
+  name: string;
 
-@IsString()
-name:string
+  @IsString()
+  description: string;
 
-@IsString()
-description:string
+  @IsNumber()
+  price: number;
 
-@IsNumber()
-price:number
-
-@IsBoolean()
-stock?:boolean
+  @IsBoolean()
+  stock?: boolean;
 }
