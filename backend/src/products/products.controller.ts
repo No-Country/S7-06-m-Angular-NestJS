@@ -12,6 +12,8 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { Category } from '../categories/entities/category.entity';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -23,8 +25,8 @@ export class ProductsController {
   }
 
   @Get()
-  findAll(@Query('stock') stock: string) {
-    return this.productsService.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.productsService.findAll(paginationDto);
   }
 
   @Get(':id')

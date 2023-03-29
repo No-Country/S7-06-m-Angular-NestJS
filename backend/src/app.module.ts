@@ -25,7 +25,6 @@ import { OrdersModule } from './orders/orders.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-
     AuthModule,
     ProductsModule,
     CategoriesModule,

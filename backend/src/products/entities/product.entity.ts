@@ -1,4 +1,3 @@
-import { Category } from 'src/categories/entities/category.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,6 +5,8 @@ import {
   ManyToOne,
   BeforeInsert,
 } from 'typeorm';
+
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity('products')
 export class Product {
@@ -15,17 +16,14 @@ export class Product {
   @Column('text', { unique: true })
   name: string;
 
-  @Column('text')
+  @Column('text', { nullable: true })
   description: string;
 
-  @Column('float')
+  @Column('float', { default: 0 })
   price: number;
 
-  @Column('boolean', { default: true, nullable: true })
-  stock?: boolean;
-
-  @Column()
-  categoriesId: string;
+  @Column('boolean', { default: true })
+  stock: boolean;
 
   @ManyToOne(() => Category, (category) => category.products)
   categories: Category;
