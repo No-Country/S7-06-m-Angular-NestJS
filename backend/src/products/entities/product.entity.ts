@@ -1,10 +1,10 @@
 import { Category } from "src/categories/entities/category.entity";
-import { Entity,PrimaryGeneratedColumn,Column,ManyToOne,JoinTable} from "typeorm";
+import { Entity,PrimaryGeneratedColumn,Column,ManyToOne,BeforeInsert} from "typeorm";
 
 @Entity("products")
 export class Product {
-@PrimaryGeneratedColumn("increment")
-id:number
+@PrimaryGeneratedColumn("uuid")
+id:string
 
 @Column("text",{unique:true})
 name:string
@@ -20,10 +20,16 @@ stock?:boolean
 
 
 @Column()
-categoriesId:number
+categoriesId:string
 
 
 @ManyToOne(()=>Category,category=>category.products)
 categories:Category
+
+@BeforeInsert()
+    charatersLowercase() {
+        this.name = this.name.toLowerCase()
+        this.description = this.name.toLowerCase();
+    }
 
 }

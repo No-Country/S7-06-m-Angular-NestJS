@@ -4,8 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto,UpdateProductDto} from './dto/';
 import { Product } from './entities/product.entity';
 import { CategoriesService } from 'src/categories/categories.service';
-import { Category } from 'src/categories/entities/category.entity';
-import { resourceUsage } from 'process';
 
 
 @Injectable()
@@ -25,23 +23,23 @@ private productRepository: Repository<Product>,
   }
 
   findAll() {
-    return this.productRepository.find({relations:["categories"],select:["id","name","description","stock","price"]})
+   return this.productRepository.find({relations:["categories"],select:["id","name","description","stock","price"]})
   }
 
- async findOne(id: number) {
+ async findOne(id: string) {
        const product=await this.productRepository.findOne({where:{id},relations:["categories"],select:["id","name","description","stock","price"]})
        if(!product) throw new BadRequestException("product dont exist")
        return product
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto) {
     const product=await this.productRepository.findOne({where:{id}})
     if(!product)throw new BadRequestException("product dont exist")
    this.productRepository.update(id,updateProductDto)
     return {message:`the product ${id} has been updated`}
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const product=await this.productRepository.findOne({where:{id}})
     if(!product)throw new BadRequestException("product dont exist")
     this.productRepository.delete({id})
