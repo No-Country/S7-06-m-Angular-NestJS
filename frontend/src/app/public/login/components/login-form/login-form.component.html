@@ -1,0 +1,45 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLogin($event)" autocomplete="off">          
+    <!----Ingrese su email---->
+    <div class="">
+      <label  for="email">Email</label>
+      <input type="email" id="email"  formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="mariagutierrez@email.com" [ngClass]="{'is-valid':!Email?.errors&& Email?.touched}"/>
+      <div *ngIf="Email?.errors && Email?.touched">
+        <p *ngIf="Email?.hasError('required')" class="text-danger">
+          Ingrese su email
+        </p>
+        <p *ngIf="Email?.hasError('email')" class="text-danger">
+          El formato del email es inválido
+        </p>
+      </div>
+    </div>
+    <!----Ingrese la contraseña--->
+    <div class="field">
+      <label class="label" for="password">Contraseña</label>
+      <input [type]="ocultar?'password':'text'" id="password" name="password" formControlName="password" class="input-password form-control" [ngClass]="{'is-valid':!Password?.errors&&Password?.touched}"/>
+      <label class="eye-icon" for="password"><i [class]="ocultar ? 'bi bi-eye' : 'bi bi-eye-slash'" (click)="ocultar = !ocultar"></i></label>
+      <div *ngIf="Password?.errors && Password?.touched">
+        <p *ngIf="Password?.hasError('required')" class="text-danger">
+          Ingrese su contraseña
+        </p>
+        <p *ngIf="Password?.hasError('minlength')" class="text-danger">
+          La contraseña debe tener como mínimo 8 caracteres
+        </p>
+        <p *ngIf="Password?.hasError('maxlength')" class="text-danger">
+          La contraseña debe tener como máximo 22 caracteres
+        </p>
+        <p *ngIf="Password?.hasError('pattern')" class="text-danger">
+          La contraseña debe contener al menos un número y una letra mayúscula
+        </p>
+      </div>
+    </div>
+    <!----Footer de registro--->
+    <div class="footer">
+      <div class="recover text-center">
+        <p class="olvidaste">¿Olvidaste tu contraseña?</p>
+        <a routerLink="/auth/recover">Recuperar</a>
+      </div>            
+      <div class="boton">
+          <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+      </div>
+    </div>
+</form>
