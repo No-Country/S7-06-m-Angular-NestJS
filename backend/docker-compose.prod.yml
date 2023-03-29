@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   nestjs-api:
-    image: r4zu91/api-ecommerce
-    container_name: nestjs-api
+    image: r4zu91/mimu-api
+    container_name: mimu-api
     restart: always
     build:
       dockerfile: Dockerfile
@@ -12,7 +12,6 @@ services:
       - postgres
     environment:
       DATABASE_URL: ${DB_HOST}
-    command: npm run start:dev
     ports:
       - '${PORT}:${PORT}'
 
