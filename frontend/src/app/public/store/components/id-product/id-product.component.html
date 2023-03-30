@@ -1,0 +1,43 @@
+<div>
+  <div class="title">
+    <h1>Detalles del Producto</h1>
+    <div class="name-favorite">
+      <h5>Nombre del Producto</h5>
+      <button (click)="favorite()">
+        <mat-icon>{{ favoriteFill }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <swiper
+    [config]="config"
+    class="mySwiper"
+    >
+    <ng-template swiperSlide *ngFor="let img of imagenes">
+      <div class="image" >
+        <img [src]="img" >
+      </div>
+    </ng-template>
+
+  </swiper>
+
+  <div class="product-detail">
+    <div class="stars">
+      <ngx-star-rating [id]="'rating'"></ngx-star-rating>
+    </div>
+
+    <div class="detail">
+      <p>{{ detail}}</p>
+    </div>
+
+    <div class="price">
+      <p>Precio <strong>{{ finalPrice | currency: "ARS" }}</strong></p>
+
+    </div>
+
+    <div class="button">
+      <button>Agregar a la Bolsa</button>
+    </div>
+  </div>
+
+</div>
