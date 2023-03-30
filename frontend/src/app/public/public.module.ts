@@ -8,9 +8,10 @@ import { LoginComponent } from './login/loginPage/login.component';
 import { RegisterComponent } from './register/registerPage/register.component';
 import { RegisterFormComponent } from './register/components/register-form/register-form.component';
 import { LoginFormComponent } from './login/components/login-form/login-form.component';
+import { StoreModule } from './store/store.module';
 
-import { SharedModule } from '../shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { HomeModule } from './home/home.module';
     CommonModule,
     PublicRoutingModule,
     ReactiveFormsModule,
-    SharedModule,
-    HomeModule
+    StoreModule,
+    HomeModule,
+    SharedModule
   ]
 })
 export class PublicModule { }

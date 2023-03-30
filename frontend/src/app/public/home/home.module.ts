@@ -13,8 +13,8 @@ import { BannerComponent } from './components/banner/banner.component';
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    SwiperModule
+    SwiperModule,
+    SharedModule
   ]
 })
 export class HomeModule { 

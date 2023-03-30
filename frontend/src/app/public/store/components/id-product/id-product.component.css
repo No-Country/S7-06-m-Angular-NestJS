@@ -1,0 +1,66 @@
+/* @import 'swiper/css/navigation';
+@import 'swiper/css/pagination'; */
+
+.title>.name-favorite{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title>.name-favorite>button{
+  border: none;
+  background: none;
+}
+
+.swiper{
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.image>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+@media screen and (max-width:290px) {
+
+  .title{
+    padding: 10px;
+  }
+
+  .swiper{
+    position: relative;
+    width: 100vw;
+    height: 300px;
+  }
+
+  .button>button{
+    background-color: rgb(100, 180, 255);
+    border: none;
+    border-radius: 8px;
+    width: 170px;
+    height: 40px;
+  }
+
+  .product-detail{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  /* ngx-star-rating */
+  label.star{
+    font-size: 25px !important;
+  }
+
+
+
+}
