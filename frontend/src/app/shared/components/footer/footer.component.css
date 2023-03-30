@@ -1,0 +1,45 @@
+section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: gray;
+}
+.footer-container{
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+@media(max-width: 300px) {
+    section{
+        width: 100%;
+        height: 220px;
+    } 
+    
+    .pagos{
+        width: 150px;
+        height: 50px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    .redes{
+        width: 90px;
+        height: 40px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .reserved{
+        height: 20px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        position: absolute;
+    }
+}
+

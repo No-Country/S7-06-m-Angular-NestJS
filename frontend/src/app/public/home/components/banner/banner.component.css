@@ -1,0 +1,57 @@
+@import "~swiper/swiper-bundle.css";
+
+.banner-container {
+    padding: 0;
+    width: 100%;
+}
+.banner-swiper{
+    height: 260px;
+}
+
+.bannerImg{
+    height: 190px;
+    width: 100%;
+    background-color: gainsboro;
+}
+
+.containerInfoBanner{
+    width: 90%;
+    height: 20%;
+    margin: auto;
+    padding: 5px;
+    justify-content: center;
+}
+.infoBanner{
+    text-align: center;
+}
+
+
+
+@media(max-width: 500px) {
+    .banner-container{
+        height: 200px;
+    } 
+
+    .banner-swiper{
+        height: 220px;
+    }
+
+    .bannerImg{
+        height: 140px;
+        width: 100%;
+        background-color: gainsboro;
+    }
+
+    .containerInfoBanner{
+        width: 90%;
+        height: 20px;
+        margin: auto;
+        padding: 5px;
+        justify-content: center;
+    }
+    .infoBanner{
+        text-align: center;
+    }
+
+}
+
