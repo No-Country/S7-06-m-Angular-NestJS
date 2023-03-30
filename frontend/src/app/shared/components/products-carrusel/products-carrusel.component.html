@@ -1,0 +1,41 @@
+<section class="carrusel-body">
+  <div class="carrusel-title">
+    <span>{{title}}</span>
+  </div>
+  <div class="carrusel">
+    <swiper class="product-swiper"
+    [slidesPerView]="4"
+    [spaceBetween]="10"
+    [pagination]="{ clickable: false }"
+    [mousewheel]="true"
+    [autoplay]="{ delay: 2500, disableOnInteraction: false}"
+    [loop]="true"
+    >
+      <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
+        <div>
+          <div class="col">
+            <div class="image">
+              <img
+                [src]="product.imageUrl[0]"
+                [alt]="product.imageUrl"
+                class="card-img-top"
+              >
+            </div>
+          </div>
+          <div class="contenedor-name">
+            <div class="name">
+              <span>
+                <span>{{ product.name }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+      
+    </swiper>
+  </div>
+
+</section>
+
+

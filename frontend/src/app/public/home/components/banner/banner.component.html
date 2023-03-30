@@ -1,0 +1,56 @@
+<section class="banner-container">
+<swiper class="banner-swiper"
+[slidesPerView]="1"
+[spaceBetween]="10"
+[pagination]="{ clickable: false }"
+[mousewheel]="true"
+[autoplay]="{ delay: 2500, disableOnInteraction: false}"
+[loop]="true"
+>
+  <ng-template swiperSlide >
+    <div>
+      <div class="col">
+        <div class="bannerImg">
+          <img
+            [src]=""
+            [alt]=""
+            class="card-img-top"
+          >
+        </div>
+      </div>
+      <div class="containerInfoBanner">
+        <div class="infoBanner">
+          <span>
+            <span>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."s</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+  
+  <ng-template swiperSlide >
+    <div>
+      <div class="col">
+        <div class="bannerImg">
+          <img
+            [src]=""
+            [alt]=""
+            class="card-img-top"
+          >
+        </div>
+      </div>
+      <div class="containerInfoBanner">
+        <div class="infoBanner">
+          <span>
+            <span>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."s</span>          </span>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+  
+</swiper>
+
+
+</section>
