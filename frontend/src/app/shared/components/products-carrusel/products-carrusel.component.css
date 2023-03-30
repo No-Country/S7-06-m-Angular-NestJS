@@ -1,0 +1,33 @@
+@import "~swiper/swiper-bundle.css";
+
+.carrusel-title{
+    margin: 10px 10pxgo;
+}
+@media(max-width: 500px) {S
+
+    section{
+        padding: 10px;
+    }
+
+    .product-swiper{
+        height: 140px;
+    }
+
+    .contenedor-productos{
+        height: 110px;
+        width: 80px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image{
+        height: 80px;
+        width: 70px;
+        background-color: gainsboro;
+    }
+
+    .name{
+        text-align: center;
+    }
+    
+}
