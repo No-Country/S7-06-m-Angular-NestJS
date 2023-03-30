@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { PublicRoutingModule } from './public-routing.module';
 
@@ -11,22 +12,22 @@ import { LoginFormComponent } from './login/components/login-form/login-form.com
 import { StoreModule } from './store/store.module';
 
 import { HomeModule } from './home/home.module';
-import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     PublicRoutingModule,
     ReactiveFormsModule,
     StoreModule,
     HomeModule,
-    SharedModule
   ]
 })
 export class PublicModule { }

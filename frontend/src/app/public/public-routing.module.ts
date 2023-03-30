@@ -9,8 +9,9 @@ import { IdProductComponent } from './store/components/id-product/id-product.com
 
 const routes: Routes = [
   {
-    path: '', children:
+    path: '',  children:
       [
+        { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: HomeComponent },
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegisterComponent},

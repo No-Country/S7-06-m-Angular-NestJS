@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NewUser } from 'src/app/public/models/new-user';
+import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup;
-  newUser!: NewUser;  
+  newUser!: NewUser;
   ocultar: boolean = true;
 
   constructor(
@@ -26,23 +26,23 @@ export class RegisterFormComponent implements OnInit {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],        
-        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]          
+        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
+        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]
       }
     )
   }
 
-  
+
 
   ngOnInit(): void {
-  }  
+  }
 
   // REGISTER
   onRegister() {
     this.newUser = this.registerForm.value;
     console.log(this.newUser)
     this.authService.register(this.newUser).subscribe({
-      next: (data) => {        
+      next: (data) => {
         this.registeredUser()
       },
       error: (error) => {
@@ -52,7 +52,7 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  // ALERT: Usuario registrado 
+  // ALERT: Usuario registrado
   registeredUser() {
     Swal.fire({
       title: 'Usuario Registrado',
@@ -141,5 +141,5 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  
+
 }
