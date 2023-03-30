@@ -1,3 +1,4 @@
+import { Reflector } from '@nestjs/core';
 import {
   BadRequestException,
   CanActivate,
@@ -5,7 +6,6 @@ import {
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { User } from '../entities/auth.entity';
 import { META_ROLES } from '../decorators/role-protected.decorator';

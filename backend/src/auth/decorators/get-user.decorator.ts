@@ -6,8 +6,7 @@ import {
 
 export const GetUser = createParamDecorator(
   (data: string, ctx: ExecutionContext) => {
-    const req = ctx.switchToHttp().getRequest();
-    const user = req.user;
+    const { user } = ctx.switchToHttp().getRequest();
 
     if (!user)
       throw new InternalServerErrorException('User not found (request)');

@@ -2,21 +2,31 @@ import {
   Injectable,
   BadRequestException,
   InternalServerErrorException,
+  NotFoundException,
+  Logger,
 } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateProductDto, UpdateProductDto } from './dto/';
+import { DataSource, Repository } from 'typeorm';
+import { validate as isUUID } from 'uuid';
+
 import { Product } from './entities/product.entity';
-import { CategoriesService } from 'src/categories/categories.service';
-import { Category } from '../categories/entities/category.entity';
+
+import { CreateProductDto, UpdateProductDto } from './dto';
 import { PaginationDto } from '../common/dto/pagination.dto';
+
+import { CategoriesService } from '../categories/categories.service';
 
 @Injectable()
 export class ProductsService {
+  private readonly logger = new Logger('ProductService');
+
   constructor(
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
+
     private categoriesServices: CategoriesService,
+
+    private dataSource: DataSource,
   ) {}
 
   async create(createProductDto: CreateProductDto) {
@@ -39,43 +49,87 @@ export class ProductsService {
     }
   }
 
-  findAll(paginationDto: PaginationDto) {
-    const { limit = 10, offset = 0 } = paginationDto;
-    return this.productRepository.find({
-      relations: ['categories'],
-      select: ['id', 'name', 'description', 'stock', 'price'],
+  async findAll(paginationDto: PaginationDto) {
+    const { limit = 5, offset = 0 } = paginationDto;
+    return await this.productRepository.find({
+      take: limit,
+      skip: offset,
+      relations: { categories: true },
     });
   }
 
-  async findOne(id: string) {
-    const product = await this.productRepository.findOne({
-      where: { id },
-      relations: ['categories'],
-      select: ['id', 'name', 'description', 'stock', 'price'],
-    });
-    if (!product) throw new BadRequestException('product dont exist');
+  async findOne(term: string) {
+    let product: Product | Product[];
+
+    if (isUUID(term)) {
+      product = await this.productRepository.findOneBy({ id: term });
+    } else {
+      const queryBuilder = this.productRepository.createQueryBuilder('prod');
+      product = await queryBuilder
+        .where('categories.name =:categories', {
+          categories: term.toLowerCase(),
+        })
+        .leftJoinAndSelect('prod.categories', 'categories')
+        .getMany();
+    }
+
+    if (!product) throw new NotFoundException(`Product with ${term} not found`);
+
     return product;
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    const product = await this.productRepository.findOne({ where: { id } });
-    if (!product) throw new BadRequestException('product dont exist');
-    this.productRepository.update(id, updateProductDto);
-    return { message: `the product ${id} has been updated` };
+    const { categorie_name, ...productDetail } = updateProductDto;
+
+    const category = await this.categoriesServices.findOneByName(
+      categorie_name,
+    );
+
+    const product = await this.productRepository.preload({
+      id,
+      ...productDetail,
+    });
+
+    if (!product)
+      throw new NotFoundException(`Product with id: ${id} not found`);
+
+    const queryRunner = this.dataSource.createQueryRunner();
+    queryRunner.connect();
+    queryRunner.startTransaction();
+
+    try {
+      if (categorie_name) {
+        await queryRunner.manager.delete(Product, { categories: { id } });
+        product.categories = category;
+      }
+
+      await queryRunner.manager.save(product);
+      await queryRunner.commitTransaction();
+      await queryRunner.release();
+
+      return product;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      await queryRunner.release();
+
+      this.handleDBError(error);
+    }
   }
 
   async remove(id: string) {
     const product = await this.productRepository.findOne({ where: { id } });
-    if (!product) throw new BadRequestException('product dont exist');
-    this.productRepository.delete({ id });
-    return { message: `the product ${id} has been eliminated` };
+
+    if (!product)
+      throw new NotFoundException(`Product with id: ${id} not found`);
+
+    await this.productRepository.remove(product);
   }
 
   private handleDBError(error: any): never {
     if (error.code === '23505') throw new BadRequestException(error.detail);
-
-    console.log(error);
-
-    throw new InternalServerErrorException('Please check your logs');
+    this.logger.error(error);
+    throw new InternalServerErrorException(
+      'Unexpected error, check server logs',
+    );
   }
 }

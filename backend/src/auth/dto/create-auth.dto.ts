@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional } from 'class-validator';
 import {
   IsEmail,
   IsString,
@@ -55,4 +56,22 @@ export class CreateAuthDto {
   @IsString()
   @MinLength(1)
   lastName: string;
+
+  @ApiProperty({
+    description: 'User contact',
+    nullable: true,
+    default: '+00000000000',
+  })
+  @IsString()
+  @IsOptional()
+  contact?: string;
+
+  @ApiProperty({
+    description: 'User address',
+    nullable: true,
+    default: 'address',
+  })
+  @IsString()
+  @IsOptional()
+  address?: string;
 }

@@ -9,9 +9,15 @@ import { ProductsController } from './products.controller';
 
 import { CategoriesModule } from '../categories/categories.module';
 
+import { AuthModule } from '../auth/auth.module';
+
 @Module({
   controllers: [ProductsController],
   providers: [ProductsService],
-  imports: [TypeOrmModule.forFeature([Product, Category]), CategoriesModule],
+  imports: [
+    TypeOrmModule.forFeature([Product, Category]),
+    CategoriesModule,
+    AuthModule,
+  ],
 })
 export class ProductsModule {}

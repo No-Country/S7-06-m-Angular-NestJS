@@ -30,6 +30,14 @@ export class User {
   lastName: string;
 
   @ApiProperty()
+  @Column('text')
+  contact?: string;
+
+  @ApiProperty()
+  @Column('text')
+  address?: string;
+
+  @ApiProperty()
   @Column('bool', { default: true })
   isActive: boolean;
 
