@@ -22,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
+
   ]
 })
 export class SharedModule { }
