@@ -1,4 +1,4 @@
-<section>
+<section class="carrusel-body">
   <div class="carrusel-title">
     <span>{{title}}</span>
   </div>
@@ -8,6 +8,8 @@
     [spaceBetween]="10"
     [pagination]="{ clickable: false }"
     [mousewheel]="true"
+    [autoplay]="{ delay: 2500, disableOnInteraction: false}"
+    [loop]="true"
     >
       <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
         <div>

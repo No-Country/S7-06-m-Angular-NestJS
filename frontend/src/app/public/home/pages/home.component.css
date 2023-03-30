@@ -1,9 +1,26 @@
 body{
     height: 100vh;
+    width: 1000px;
     align-items: center;
     justify-content: center;
+    margin: auto;
 }
+div{
 
+    margin: 40px 0 40px 0;
+}
+h2{
+    margin: 0 30px ;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 28px;
+}
+span{
+    margin: 0 30px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 18px;
+}
 
 @media(max-width: 500px) {
     body{

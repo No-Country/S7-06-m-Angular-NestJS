@@ -1,11 +1,37 @@
 @import "~swiper/swiper-bundle.css";
 
 .carrusel-title{
-    margin: 10px 10pxgo;
+    margin: 10px 10px;
 }
+
+.carrusel-body{
+    padding: 20px;
+}
+
+.product-swiper{
+    height: 240px;
+}
+
+.contenedor-productos{
+    height: 210px;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.image{
+    height: 180px;
+    width: 170px;
+    background-color: gainsboro;
+}
+
+.name{
+    text-align: center;
+}
+
 @media(max-width: 500px) {S
 
-    section{
+    .carrusel-body{
         padding: 10px;
     }
 

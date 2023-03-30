@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Product } from '../../models/products';
-import SwiperCore, { Navigation, Pagination, Mousewheel } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper';
 
 
 
-SwiperCore.use([Navigation, Pagination, Mousewheel]);
+SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
 @Component({
   selector: 'app-products-carrusel',
