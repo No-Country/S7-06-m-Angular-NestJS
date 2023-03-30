@@ -6,9 +6,8 @@
     <swiper class="product-swiper"
     [slidesPerView]="4"
     [spaceBetween]="10"
-    [pagination]="{ clickable: false }"
-    [mousewheel]="true"
-    [autoplay]="{ delay: 2500, disableOnInteraction: false}"
+    [navigation]="true"
+    [autoplay]="{ delay: 5000, disableOnInteraction: false}"
     [loop]="true"
     >
       <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
