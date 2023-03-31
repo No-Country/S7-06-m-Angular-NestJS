@@ -1,0 +1,10 @@
+<!-----<div>
+    <button (click)="decrementar()">-</button>
+    <span>{{ cantidad }}</span>
+    <button (click)="incrementar()">+</button>
+</div>--->
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary" (click)="decrementar()"><i class="bi bi-dash"></i></button>
+    <span>{{ cantidad }}</span>
+    <button type="button" class="btn btn-outline-primary"  (click)="incrementar()"><i class="bi bi-plus"></i></button>
+</div>
