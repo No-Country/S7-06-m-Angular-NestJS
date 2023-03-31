@@ -10,9 +10,11 @@ footer{
     justify-content: space-around;
 
 }
-p{
-    margin-bottom: 5px;
+
+.reserved{
+    margin: 10px auto;
 }
+
 .icons-redes{
     display: flex;
     justify-content: space-around;
@@ -22,10 +24,10 @@ a {color: black; text-decoration: none }
 a:hover {color: black; text-decoration: none;}
 a:visited {color: black;text-decoration: none;}
 
-@media(max-width: 300px) {
-    section{
+@media(min-width: 290px) {
+    footer{
         width: 100%;
-        height: 220px;
+        height: 200px;
     } 
     
     .pagos{
@@ -37,11 +39,12 @@ a:visited {color: black;text-decoration: none;}
     }
 
     .redes{
-        width: 90px;
-        height: 40px;
+        width: 100px;
+        height: 30px;
         font-weight: 500;
         font-size: 12px;
         line-height: 14px;
+
     }
 
     .reserved{
