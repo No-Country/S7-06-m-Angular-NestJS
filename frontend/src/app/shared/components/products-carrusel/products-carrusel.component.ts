@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Product } from '../../models/products';
-import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay, SwiperOptions } from 'swiper';
 
 
 
@@ -18,6 +18,20 @@ export class ProductsCarruselComponent implements OnInit {
   @Input()
   title = "";
 
+  config: SwiperOptions = {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  autoplay: { delay: 5000, disableOnInteraction: false},
+  loop: true,
+  navigation: false,
+  scrollbar:true,
+  breakpoints: {
+    500: {
+      slidesPerView:4,
+      navigation: true
+    }
+  }
+  }
   
   products: Product[] = [
     {id:1,

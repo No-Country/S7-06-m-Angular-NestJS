@@ -1,0 +1,29 @@
+.navbar{
+    background: rgba(154, 151, 151, 0.283);
+    width: 100%;
+}
+
+.nav-profile{
+    border: none;
+    margin-right: 5px;
+}
+
+.nav-chart{
+    border: none;
+    margin-right: 10px;
+}
+
+.nav-icon{
+    transition: transform 0.3s;
+}
+.nav-icon:hover {
+  transform: scale(1.3);
+}
+
+@media screen and (min-width:1100px){
+    .container-fluid{
+        width: 1200px
+    }
+}
+
+

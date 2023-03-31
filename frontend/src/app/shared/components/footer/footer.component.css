@@ -1,4 +1,4 @@
-section{
+footer{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -10,6 +10,17 @@ section{
     justify-content: space-around;
 
 }
+p{
+    margin-bottom: 5px;
+}
+.icons-redes{
+    display: flex;
+    justify-content: space-around;
+}
+
+a {color: black; text-decoration: none }
+a:hover {color: black; text-decoration: none;}
+a:visited {color: black;text-decoration: none;}
 
 @media(max-width: 300px) {
     section{

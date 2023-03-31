@@ -4,11 +4,7 @@
   </div>
   <div class="carrusel">
     <swiper class="product-swiper"
-    [slidesPerView]="4"
-    [spaceBetween]="10"
-    [navigation]="true"
-    [autoplay]="{ delay: 5000, disableOnInteraction: false}"
-    [loop]="true"
+    [config]="config"
     >
       <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
         <div>

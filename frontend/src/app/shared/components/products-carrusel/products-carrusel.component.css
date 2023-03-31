@@ -38,7 +38,8 @@
     }
 
     .product-swiper{
-        height: 140px;
+        width: 90vw;
+        height: 250px;
     }
 
     .contenedor-productos{
@@ -49,8 +50,8 @@
     }
 
     .image{
-        height: 70px;
-        width: 60px;
+        height: 200px;
+        width: 190px;
         background-color: gainsboro;
     }
 
