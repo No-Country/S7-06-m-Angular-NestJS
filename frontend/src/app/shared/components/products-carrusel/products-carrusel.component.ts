@@ -3,8 +3,6 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Product } from '../../models/products';
 import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay, SwiperOptions } from 'swiper';
 
-
-
 SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
 @Component({
@@ -38,49 +36,49 @@ export class ProductsCarruselComponent implements OnInit {
     name:'uno',
     price:123,
     category:'uno',
-    imageUrl:'imagen1',
+    imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
     description:'un producto,'
     },
     {id:2,
       name:'dos',
       price:123,
       category:'dos',
-      imageUrl:'imagen2',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     {id:3,
       name:'tres',
       price:123,
       category:'tres',
-      imageUrl:'imagen3',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'y otro producto,'
     },
     {id:4,
       name:'ccuatro',
       price:123,
       category:'dos',
-      imageUrl:'imagen4',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     {id:5,
       name:'cinco',
       price:123,
       category:'dos',
-      imageUrl:'imagen5',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     {id:6,
       name:'seis',
       price:123,
       category:'dos',
-      imageUrl:'imagen6',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     {id:7,
       name:'siete',
       price:123,
       category:'dos',
-      imageUrl:'imagen7',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     ]

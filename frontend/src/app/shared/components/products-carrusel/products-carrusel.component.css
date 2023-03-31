@@ -1,4 +1,3 @@
-@import "~swiper/swiper-bundle.css";
 
 @media screen and (max-width:1900px){
 .carrusel-title{
@@ -23,8 +22,12 @@
 .image{
     height: 180px;
     width: 170px;
-    background-color: gainsboro;
 }
+.image>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 .name{
     text-align: center;
@@ -52,7 +55,6 @@
     .image{
         height: 200px;
         width: 190px;
-        background-color: gainsboro;
     }
 
     .name{

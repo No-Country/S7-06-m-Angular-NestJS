@@ -1,4 +1,5 @@
-<nav class="navbar bg-body-tertiary">
+<header>
+  <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
         <div class="container-logo">
             <a class="navbar-brand" href="#">
@@ -6,12 +7,20 @@
             </a>
         </div>
         <div class="container-navigation">
-            <button class="navbar-toggler nav-profile nav-icon" type="button">
-                <i class="bi bi-person"></i>
-              </button>
-              <button class="navbar-toggler nav-chart nav-icon" type="button">
-                <i class="bi bi-bag"></i>
-              </button>
+          <div class="dropdown">
+            <button class="navbar-toggler dropdown-toggle nav-profile nav-icon" role="button" data-bs-toggle="dropdown" type="button">
+              <i class="bi bi-person"></i>
+            </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+              </ul>
+          </div>
+          <div>
+            <button class="navbar-toggler nav-chart nav-icon" type="button">
+              <i class="bi bi-bag"></i>
+            </button>
+          </div>
               <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -39,18 +48,15 @@
                         </ul>
                       </li>
                     <li class="nav-item">
+                      <a class="nav-link" href="#">Contactenos</a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link" href="#">Sobre nosotros</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contactenos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cerrar sesión</a>
-                    </li>
-                    
                   </ul>
                 </div>
              </div>
         </div>
     </div> 
   </nav>
+</header>

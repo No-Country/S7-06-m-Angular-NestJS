@@ -3,9 +3,17 @@
     width: 100%;
 }
 
+.container-navigation{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .nav-profile{
     border: none;
     margin-right: 5px;
+}
+.nav-profile::after{
+    content: none;
 }
 
 .nav-chart{
