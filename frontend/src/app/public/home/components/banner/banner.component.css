@@ -1,9 +1,12 @@
 @import "~swiper/swiper-bundle.css";
 
+@media screen and (max-width:1900px){
 .banner-container {
     padding: 0;
     width: 100%;
 }
+
+
 .banner-swiper{
     height: 260px;
 }
@@ -24,16 +27,15 @@
 .infoBanner{
     text-align: center;
 }
+}
 
-
-
-@media(max-width: 500px) {
+@media screen and (max-width: 500px) {
     .banner-container{
-        height: 200px;
+        height: 230px;
     } 
 
     .banner-swiper{
-        height: 220px;
+        height: 250px;
     }
 
     .bannerImg{

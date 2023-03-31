@@ -1,11 +1,6 @@
 <section class="banner-container">
 <swiper class="banner-swiper"
-[slidesPerView]="1"
-[spaceBetween]="10"
-[pagination]="{ clickable: false }"
-[mousewheel]="true"
-[autoplay]="{ delay: 2500, disableOnInteraction: false}"
-[loop]="true"
+[config]="config"
 >
   <ng-template swiperSlide >
     <div>

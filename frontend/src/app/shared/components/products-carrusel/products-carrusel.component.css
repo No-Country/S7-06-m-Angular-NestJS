@@ -1,5 +1,5 @@
-@import "~swiper/swiper-bundle.css";
 
+@media screen and (max-width:1900px){
 .carrusel-title{
     margin: 10px 10px;
 }
@@ -22,21 +22,27 @@
 .image{
     height: 180px;
     width: 170px;
-    background-color: gainsboro;
 }
+.image>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 .name{
     text-align: center;
 }
+}
 
-@media(max-width: 500px) {S
+@media screen and (max-width: 500px) {
 
     .carrusel-body{
         padding: 10px;
     }
 
     .product-swiper{
-        height: 140px;
+        width: 90vw;
+        height: 250px;
     }
 
     .contenedor-productos{
@@ -47,9 +53,8 @@
     }
 
     .image{
-        height: 80px;
-        width: 70px;
-        background-color: gainsboro;
+        height: 200px;
+        width: 190px;
     }
 
     .name{
