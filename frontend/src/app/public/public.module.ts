@@ -12,13 +12,17 @@ import { StoreModule } from './store/store.module';
 
 import { HomeModule } from './home/home.module';
 import { SharedModule } from '../shared/shared.module';
+import { RecoverFormComponent } from './recover/components/recover-form/recover-form.component';
+import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RecoverPasswordComponent,
+    RecoverFormComponent
   ],
   imports: [
     CommonModule,

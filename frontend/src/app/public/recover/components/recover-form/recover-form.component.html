@@ -1,0 +1,24 @@
+<form [formGroup]="recoverForm" (ngSubmit)="onRecover($event)" autocomplete="off">          
+    <!----Ingrese su email---->
+    <div class="">
+      <label  for="email">Email</label>
+      <input type="email" id="email"  formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="mariagutierrez@email.com" [ngClass]="{'is-valid':!Email?.errors&& Email?.touched}"/>
+      <div *ngIf="Email?.errors && Email?.touched">
+        <p *ngIf="Email?.hasError('required')" class="text-danger">
+          Ingrese su email
+        </p>
+        <p *ngIf="Email?.hasError('email')" class="text-danger">
+          El formato del email es inválido
+        </p>
+      </div>
+    </div>    
+    <!----Footer de registro--->
+    <div class="footer">
+      <div class="volver text-center">
+        <a routerLink="/login">Volver</a>
+      </div>            
+      <div class="boton">
+          <button class="btn btn-primary" type="submit" [disabled]="!recoverForm.valid">Ingresar</button>
+      </div>
+    </div>
+</form>
