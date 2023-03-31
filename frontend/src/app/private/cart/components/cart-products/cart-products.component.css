@@ -1,0 +1,95 @@
+/* Product Styles */
+.product {
+    width:500px;
+    height:150px;
+    border:1px solid grey;
+    padding: 20px 10px;
+    display:flex;
+    justify-content: space-between;
+    margin:0 auto;
+    margin-top:10px;
+    
+}
+.img-product img {
+    width:110px;
+    height:110px;
+    margin: 0 auto;
+}
+.data-product {
+    text-align:left;
+    width:60%;
+    padding-left:10px
+}
+.data-product p {
+    margin:0;
+    padding:0
+}
+.product-name {
+    font-size:1.2rem
+}
+#trash {
+    border:none;
+    background:transparent
+}
+#delete {
+    font-size:0.8rem;
+    padding:2px;
+    border:none
+}
+.heart {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+}
+.heart button {
+    background-color: transparent;
+    border:none;
+    color:red
+}
+
+/* Resumen */
+#summary-line {
+    margin-top:50px
+}
+.total {
+    width:500px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between
+}
+.more {
+    width:500px;
+    margin:0 auto;
+    margin-top:25px;
+}
+.more p {
+    margin:0;
+    padding:0
+}
+.invite {
+    font-weight: bolder;
+}
+#login {
+    width:200px;
+    margin:10px auto;
+}
+
+@media screen and (max-width: 500px) {
+    .product {
+        width:100%;
+        height:150px;
+        border:1px solid grey;
+        padding: 20px 10px;
+        display:flex;
+        justify-content: space-between;
+        margin-top:10px;        
+    }
+    #login {
+        width:100%;
+        margin:10px auto;
+    }
+    .more, summary,.total {
+        width:100%
+    }
+}

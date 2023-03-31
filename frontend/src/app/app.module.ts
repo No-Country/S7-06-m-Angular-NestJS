@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrivateModule } from './private/private.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     HttpClientModule,
     PublicModule,
+    PrivateModule,
     BrowserAnimationsModule
   ],
   providers: [],
