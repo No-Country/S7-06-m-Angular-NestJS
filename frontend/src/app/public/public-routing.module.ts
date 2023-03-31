@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/registerPage/register.component';
 import { StoreComponent } from './store/page/store.component';
 import { AllProductsComponent } from './store/components/all-products/all-products.component';
 import { IdProductComponent } from './store/components/id-product/id-product.component';
+import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -14,9 +15,10 @@ const routes: Routes = [
         { path: 'home', component: HomeComponent },
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegisterComponent},
+        { path: 'recoverpassword', component: RecoverPasswordComponent},
         { path: 'store', component: StoreComponent, children: [
             { path: '', component: AllProductsComponent },
-            { path: 'product', component: IdProductComponent },
+            { path: 'product', component: LoginComponent },
             { path: 'category', component: AllProductsComponent }
           ]
         },
