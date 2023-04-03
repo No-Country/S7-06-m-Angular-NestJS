@@ -1,5 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty} from '@nestjs/swagger';
+import { Order } from 'src/orders/entities/order.entity';
 import {
+  OneToMany,
   BeforeInsert,
   BeforeUpdate,
   Column,
@@ -44,6 +46,9 @@ export class User {
   @ApiProperty()
   @Column('text', { array: true, default: ['admin'] })
   roles: string[];
+
+  @OneToMany(() => Order, (order) => order.users)
+  orders: Order[];
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {
