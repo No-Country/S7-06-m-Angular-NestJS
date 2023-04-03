@@ -41,7 +41,7 @@
             }
         }
   
-    @media screen and (max-width: 300px) {
+    @media screen and (max-width: 500px) {
     
         .carrusel-body{
             padding: 10px;

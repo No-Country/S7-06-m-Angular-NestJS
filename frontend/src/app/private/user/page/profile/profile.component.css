@@ -1,0 +1,60 @@
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn-secondary{
+    background-color: transparent;
+    color: black;
+    width: 125px;
+}
+.avatar{
+    background-color: gray;
+    border-radius: 60px;
+}
+
+@media screen and (max-width: 500px) {
+ section{
+     height: 700px;
+}
+
+ .me{
+    margin-top: 20px;
+    padding: auto;
+    height: 66px;
+ }
+
+ .hello{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+ }
+
+ .avatar{
+    width: 60px;
+    height: 60px;
+ }
+ 
+ .buttons-group{
+    height: 220px;
+ }
+
+ .row{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+ 
+
+}

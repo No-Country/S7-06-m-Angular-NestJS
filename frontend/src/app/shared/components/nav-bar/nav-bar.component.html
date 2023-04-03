@@ -7,14 +7,10 @@
             </a>
         </div>
         <div class="container-navigation">
-          <div class="dropdown">
-            <button class="navbar-toggler dropdown-toggle nav-profile nav-icon" role="button" data-bs-toggle="dropdown" type="button">
+          <div>
+            <button (click)="profile()" class="navbar-toggler nav-profile nav-icon" type="button">
               <i class="bi bi-person"></i>
             </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
-              </ul>
           </div>
           <div>
             <button class="navbar-toggler nav-chart nav-icon" type="button">

@@ -1,0 +1,11 @@
+.container-form{
+margin: auto;
+display: flex;
+justify-content: center;
+align-items:center;
+}
+@media screen and (max-width:500px){
+    .container-form{
+        width: 250px;
+    }
+}
