@@ -7,7 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { transporter } from 'src/config/transporter';
+// import { transporter } from 'src/config/transporter';
 import * as bcrypt from 'bcrypt';
 
 import { User } from './entities/auth.entity';
@@ -36,12 +36,12 @@ export class AuthService {
       await this.authRepository.save(user);
       delete user.password;
 
-      await transporter.sendMail({
-        to: 'bryandavidaaa@gmail.com',
-        from: 'jobsmatch23@gmail.com',
-        subject: 'confirme su email',
-        html: '<h1>recuperar contraseña</h1>',
-      });
+      // await transporter.sendMail({
+      //   to: 'bryandavidaaa@gmail.com',
+      //   from: 'jobsmatch23@gmail.com',
+      //   subject: 'confirme su email',
+      //   html: '<h1>recuperar contraseña</h1>',
+      // });
 
       return { ...user, token: this.getJwtToken({ id: user.id }) };
     } catch (error) {
