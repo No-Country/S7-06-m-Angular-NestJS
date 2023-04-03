@@ -15,6 +15,8 @@ import { CreateProductDto, UpdateProductDto } from './dto';
 import { PaginationDto } from '../common/dto/pagination.dto';
 
 import { CategoriesService } from '../categories/categories.service';
+import { ProductImage } from './entities';
+import { User } from '../auth/entities/auth.entity';
 
 @Injectable()
 export class ProductsService {
@@ -24,14 +26,22 @@ export class ProductsService {
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
 
+    @InjectRepository(ProductImage)
+    private productImageRepository: Repository<ProductImage>,
+
     private categoriesServices: CategoriesService,
 
     private dataSource: DataSource,
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, user: User) {
     try {
-      const { categorie_name, ...productDetails } = createProductDto;
+      const {
+        images = [],
+        categorie_name,
+        ...productDetails
+      } = createProductDto;
+
       const category = await this.categoriesServices.findOneByName(
         categorie_name,
       );
@@ -39,6 +49,10 @@ export class ProductsService {
       const product = this.productRepository.create({
         ...productDetails,
         categories: category,
+        images: images.map((image) =>
+          this.productImageRepository.create({ url: image }),
+        ),
+        user,
       });
 
       await this.productRepository.save(product);
@@ -78,8 +92,8 @@ export class ProductsService {
     return product;
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto) {
-    const { categorie_name, ...productDetail } = updateProductDto;
+  async update(id: string, updateProductDto: UpdateProductDto, user: User) {
+    const { images, categorie_name, ...productDetail } = updateProductDto;
 
     const category = await this.categoriesServices.findOneByName(
       categorie_name,
@@ -102,6 +116,16 @@ export class ProductsService {
         await queryRunner.manager.delete(Product, { categories: { id } });
         product.categories = category;
       }
+
+      if (images) {
+        await queryRunner.manager.delete(ProductImage, { product: { id } });
+
+        product.images = images.map((image) =>
+          this.productImageRepository.create({ url: image }),
+        );
+      }
+
+      product.user = user;
 
       await queryRunner.manager.save(product);
       await queryRunner.commitTransaction();

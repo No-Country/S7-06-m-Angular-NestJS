@@ -5,9 +5,12 @@ import {
   Column,
   ManyToOne,
   BeforeInsert,
+  OneToMany,
 } from 'typeorm';
 
 import { Category } from '../../categories/entities/category.entity';
+import { ProductImage } from './product-image.entity';
+import { User } from '../../auth/entities/auth.entity';
 
 @Entity('products')
 export class Product {
@@ -34,6 +37,16 @@ export class Product {
   @ApiProperty()
   @ManyToOne(() => Category, (category) => category.products)
   categories: Category;
+
+  @ApiProperty()
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, {
+    cascade: true,
+    eager: true,
+  })
+  images?: ProductImage[];
+
+  @ManyToOne(() => User, (user) => user.product, { eager: true })
+  user: User;
 
   @BeforeInsert()
   charatersLowercase() {

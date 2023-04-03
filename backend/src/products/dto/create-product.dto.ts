@@ -2,9 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsNumber,
-  IsBoolean,
   MinLength,
   IsOptional,
+  IsArray,
 } from 'class-validator';
 import { Category } from '../../categories/entities/category.entity';
 
@@ -31,6 +31,12 @@ export class CreateProductDto {
   @MinLength(1)
   @IsOptional()
   categorie_name?: string;
+
+  @ApiProperty()
+  @IsString({ each: true })
+  @IsArray()
+  @IsOptional()
+  images?: string[];
 
   categories: Category;
 }

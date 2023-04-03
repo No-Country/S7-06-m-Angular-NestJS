@@ -20,6 +20,8 @@ import { PaginationDto } from '../common/dto/pagination.dto';
 import { Auth } from '../auth/decorators';
 import { Roles } from '../auth/interfaces';
 import { Product } from './entities/product.entity';
+import { GetUser } from '../auth/decorators/get-user.decorator';
+import { User } from '../auth/entities/auth.entity';
 
 @ApiTags('Products')
 @Controller('products')
@@ -37,8 +39,8 @@ export class ProductsController {
   })
   @Auth(Roles.Admin)
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto);
+  create(@Body() createProductDto: CreateProductDto, @GetUser() user: User) {
+    return this.productsService.create(createProductDto, user);
   }
 
   @Get()
@@ -56,8 +58,9 @@ export class ProductsController {
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
+    @GetUser() user: User,
   ) {
-    return this.productsService.update(id, updateProductDto);
+    return this.productsService.update(id, updateProductDto, user);
   }
 
   @Auth(Roles.Admin)
