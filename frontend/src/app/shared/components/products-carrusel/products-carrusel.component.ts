@@ -16,6 +16,9 @@ export class ProductsCarruselComponent implements OnInit {
   @Input()
   title = "";
 
+  @Input()
+  visibleCarrusel = false;
+
   config: SwiperOptions = {
   slidesPerView: 1,
   spaceBetween: 10,
@@ -55,27 +58,6 @@ export class ProductsCarruselComponent implements OnInit {
     },
     {id:4,
       name:'ccuatro',
-      price:123,
-      category:'dos',
-      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
-      description:'otro producto,'
-    },
-    {id:5,
-      name:'cinco',
-      price:123,
-      category:'dos',
-      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
-      description:'otro producto,'
-    },
-    {id:6,
-      name:'seis',
-      price:123,
-      category:'dos',
-      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
-      description:'otro producto,'
-    },
-    {id:7,
-      name:'siete',
       price:123,
       category:'dos',
       imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
