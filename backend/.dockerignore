@@ -4,3 +4,4 @@ postgres/
 
 .git/
 .gitignore
+package-lock.json
