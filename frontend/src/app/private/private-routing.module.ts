@@ -7,10 +7,9 @@ import { ResetPasswordComponent } from './reset-password/page/reset-password/res
 
 const routes: Routes = [  
   {
-    path: '',
+    path: '',component:PrivateComponent,
     children: [
       { path: 'cart', component: CartComponent },
-      { path: 'private', component: PrivateComponent },
       { path: 'resetpassword/:token?', component: ResetPasswordComponent },
       { path: '**', redirectTo: 'home' }
     ]
