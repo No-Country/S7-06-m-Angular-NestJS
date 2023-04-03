@@ -1,12 +1,12 @@
 <app-nav-bar></app-nav-bar>
 <section>
-    <div class="container me">
-        <h1 class="hello">Hola, name</h1>
-        <img class="profileImg" src={{img}} alt="profileImg">       
+    <div class="container me"><!--*ngIf = 'user'--> 
+        <h1 class="hello">Hola, {{user.first_name}}</h1>
+        <img class="avatar" [src]="user.avatar" alt="avatar">       
     </div>
     <div class="buttons-group text-center">
         <div class="row gap-2 mx-auto">
-          <button class="col-4 btn btn-secondary col">Column</button>
+          <button class="col-4 btn btn-secondary col" (click)="navigateEdit()">Tu cuenta</button>
           <button class="col-4 btn btn-secondary col">Column</button>
           <button class="col-4 btn btn-secondary col">Column</button>
           <button class="col-4 btn btn-secondary col">Column</button>

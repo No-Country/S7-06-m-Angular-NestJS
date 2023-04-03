@@ -16,7 +16,7 @@
     color: black;
     width: 125px;
 }
-.profileImg{
+.avatar{
     background-color: gray;
     border-radius: 60px;
 }
@@ -40,7 +40,7 @@
     text-align: left;
  }
 
- .profileImg{
+ .avatar{
     width: 60px;
     height: 60px;
  }

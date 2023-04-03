@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/shared/models/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  img = "https://qph.cf2.quoracdn.net/main-qimg-d2de26e1ee550bf4d2035ce876e4fde7-lq"
-  constructor() { }
+  user = new User("","","","");
+
+  constructor(private router: Router, public sUser: UserService) { }
 
   ngOnInit(): void {
+    this.loadProfile();
   }
 
+
+  loadProfile(): void {
+    this.sUser.detail(2).subscribe((data) => { this.user = data; 
+      console.log(this.user) });
+   
+  }
+
+  navigateEdit(){
+    this.router.navigate(['user/edit-profile'])
+  }
 }
