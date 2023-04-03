@@ -9,9 +9,10 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { ConfigService } from '@nestjs/config';
+import { v2 as cloudinary } from 'cloudinary';
 
 import { FilesService } from './files.service';
 import { fileFilter, fileNamer } from './helper';
@@ -30,7 +31,7 @@ export class FilesController {
   ) {
     const path = this.filesService.getStaticProductImage(imageName);
 
-    res.sendFile(path);
+    res.send(path);
   }
 
   @Post('product')
@@ -38,21 +39,29 @@ export class FilesController {
     FileInterceptor('file', {
       fileFilter: fileFilter,
       storage: diskStorage({
-        destination: './static/products',
         filename: fileNamer,
       }),
     }),
   )
-  uploadProductImage(
+  async uploadProductImage(
     @UploadedFile()
     file: Express.Multer.File,
   ) {
+    // Configuration
+    cloudinary.config({
+      cloud_name: this.configService.get('CLOUDINARY_CLOUD_NAME'),
+      api_key: this.configService.get('CLOUDINARY_API_KEY'),
+      api_secret: this.configService.get('CLOUDINARY_API_SECRET'),
+    });
+
     if (!file)
       throw new BadRequestException('Make sure that the file is an image');
 
-    const secureUrl = `${this.configService.get('HOST_API')}/files/product/${
-      file.filename
-    }`;
+    const photoUrl = await cloudinary.uploader.upload(`${file.path}`, {
+      public_id: `${file.filename}`,
+    });
+
+    const secureUrl = `${photoUrl.secure_url}`;
 
     return { secureUrl };
   }

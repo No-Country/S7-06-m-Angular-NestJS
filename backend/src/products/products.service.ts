@@ -1,3 +1,4 @@
+import { join } from 'path';
 import {
   Injectable,
   BadRequestException,
@@ -36,8 +37,10 @@ export class ProductsService {
 
   async create(createProductDto: CreateProductDto, user: User) {
     try {
+      const sampleImage = join(__dirname, '../../static/sample/mimu.jpeg');
+
       const {
-        images = [],
+        images = [sampleImage],
         categorie_name,
         ...productDetails
       } = createProductDto;
