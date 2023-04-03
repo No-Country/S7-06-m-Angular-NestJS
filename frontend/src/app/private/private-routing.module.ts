@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartProductsComponent } from './cart/components/cart-products/cart-products.component';
 import { CartComponent } from './cart/page/cart/cart.component';
 import { PrivateComponent } from './private/private.component';
 import { ResetPasswordComponent } from './reset-password/page/reset-password/reset-password.component';
