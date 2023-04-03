@@ -7,11 +7,7 @@ import { Order } from './entities/order.entity';
 
 @Injectable()
 export class OrdersService {
-
-constructor(
-  @InjectRepository(Order) orderRepositorie: Repository<Order>
-){}
-
+  constructor(@InjectRepository(Order) orderRepositorie: Repository<Order>) {}
 
   create(createOrderDto: CreateOrderDto) {
     return 'This action adds a new order';

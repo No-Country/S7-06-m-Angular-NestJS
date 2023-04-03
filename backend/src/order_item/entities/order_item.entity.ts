@@ -1,22 +1,20 @@
-import { Order } from "src/orders/entities/order.entity";
-import { Entity,PrimaryGeneratedColumn,Column,ManyToOne } from "typeorm";
+import { Order } from 'src/orders/entities/order.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
-@Entity("orderItem")
-
+@Entity('orderItem')
 export class OrderItem {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-@PrimaryGeneratedColumn("uuid")
-id:string
+  @Column('text')
+  name: string;
 
-@Column("text")
-name:string
+  @Column('numeric')
+  quantity: number;
 
-@Column("number")
-quantity:number
+  @Column('decimal')
+  price: number;
 
-@Column("decimal")
-price:number
-
-@ManyToOne(()=>Order,(order)=>order.items)
-order:Order
+  @ManyToOne(() => Order, (order) => order.items)
+  order: Order;
 }

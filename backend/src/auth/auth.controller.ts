@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Req,Patch,Param,ParseUUIDPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Param,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { User } from './entities/auth.entity';
 
 import { AuthService } from './auth.service';
@@ -7,7 +15,6 @@ import { Roles } from './interfaces';
 import { Auth, GetUser } from './decorators';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-import path from 'path';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -34,17 +41,17 @@ export class AuthController {
     return this.authService.login(loginUserDto);
   }
 
-  @ApiResponse({status:201,description:"User updated!",type:User})
+  @ApiResponse({ status: 201, description: 'User updated!', type: User })
   @ApiResponse({
     status: 400,
     description: 'Bad request (data are wrong)',
   })
-  @Patch("update/:id")
+  @Patch('update/:id')
   updateUser(
-    @Param("id",ParseUUIDPipe) id:string,
-    @Body()updateUserDto:UpdateAuthDto,
-    ){
-    return this.authService.update(id,updateUserDto)
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateUserDto: UpdateAuthDto,
+  ) {
+    return this.authService.update(id, updateUserDto);
   }
 
   @Get('private')

@@ -51,6 +51,7 @@ export class User {
 
   @OneToMany(() => Order, (order) => order.users)
   orders: Order[];
+
   @OneToMany(() => Product, (product) => product.user)
   product: Product;
 

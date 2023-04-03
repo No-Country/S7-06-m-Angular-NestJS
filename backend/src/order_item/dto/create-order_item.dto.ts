@@ -1,13 +1,12 @@
-import { IsString,IsDecimal,IsNumber, } from "class-validator";
+import { IsString, IsDecimal, IsNumber } from 'class-validator';
 
 export class CreateOrderItemDto {
+  @IsString()
+  name: string;
 
-@IsString()
-name:String
+  @IsNumber()
+  quantity: number;
 
-@IsNumber()
-quantity:number
-
-@IsDecimal()
-price:number
+  @IsDecimal()
+  price: number;
 }

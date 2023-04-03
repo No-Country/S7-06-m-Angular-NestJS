@@ -1,21 +1,20 @@
-import { IsString,IsDecimal,IsNumber,IsBoolean,IsOptional } from "class-validator";
+import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateOrderDto {
+  @IsString()
+  createdAt: string;
 
-    @IsString()
-    createdAt:string
-    
-    @IsOptional()
-    @IsString()
-    paidAt?:string
+  @IsOptional()
+  @IsString()
+  paidAt?: string;
 
-    @IsBoolean()
-    @IsOptional()
-    isPaid?:boolean
+  @IsBoolean()
+  @IsOptional()
+  isPaid?: boolean;
 
-    @IsNumber()
-    taxPrice:number
+  @IsNumber()
+  taxPrice: number;
 
-    @IsNumber()
-    totalPrice:number
+  @IsNumber()
+  totalPrice: number;
 }

@@ -8,6 +8,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/auth/entities/auth.entity';
 import { OrderItem } from 'src/order_item/entities/order_item.entity';
+
 @Entity('orders')
 export class Order {
   @ApiProperty()

@@ -37,11 +37,11 @@ export class AuthService {
       delete user.password;
 
       await transporter.sendMail({
-        to:"bryandavidaaa@gmail.com",
-        from:"jobsmatch23@gmail.com",
-        subject:"confirme su email",
-        html:"<h1>recuperar contraseña</h1>"
-      })
+        to: 'bryandavidaaa@gmail.com',
+        from: 'jobsmatch23@gmail.com',
+        subject: 'confirme su email',
+        html: '<h1>recuperar contraseña</h1>',
+      });
 
       return { ...user, token: this.getJwtToken({ id: user.id }) };
     } catch (error) {
@@ -49,15 +49,14 @@ export class AuthService {
     }
   }
 
-
-  async update(id:string,updateUserDto:UpdateAuthDto){
-    const user=this.authRepository.findOne({where:{id}})
-    if(!user){
+  async update(id: string, updateUserDto: UpdateAuthDto) {
+    const user = this.authRepository.findOne({ where: { id } });
+    if (!user) {
       throw new UnauthorizedException('User not login');
     }
-     const update= await this.authRepository.preload({id,...updateUserDto})
-     this.authRepository.save(update)
-     return update
+    const update = await this.authRepository.preload({ id, ...updateUserDto });
+    this.authRepository.save(update);
+    return update;
   }
 
   async login(loginUserDto: LoginUserDto) {
