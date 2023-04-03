@@ -8,8 +8,8 @@ import { JoiValidationSchema } from './config/joi.schema';
 import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
-import { CartModule } from './cart/cart.module';
 import { OrderItemModule } from './order_item/order_item.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -31,10 +31,9 @@ import { OrderItemModule } from './order_item/order_item.module';
     ProductsModule,
     CategoriesModule,
     OrdersModule,
-    CartModule,
     OrderItemModule,
+    FilesModule,
   ],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}

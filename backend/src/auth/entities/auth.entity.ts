@@ -1,4 +1,4 @@
-import { ApiProperty} from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Order } from 'src/orders/entities/order.entity';
 import {
   OneToMany,
@@ -8,6 +8,8 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+import { Product } from '../../products/entities';
 
 @Entity('users')
 export class User {
@@ -49,6 +51,8 @@ export class User {
 
   @OneToMany(() => Order, (order) => order.users)
   orders: Order[];
+  @OneToMany(() => Product, (product) => product.user)
+  product: Product;
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {
