@@ -2,18 +2,18 @@
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
         <div class="container-logo">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" (click)="navigateTo('/mimu/home')">
                 <img src="logo" alt="logo">
             </a>
         </div>
         <div class="container-navigation">
           <div>
-            <button (click)="profile()" class="navbar-toggler nav-profile nav-icon" type="button">
+            <button (click)="navigateTo('/user/profile')" class="navbar-toggler nav-profile nav-icon" type="button">
               <i class="bi bi-person"></i>
             </button>
           </div>
           <div>
-            <button class="navbar-toggler nav-chart nav-icon" type="button">
+            <button class="navbar-toggler nav-chart nav-icon" (click)="navigateTo('/user/cart')" type="button">
               <i class="bi bi-bag"></i>
             </button>
           </div>
@@ -31,7 +31,7 @@
                       <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        <a class="nav-link dropdown-toggle"(click)="navigateTo('/mimu/store')" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                             Productos
                         </a>
                         <ul class="dropdown-menu">

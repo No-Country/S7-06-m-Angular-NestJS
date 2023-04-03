@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   }
 
 
-  profile(){
-    this.router.navigate(['user/profile'])
+  navigateTo(route:string){
+    this.router.navigate([route])
   }
 }
