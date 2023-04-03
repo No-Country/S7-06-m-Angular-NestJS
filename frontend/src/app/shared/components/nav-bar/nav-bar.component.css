@@ -2,7 +2,9 @@
     background: rgba(154, 151, 151, 0.283);
     width: 100%;
 }
-
+.navbar-brand {
+    cursor:pointer
+}
 .container-navigation{
     display: flex;
     justify-content: space-around;
