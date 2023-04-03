@@ -1,11 +1,11 @@
-FROM node:18-alpine3.15
+FROM node:18-alpine3.15 AS build
 
 WORKDIR /usr/src/app
 
 COPY package.json ./
 
 # RUN npm install --only=development
-RUN npm ci --omit=dev
+RUN npm ci
 
 COPY . .
 
