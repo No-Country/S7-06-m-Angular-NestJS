@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartProductsComponent } from './cart/components/cart-products/cart-products.component';
 import { CartComponent } from './cart/page/cart/cart.component';
 import { PrivateComponent } from './private/private.component';
+import { ResetPasswordComponent } from './reset-password/page/reset-password/reset-password.component';
 
 const routes: Routes = [  
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     children: [
       { path: 'cart', component: CartComponent },
       { path: 'private', component: PrivateComponent },
+      { path: 'resetpassword/:token?', component: ResetPasswordComponent },
       { path: '**', redirectTo: 'home' }
     ]
   }
