@@ -33,4 +33,11 @@ export class AuthService {
   public recover(email: string): Observable<any> {
     return this.http.post<any>(this.URL + '/auth/recover',email)
   }
+
+  // RESETEAR CONTRASEÑA
+  public resetPassword(password: string): Observable<any> {
+    return this.http.post<any>(this.URL + '/auth/resetpassword',password)
+  }
+
+
 }

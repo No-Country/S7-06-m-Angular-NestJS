@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from './store/store.module';
 import { RecoverFormComponent } from './recover/components/recover-form/recover-form.component';
 import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
+import { PublicComponent } from './public/public.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecoverPasswordComponent } from './recover/page/recover-password/recove
     RegisterFormComponent,
     LoginFormComponent,
     RecoverPasswordComponent,
-    RecoverFormComponent
+    RecoverFormComponent,
+    PublicComponent
   ],
   imports: [
     CommonModule,
