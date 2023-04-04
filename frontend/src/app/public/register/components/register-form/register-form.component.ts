@@ -26,8 +26,12 @@ export class RegisterFormComponent implements OnInit {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],        
-        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]          
+        //password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],        
+        //confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]],
+        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/)]],        
+        //confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/),this.checkPasswords('password')]],
+        contact: "+00000000000",
+        address: "address"          
       }
     )
   }
@@ -42,10 +46,12 @@ export class RegisterFormComponent implements OnInit {
     this.newUser = this.registerForm.value;
     console.log(this.newUser)
     this.authService.register(this.newUser).subscribe({
-      next: (data) => {        
+      next: (res) => {
+        console.log(res)        
         this.registeredUser()
       },
       error: (error) => {
+        console.log(error)
         this.wrongRegister()
       },
       complete:()=>{}
@@ -83,9 +89,9 @@ export class RegisterFormComponent implements OnInit {
       confirmButtonText: 'Intentar nuevamente'
     }).then((result:any) => {
       if (result.isConfirmed) {
-        this.router.navigateByUrl('/register')
+        this.router.navigateByUrl('/mimu/register')
       } else {
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/mimu/home')
       }
     })
   }
@@ -105,9 +111,10 @@ export class RegisterFormComponent implements OnInit {
   get Password() {
     return this.registerForm.get('password')
   }
+  /*
   get ConfirmPassword(){
     return this.registerForm.get('confirmPassword')
-  }
+  }*/
 
   /*=================================================*/
 

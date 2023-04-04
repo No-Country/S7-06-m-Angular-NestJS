@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: ''
+  baseUrl: 'https://mimu-api.onrender.com/api'
 };
 
 /*

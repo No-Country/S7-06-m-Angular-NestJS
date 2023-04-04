@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/public/models/login-user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   emailUsuario: string="";
   password: string="";
 
-  constructor(private formBuilder:FormBuilder, private router: Router,private authService:AuthService,private tokenService:TokenService) {
+  constructor(private formBuilder:FormBuilder, private router: Router,private userService:UserService,private authService:AuthService,private tokenService:TokenService) {
     this.loginForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -33,11 +34,13 @@ export class LoginFormComponent implements OnInit {
   // OnLogin
   onLogin(event: any) {
     this.loginUser = this.loginForm.value;
+    console.log(this.loginUser);
     this.authService.login(this.loginUser).subscribe({
       next: (res) => {
         this.isLogged = true;
-        this.tokenService.setToken(res.data.token);
-        console.log("Usuario logueado")
+        this.tokenService.setToken(res.token);
+        this.userService.saveDataUser(res);
+        this.router.navigateByUrl('mimu/home')
       },
       error: (error) => {
         console.error(error)
@@ -67,7 +70,7 @@ export class LoginFormComponent implements OnInit {
       confirmButtonText: 'Quiero registrarme'
     }).then((result: any) => {
       if (result.isConfirmed) {
-        this.router.navigateByUrl('register')
+        this.router.navigateByUrl('mimu/register')
       }
     })
   }
