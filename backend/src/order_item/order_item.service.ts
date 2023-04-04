@@ -1,11 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,BadRequestException } from '@nestjs/common';
 import { CreateOrderItemDto } from './dto/create-order_item.dto';
 import { UpdateOrderItemDto } from './dto/update-order_item.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/products/entities';
+import { Repository } from 'typeorm';
+import { OrderItem } from './entities/order_item.entity';
 
 @Injectable()
 export class OrderItemService {
-  create(createOrderItemDto: CreateOrderItemDto) {
-    return 'This action adds a new orderItem';
+
+constructor(
+  @InjectRepository(OrderItem) private orderItemRepository:Repository<OrderItem>,
+  @InjectRepository(Product) private productRepository:Repository<Product>
+){}
+
+  create(id:string,createOrderItemDto: CreateOrderItemDto) {
+    const product=this.productRepository.findOne({where:{id}})
+    const{products,order,...orderData}=createOrderItemDto
+    const{}=product
+    if(!product)throw new BadRequestException("Error, product dont exist")
+    const orderItem=this.orderItemRepository.create({...orderData,products:products})
   }
 
   findAll() {

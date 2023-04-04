@@ -4,6 +4,8 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/auth/entities/auth.entity';
@@ -40,4 +42,15 @@ export class Order {
 
   @OneToMany(() => OrderItem, (item) => item.order)
   items: OrderItem;
+
+
+  @BeforeInsert()
+  taxPriceInsert() {
+    this.taxPrice=this.totalPrice/12
+  }
+
+  @BeforeUpdate()
+  taxPriceUpdate() {
+    this.taxPrice=this.totalPrice/12
+  }
 }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { OrderItemService } from './order_item.service';
 import { CreateOrderItemDto } from './dto/create-order_item.dto';
@@ -16,8 +17,11 @@ export class OrderItemController {
   constructor(private readonly orderItemService: OrderItemService) {}
 
   @Post()
-  create(@Body() createOrderItemDto: CreateOrderItemDto) {
-    return this.orderItemService.create(createOrderItemDto);
+  create(
+    @Param("id",ParseUUIDPipe) id:string,
+    @Body() createOrderItemDto: CreateOrderItemDto
+    ) {
+    return this.orderItemService.create(id,createOrderItemDto);
   }
 
   @Get()

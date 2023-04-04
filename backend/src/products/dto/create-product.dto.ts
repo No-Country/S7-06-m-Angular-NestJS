@@ -7,6 +7,7 @@ import {
   IsArray,
 } from 'class-validator';
 import { Category } from '../../categories/entities/category.entity';
+import { OrderItem } from 'src/order_item/entities/order_item.entity';
 
 export class CreateProductDto {
   @ApiProperty({
@@ -37,6 +38,9 @@ export class CreateProductDto {
   @IsArray()
   @IsOptional()
   images?: string[];
+
+  @IsOptional()
+  orderItems?:OrderItem
 
   categories: Category;
 }
