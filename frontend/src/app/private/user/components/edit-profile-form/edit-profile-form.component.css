@@ -3,9 +3,13 @@ form{
     justify-content: center;
     align-items:center;
 }
-
-
-.form-control{
-    width: 80%;
-    
+.field{
+    margin: 10px auto
 }
+.form-control{
+    width: 100%;
+    height: 40px;
+}
+
+
+
