@@ -13,7 +13,7 @@ export class CreateOrderItemDto {
   price: number;
 
   @IsOptional()
-  order?:Order
+  order: Order;
 
-  products:Product
+  product: Product;
 }

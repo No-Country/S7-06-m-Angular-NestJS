@@ -39,8 +39,5 @@ export class CreateProductDto {
   @IsOptional()
   images?: string[];
 
-  @IsOptional()
-  orderItems?:OrderItem
-
   categories: Category;
 }

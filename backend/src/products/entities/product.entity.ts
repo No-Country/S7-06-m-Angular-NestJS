@@ -6,8 +6,6 @@ import {
   ManyToOne,
   BeforeInsert,
   OneToMany,
-  OneToOne,
-  JoinColumn
 } from 'typeorm';
 
 import { Category } from '../../categories/entities/category.entity';
@@ -51,8 +49,8 @@ export class Product {
   @ManyToOne(() => User, (user) => user.product, { eager: true })
   user: User;
 
-  @OneToMany(()=>OrderItem,(oi)=>oi.products)
-  orderItems:OrderItem
+  @OneToMany(() => OrderItem, (oi) => oi.product)
+  orderItems: OrderItem[];
 
   @BeforeInsert()
   charatersLowercase() {
