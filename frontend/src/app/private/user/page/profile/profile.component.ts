@@ -10,19 +10,18 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user = new User("","","","");
+  user = new User('','','','');
+
 
   constructor(private router: Router, public sUser: UserService) { }
 
   ngOnInit(): void {
-    this.loadProfile();
+    this.getUser();
   }
 
 
-  loadProfile(): void {
-    this.sUser.detail(2).subscribe((data) => { this.user = data; 
-      console.log(this.user) });
-   
+  getUser(): void {
+    this.user = this.sUser.getDataUser();
   }
 
   navigateEdit(){
