@@ -1,0 +1,90 @@
+.productList {
+    margin-top:25px;
+    padding:0px 25px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.product {
+    width: 45%;
+    height:200px;
+    border:1px solid grey;
+    margin:15px
+}
+.card {
+    margin:20px 10px;
+}
+.card a {
+    text-decoration: none;
+    color:black
+}
+.card img {
+    height:250px
+}
+.card-body p {
+    margin-bottom:0px;
+    padding-bottom:0px
+}
+.buttons {
+    padding:0 0 10px
+}
+.buttons button {
+    margin:10px 20px;
+    font-size:0.8;
+    padding:3px 10px
+}
+
+/*--------MODAL--------*/
+
+.modal-agregar {
+    background-color: #FAFAFA;
+    text-align: center;
+}
+.modal-agregar select {
+    width:100%;
+    padding:5px
+}
+.btn-aceptar {
+    background:#FF8328;
+    color:white;   
+}
+.modal-editar {
+    background-color: rgb(255, 242, 99);    
+}
+.form-group {
+    width:80%;
+    margin:0 auto 10px;
+}
+.modal-borrar {
+    background-color:rgb(255, 90, 90)
+}
+.titulo-modal-borrar {
+    margin:15px
+}
+#deleteName {
+    font-size:1.3rem;
+    font-weight:bolder
+}
+.botones {
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap
+}
+
+@media screen and (max-width: 900px) {
+    .product {
+        width: 80%;
+        height:200px;
+        margin:15px
+    }
+}
+@media screen and (max-width: 500px) {
+    .productList {
+        padding:0px 0px;
+    }
+    .product {
+        width:95%;
+        margin:15px 0px
+    }
+}

@@ -1,0 +1,24 @@
+<section id="dashboard">
+    <div class="header">
+        <div class="greeting">
+            <p>Hola <b>{{dataUser.firstName}}</b> (Admin)</p>
+        </div>
+        <div class="img-avatar">
+            <img src="https://img.freepik.com/vector-premium/caracter-chico-avatar-internet_24877-17028.jpg?w=2000" alt="">
+        </div>
+    </div>
+    <div class="panel">
+        <div class="buttons">
+            <button class="btn btn-success" (click)="navigateTo('/admin/profile')">Mi Cuenta</button>
+            <button class="btn btn-warning" (click)="navigateTo('/admin/products')">Productos</button>
+            <button class="btn btn-primary">Registro Compras</button>
+            <button class="btn btn-danger">Categorías</button>
+            <button class="btn btn-info">Ofertas</button>
+            <button class="btn btn-light">Otra cosa</button>
+        </div>
+    </div>
+    <div class="img-logo text-center">
+        <img src="../../../../assets/img/logo1.png" alt="">
+    </div>
+
+</section>
