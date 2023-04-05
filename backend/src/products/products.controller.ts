@@ -43,16 +43,39 @@ export class ProductsController {
     return this.productsService.create(createProductDto, user);
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Found all products',
+    type: Product,
+  })
   @Get()
   findAll(@Query() paginationDto: PaginationDto) {
     return this.productsService.findAll(paginationDto);
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Product was found',
+    type: Product,
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Bad request (product doesn't exists)",
+  })
   @Get(':term')
   findOne(@Param('term') term: string) {
     return this.productsService.findOne(term);
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Product was updated',
+    type: Product,
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Bad request (product doesn't exists)",
+  })
   @Auth(Roles.Admin)
   @Patch(':id')
   update(
@@ -63,6 +86,15 @@ export class ProductsController {
     return this.productsService.update(id, updateProductDto, user);
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Product was deleted',
+    type: Product,
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Bad request (product doesn't exists)",
+  })
   @Auth(Roles.Admin)
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {

@@ -8,35 +8,36 @@ import { Category } from './entities/category.entity';
 export class CategoriesService {
   constructor(
     @InjectRepository(Category)
-    private categoryRepositorie: Repository<Category>,
+    private categoryRepository: Repository<Category>,
   ) {}
+
   async create(createCategoryDto: CreateCategoryDto) {
     if (!createCategoryDto)
       throw new BadRequestException('please check your props');
-    const category = this.categoryRepositorie.create(createCategoryDto);
-    return await this.categoryRepositorie.save(category);
+    const category = this.categoryRepository.create(createCategoryDto);
+    return await this.categoryRepository.save(category);
   }
 
   async findAll() {
-    return await this.categoryRepositorie.find();
+    return await this.categoryRepository.find();
   }
 
   async findOneCategory(id: string) {
-    const category = await this.categoryRepositorie.findOne({ where: { id } });
+    const category = await this.categoryRepository.findOne({ where: { id } });
     if (!category) throw new BadRequestException('id category dont exist');
     return category;
   }
 
   async findOneByName(name: string) {
-    const category = await this.categoryRepositorie.findOneBy({ name });
+    const category = await this.categoryRepository.findOneBy({ name });
     if (!category) throw new BadRequestException('id category dont exist');
     return category;
   }
 
   remove(id: string) {
-    const category = this.categoryRepositorie.findOne({ where: { id } });
+    const category = this.categoryRepository.findOne({ where: { id } });
     if (!category) throw new BadRequestException('id dont exist');
-    this.categoryRepositorie.delete({ id });
+    this.categoryRepository.delete({ id });
     return { message: `category ${id} has deleted` };
   }
 }

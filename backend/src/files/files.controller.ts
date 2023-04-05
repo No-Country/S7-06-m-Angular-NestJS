@@ -11,12 +11,14 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 
 import { FilesService } from './files.service';
 import { fileFilter, fileNamer } from './helper';
 
+@ApiTags('Files')
 @Controller('files')
 export class FilesController {
   constructor(
@@ -24,6 +26,10 @@ export class FilesController {
     private readonly configService: ConfigService,
   ) {}
 
+  @ApiResponse({
+    status: 201,
+    description: 'File was found',
+  })
   @Get('product/:imageName')
   findProductImage(
     @Res() res: Response,
@@ -34,6 +40,10 @@ export class FilesController {
     res.send(path);
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'File was create',
+  })
   @Post('product')
   @UseInterceptors(
     FileInterceptor('file', {

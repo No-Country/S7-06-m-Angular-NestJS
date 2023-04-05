@@ -7,7 +7,6 @@ import {
   IsArray,
 } from 'class-validator';
 import { Category } from '../../categories/entities/category.entity';
-import { OrderItem } from 'src/order_item/entities/order_item.entity';
 
 export class CreateProductDto {
   @ApiProperty({
@@ -20,19 +19,42 @@ export class CreateProductDto {
   @MinLength(1)
   name: string;
 
+  @ApiProperty({
+    description: 'Product description',
+    nullable: false,
+    minLength: 1,
+    default: 'Sirve para escribir en color verde',
+  })
   @IsString()
   @MinLength(1)
   description: string;
 
+  @ApiProperty({
+    description: 'Product price',
+    nullable: false,
+    minLength: 1,
+    default: 10.0,
+  })
   @IsNumber()
   @IsOptional()
   price?: number;
 
+  @ApiProperty({
+    description: 'Product category',
+    nullable: false,
+    minLength: 1,
+    default: 'esferos',
+  })
   @IsString()
   @MinLength(1)
   @IsOptional()
   categorie_name?: string;
 
+  @ApiProperty({
+    description: 'Product image',
+    nullable: true,
+    default: 'https://image.jpg',
+  })
   @ApiProperty()
   @IsString({ each: true })
   @IsArray()

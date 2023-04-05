@@ -46,7 +46,7 @@ export class ProductsService {
       } = createProductDto;
 
       const category = await this.categoriesServices.findOneByName(
-        categorie_name,
+        categorie_name.toLowerCase(),
       );
 
       const product = this.productRepository.create({
@@ -67,9 +67,10 @@ export class ProductsService {
   }
 
   async findAll(paginationDto: PaginationDto) {
-    const { limit = 5, offset = 0 } = paginationDto;
-    return await this.productRepository.find({
-      take: limit,
+    const { limit = 10, offset = 0 } = paginationDto;
+
+    return await this.productRepository.findAndCount({
+      take: +limit,
       skip: offset,
       relations: { categories: true },
     });
