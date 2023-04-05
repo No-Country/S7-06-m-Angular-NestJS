@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { User } from 'src/app/shared/models/user';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -10,23 +8,18 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class EditProfileFormComponent implements OnInit {
   
-  user = new User('','','','');
+  edit:boolean=false;
+  dataUser:any;
+  
 
-  constructor(private sUser: UserService) { }
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
-    this.getUser();
-
+    this.getData()
   }
 
-  
-  getUser(): void {
-    this.user = this.sUser.getDataUser();
-  }
-
-  onSubmit() {
-    this.sUser.saveDataUser(this.user);
-
+  getData(){
+    this.dataUser = this.userService.getDataUser()
   }
 }
 
