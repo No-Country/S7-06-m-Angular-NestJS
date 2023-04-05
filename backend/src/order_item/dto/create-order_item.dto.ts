@@ -12,6 +12,9 @@ export class CreateOrderItemDto {
   @IsDecimal()
   price: number;
 
+  @IsString()
+  order_id:string
+
   @IsOptional()
   order: Order;
 

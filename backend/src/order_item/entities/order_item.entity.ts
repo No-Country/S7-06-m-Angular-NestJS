@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BeforeInsert, BeforeUpdate } from 'typeorm';
 
 import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities';
 
-@Entity('orderItem')
+@Entity('order_item')
 export class OrderItem {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -22,4 +22,5 @@ export class OrderItem {
 
   @ManyToOne(() => Product, (product) => product.orderItems)
   product: Product;
+
 }

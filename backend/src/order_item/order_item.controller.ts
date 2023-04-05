@@ -24,26 +24,16 @@ export class OrderItemController {
     return this.orderItemService.create(id,createOrderItemDto);
   }
 
-  @Get()
-  findAll() {
-    return this.orderItemService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderItemService.findOne(+id);
-  }
-
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id',ParseUUIDPipe) id: string,
     @Body() updateOrderItemDto: UpdateOrderItemDto,
   ) {
-    return this.orderItemService.update(+id, updateOrderItemDto);
+    return this.orderItemService.update(id, updateOrderItemDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderItemService.remove(+id);
+  remove(@Param('id',ParseUUIDPipe) id: string) {
+    return this.orderItemService.remove(id);
   }
 }
