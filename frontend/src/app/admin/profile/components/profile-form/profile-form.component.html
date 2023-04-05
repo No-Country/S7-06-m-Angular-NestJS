@@ -1,0 +1,35 @@
+<div class="data">
+    <div class="name-lastName item">
+        <div class="name">
+          <label for="name">Nombre</label><br>
+          <input class="input-name" type="text" placeholder={{dataUser.firstName}} [disabled]="!edit">
+        </div>
+        <div class="lastName">
+          <label for="lastName">Apellido</label><br>
+          <input class="input-name" type="text" placeholder={{dataUser.lastName}} [disabled]="!edit">
+        </div>
+    </div>
+    <div class="item">
+        <label for="email">Email</label><br>
+        <input class="inputs" type="email" placeholder={{dataUser.email}} disabled>
+    </div>
+    <div class="item">
+        <label for="email">Dirección</label><br>
+        <input class="inputs" type="text" placeholder="Direccion" [disabled]="!edit">
+    </div>
+    <div class="item">
+        <label for="email">Teléfono</label><br>
+        <input class="inputs" type="text" placeholder="Teléfono" [disabled]="!edit">
+    </div>
+    <div class="item">
+        <label for="email">Contraseña</label><br>
+        <input class="inputs" type="password" placeholder="***********" disabled>
+    </div>
+    <div class="buttons">
+        <button class="btn btn-outline-danger" (click)="edit=!edit">Modificar los datos </button>
+        <button *ngIf="edit"class="btn btn-success">Guardar cambios</button>              
+    </div> 
+      
+         
+
+</div>
