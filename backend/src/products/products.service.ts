@@ -1,4 +1,3 @@
-import { join } from 'path';
 import {
   Injectable,
   BadRequestException,
@@ -9,6 +8,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { validate as isUUID } from 'uuid';
+import { v2 as cloudinary } from 'cloudinary';
 
 import { Product } from './entities/product.entity';
 
@@ -18,6 +18,7 @@ import { PaginationDto } from '../common/dto/pagination.dto';
 import { CategoriesService } from '../categories/categories.service';
 import { ProductImage } from './entities';
 import { User } from '../auth/entities/auth.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ProductsService {
@@ -33,20 +34,37 @@ export class ProductsService {
     private categoriesServices: CategoriesService,
 
     private dataSource: DataSource,
+
+    private readonly configService: ConfigService,
   ) {}
 
-  async create(createProductDto: CreateProductDto, user: User) {
+  async create(
+    createProductDto: CreateProductDto,
+    user: User,
+    file: Express.Multer.File,
+  ) {
     try {
-      const sampleImage = join(__dirname, '../../static/sample/mimu.jpeg');
+      // Configuration cloudinary
+      cloudinary.config({
+        cloud_name: this.configService.get('CLOUDINARY_CLOUD_NAME'),
+        api_key: this.configService.get('CLOUDINARY_API_KEY'),
+        api_secret: this.configService.get('CLOUDINARY_API_SECRET'),
+      });
+
+      const photoUrl = await cloudinary.uploader.upload(`${file.path}`, {
+        public_id: `${file.filename}`,
+      });
+
+      const secureUrl = `${photoUrl.secure_url}`;
 
       const {
-        images = [sampleImage],
-        categorie_name,
+        images = [secureUrl],
+        category_name,
         ...productDetails
       } = createProductDto;
 
       const category = await this.categoriesServices.findOneByName(
-        categorie_name.toLowerCase(),
+        category_name.toLowerCase(),
       );
 
       const product = this.productRepository.create({
@@ -67,7 +85,7 @@ export class ProductsService {
   }
 
   async findAll(paginationDto: PaginationDto) {
-    const { limit = 10, offset = 0 } = paginationDto;
+    const { limit = 20, offset = 0 } = paginationDto;
 
     return await this.productRepository.findAndCount({
       take: +limit,
@@ -97,11 +115,9 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, user: User) {
-    const { images, categorie_name, ...productDetail } = updateProductDto;
+    const { images, category_name, ...productDetail } = updateProductDto;
 
-    const category = await this.categoriesServices.findOneByName(
-      categorie_name,
-    );
+    const category = await this.categoriesServices.findOneByName(category_name);
 
     const product = await this.productRepository.preload({
       id,
@@ -116,7 +132,7 @@ export class ProductsService {
     queryRunner.startTransaction();
 
     try {
-      if (categorie_name) {
+      if (category_name) {
         await queryRunner.manager.delete(Product, { categories: { id } });
         product.categories = category;
       }

@@ -8,8 +8,12 @@ import {
   Delete,
   Query,
   ParseUUIDPipe,
+  UseInterceptors,
+  BadRequestException,
+  UploadedFile,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { diskStorage } from 'multer';
 
 import { ProductsService } from './products.service';
 
@@ -22,6 +26,8 @@ import { Roles } from '../auth/interfaces';
 import { Product } from './entities/product.entity';
 import { GetUser } from '../auth/decorators/get-user.decorator';
 import { User } from '../auth/entities/auth.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { fileFilter, fileNamer } from './helper';
 
 @ApiTags('Products')
 @Controller('products')
@@ -39,8 +45,23 @@ export class ProductsController {
   })
   @Auth(Roles.Admin)
   @Post()
-  create(@Body() createProductDto: CreateProductDto, @GetUser() user: User) {
-    return this.productsService.create(createProductDto, user);
+  @UseInterceptors(
+    FileInterceptor('file', {
+      fileFilter: fileFilter,
+      storage: diskStorage({
+        filename: fileNamer,
+      }),
+    }),
+  )
+  create(
+    @Body() createProductDto: CreateProductDto,
+    @GetUser() user: User,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (!file)
+      throw new BadRequestException('Make sure that the file is an image');
+
+    return this.productsService.create(createProductDto, user, file);
   }
 
   @ApiResponse({

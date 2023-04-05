@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsString,
-  IsNumber,
-  MinLength,
-  IsOptional,
-  IsArray,
-} from 'class-validator';
+import { IsString, IsNumber, MinLength, IsOptional } from 'class-validator';
 import { Category } from '../../categories/entities/category.entity';
 
 export class CreateProductDto {
@@ -48,18 +42,14 @@ export class CreateProductDto {
   @IsString()
   @MinLength(1)
   @IsOptional()
-  categorie_name?: string;
+  category_name?: string;
 
   @ApiProperty({
     description: 'Product image',
-    nullable: true,
-    default: 'https://image.jpg',
+    nullable: false,
+    default: 'You must upload image',
   })
-  @ApiProperty()
-  @IsString({ each: true })
-  @IsArray()
-  @IsOptional()
-  images?: string[];
+  images: string[];
 
   categories: Category;
 }
