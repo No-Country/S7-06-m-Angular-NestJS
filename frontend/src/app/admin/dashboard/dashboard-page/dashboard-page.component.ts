@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-dashboard-page',
+  templateUrl: './dashboard-page.component.html',
+  styleUrls: ['./dashboard-page.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class DashboardPageComponent implements OnInit {
 
-  user = new User("","","","");
+  dataUser:any;
 
-  constructor(private router: Router, public sUser: UserService,private authService:AuthService) { }
+  constructor(private userService:UserService, private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.loadProfile();
+    this.dataUser = this.userService.getDataUser()
+    console.log(this.dataUser)
   }
 
-
-  loadProfile(): void {
-    this.sUser.detail(2).subscribe((data) => { this.user = data; 
-      console.log(this.user) });
-   
-  }
-
-  navigateEdit(){
-    this.router.navigate(['user/edit-profile'])
+  navigateTo(route:string){
+    this.router.navigateByUrl(route)
   }
 
   logOut(){
@@ -53,4 +46,6 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
+
 }
+

@@ -10,16 +10,23 @@ import { UserService } from '../../services/user.service';
 export class NavBarComponent implements OnInit {
 
   userData:any;
+  rol:string="";
 
   constructor(private router: Router,private userService:UserService) { }
 
   ngOnInit(): void {
-    this.userData = this.userService.getDataUser()
+    this.userData = this.userService.getDataUser();
+    const role=sessionStorage.getItem("Role")
+    if (role){
+      this.rol=role
+    }
   }
 
   navigateToLoginOrUser(){
-    if (this.userData){
+    if (this.userData&&this.rol=="User"){
       this.router.navigateByUrl("/user/profile")
+    } else if (this.userData&&this.rol=="Admin") {
+      this.router.navigateByUrl("/admin/dashboard")
     } else {
       this.router.navigateByUrl("/mimu/login")
     }
