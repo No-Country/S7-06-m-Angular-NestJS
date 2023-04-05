@@ -7,45 +7,47 @@ import { OrderItem } from './entities/order_item.entity';
 
 import { CreateOrderItemDto } from './dto/create-order_item.dto';
 import { UpdateOrderItemDto } from './dto/update-order_item.dto';
+import { Order } from 'src/orders/entities/order.entity';
 
 @Injectable()
 export class OrderItemService {
   constructor(
     @InjectRepository(OrderItem)
     private orderItemRepository: Repository<OrderItem>,
-
+    @InjectRepository(Order) private orderRepository: Repository<Order>,
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
   ) {}
 
   async create(id: string, createOrderItemDto: CreateOrderItemDto) {
-    const product = this.productRepository.findOne({ where: { id } });
-
+    const product =await this.productRepository.findOne({ where: { id } });
+    const {order_id}=createOrderItemDto
+    const order=this.orderRepository.findOne({where:{id:order_id}})
     if (!product) throw new BadRequestException('Error, product dont exist');
 
     const orderItem = this.orderItemRepository.create({
+      order,
       product,
       ...createOrderItemDto,
     });
 
     await this.productRepository.save(orderItem);
 
-    return { orderItem };
+    return  orderItem ;
   }
 
-  findAll() {
-    return `This action returns all orderItem`;
+  async update(id: string, updateOrderItemDto: UpdateOrderItemDto) {
+    const orderItem=await this.orderItemRepository.findOne({where:{id}})
+    if(!orderItem) throw new BadRequestException('Error, product in cart dont exist');
+    const update=await this.orderItemRepository.preload({id,...updateOrderItemDto})
+    this.orderItemRepository.save(update)
+    return update
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} orderItem`;
-  }
-
-  update(id: number, updateOrderItemDto: UpdateOrderItemDto) {
-    return `This action updates a #${id} orderItem`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} orderItem`;
+ async remove(id: string) {
+    const orderItem=await this.orderItemRepository.findOne({where:{id}})
+    if(!orderItem) throw new BadRequestException('Error, product in cart dont exist');
+    const remove=await this.orderItemRepository.remove(orderItem)
+    return {message:"Product in order elimated",remove}
   }
 }

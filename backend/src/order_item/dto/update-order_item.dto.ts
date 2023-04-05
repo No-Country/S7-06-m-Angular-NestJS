@@ -1,4 +1,9 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateOrderItemDto } from './create-order_item.dto';
+import {IsDecimal, IsNumber, } from 'class-validator';
 
-export class UpdateOrderItemDto extends PartialType(CreateOrderItemDto) {}
+export class UpdateOrderItemDto {
+    @IsNumber()
+    quantity: number;
+  
+    @IsDecimal()
+    price: number;
+}
