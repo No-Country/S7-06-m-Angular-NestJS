@@ -2,6 +2,10 @@
     background: rgba(154, 151, 151, 0.283);
     width: 100%;
 }
+#img-nav {
+    height:50px;
+    width:auto
+}
 .navbar-brand {
     cursor:pointer
 }
@@ -33,6 +37,12 @@
 @media screen and (min-width:1100px){
     .container-fluid{
         width: 1200px
+    }
+}
+
+@media screen and (max-width: 430px) {
+    #img-nav {
+        display:none
     }
 }
 

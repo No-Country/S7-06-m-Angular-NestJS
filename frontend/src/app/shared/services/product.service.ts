@@ -8,13 +8,13 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
-  URL = environment.baseUrl + "/products";
+  URL = environment.baseUrl ;
 
   constructor(private http:HttpClient) { }
 
   // GET ALL PRODUCTS
   public getAll(): Observable<any> {
-    return this.http.get<any>(this.URL)
+    return this.http.get<any>(this.URL + "/products")
   }
   
 }

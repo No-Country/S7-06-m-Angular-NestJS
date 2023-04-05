@@ -1,0 +1,16 @@
+#profile {
+    min-height: 80vh;
+    height:max-content;
+    padding:40px;
+    text-align:center
+}
+.body {
+    margin-top:20px
+}
+.data {
+    text-align:center;
+    margin:0 auto
+}
+app-profile-form {
+    margin:0 auto;
+}
