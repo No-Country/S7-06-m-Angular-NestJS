@@ -15,14 +15,15 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router,private userService:UserService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  navigateToLoginOrUser(){
     this.userData = this.userService.getDataUser();
     const role=sessionStorage.getItem("Role")
     if (role){
       this.rol=role
     }
-  }
-
-  navigateToLoginOrUser(){
     if (this.userData&&this.rol=="User"){
       this.router.navigateByUrl("/user/profile")
     } else if (this.userData&&this.rol=="Admin") {
