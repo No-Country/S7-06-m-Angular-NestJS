@@ -1,37 +1,35 @@
-
-{{user.firstName}}
-<form #myForm="ngForm" autocomplete="off" class="row">
-    <div class="field col-6">
-        <label class='label' for="firstName">Nombre</label>
-        <input type="text" id="firstName" name="firstName" class="input-name form-control" [(ngModel)]="user.firstName" required>
+<div class="data">
+    <div class="name-lastName item">
+        <div class="name">
+          <label for="name">Nombre</label><br>
+          <input class="input-name" type="text" placeholder={{dataUser.firstName}} [disabled]="!edit">
+        </div>
+        <div class="lastName">
+          <label for="lastName">Apellido</label><br>
+          <input class="input-name" type="text" placeholder={{dataUser.lastName}} [disabled]="!edit">
+        </div>
     </div>
-
-    <div class="field col-6">
-        <label class='label' for="lastName">Apellido</label>
-        <input type="text" id="lastName" name="lastName" class="input-name form-control" [(ngModel)]="user.lastName" required>
-
+    <div class="item">
+        <label for="email">Email</label><br>
+        <input class="inputs" type="email" placeholder={{dataUser.email}} disabled>
     </div>
-    <div class="field">
-        <label class='label' for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" class="input-name form-control" [disabled]=true [(ngModel)]="user.email">
-
+    <div class="item">
+        <label for="email">Dirección</label><br>
+        <input class="inputs" type="text" placeholder="Direccion" [disabled]="!edit">
     </div>
-    <div class="field">
-        <label class='label' for="adress">Dirección</label>
-        <input type="text" id="adress" name="adress" class="input-name form-control" [(ngModel)]="user.avatar">
-
+    <div class="item">
+        <label for="email">Teléfono</label><br>
+        <input class="inputs" type="text" placeholder="Teléfono" [disabled]="!edit">
     </div>
-    <div class="field">
-        <label class='label' for="phone">Teléfono</label>
-        <input type="text" id="phone" name="phone" class="input-name form-control" [(ngModel)]="user.avatar">
-
+    <div class="item">
+        <label for="email">Contraseña</label><br>
+        <input class="inputs" type="password" placeholder="***********" disabled>
     </div>
-    <div class="field">
-        <label class='label' for="password">Contraseña</label>
-        <input type="password" id="password" name="password" class="input-name form-control" [disabled]="true" [(ngModel)]="user.id">
+    <div class="buttons">
+        <button class="btn btn-outline-danger" (click)="edit=!edit">Modificar los datos </button>
+        <button *ngIf="edit"class="btn btn-success">Guardar cambios</button>              
+    </div> 
+      
+         
 
-    </div>
-    
-    <div class="field">
-        <button type="submit" class="btn btn-primary form-control" [disabled]="formChanged">Guardar cambios</button></div>
-</form>
+</div>
