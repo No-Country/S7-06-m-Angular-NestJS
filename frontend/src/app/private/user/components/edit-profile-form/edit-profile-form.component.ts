@@ -11,22 +11,12 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class EditProfileFormComponent implements OnInit {
   
   user = new User('','','','');
-  
-  @ViewChild('myForm') myForm!: NgForm;
-  
-  formChanged = false;
 
   constructor(private sUser: UserService) { }
 
   ngOnInit(): void {
     this.getUser();
 
- 
-    if (this.myForm?.valueChanges) { 
-      this.myForm.valueChanges.subscribe(() => {
-        this.formChanged = true;
-      });
-    }
   }
 
   
@@ -37,9 +27,6 @@ export class EditProfileFormComponent implements OnInit {
   onSubmit() {
     this.sUser.saveDataUser(this.user);
 
-    this.myForm.reset();
-
-    this.formChanged = false;
   }
 }
 
