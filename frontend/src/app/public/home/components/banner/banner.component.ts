@@ -17,7 +17,7 @@ export class BannerComponent implements OnInit {
     spaceBetween: 10,
     pagination:{clickable:false},
     navigation: false,
-    autoplay: { delay: 4000, disableOnInteraction: false},
+   // autoplay: { delay: 4000, disableOnInteraction: false},
     loop: true,
     breakpoints:{
       500:{

@@ -15,8 +15,8 @@ export class NotepadsCarruselComponent implements OnInit {
   
   config: SwiperOptions = {
     slidesPerView: 1,
-    spaceBetween: 10,
-    autoplay: { delay: 10000, disableOnInteraction: false},
+    spaceBetween: 50,
+    //autoplay: { delay: 10000, disableOnInteraction: false},
     loop: true,
     pagination:true,
     breakpoints: {
@@ -28,19 +28,29 @@ export class NotepadsCarruselComponent implements OnInit {
     
     products: Product[] = [
       {id:1,
-      name:'uno',
+      name:'Libreta Mística',
       price:123,
-      category:'uno',
-      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
+      category:'Libretas Personalizadas',
+      imageUrl:'https://d22fxaf9t8d39k.cloudfront.net/eac526a241233dc69f908158fbe2d950c2e439e994e6c72e13c63585f2df8b8c9166.jpeg',
       description:'un producto,'
       },
       {id:2,
-        name:'dos',
+        name:'Libreta de harry potter',
         price:123,
         category:'dos',
-        imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
+        imageUrl:"https://http2.mlstatic.com/D_NQ_NP_933202-MLA54249284561_032023-W.jpg",
         description:'otro producto,'
-      },]
+      },
+      {id:2,
+        name:'Libreta de winnie poo',
+        price:123,
+        category:'dos',
+        imageUrl:"https://i.pinimg.com/originals/9d/36/1d/9d361da466b2dcc3dc7780256cbe6ff1.jpg",
+        description:'otro producto,'
+      },
+
+    
+    ]
   constructor() { }
 
   ngOnInit(): void {

@@ -1,6 +1,4 @@
-@import "~swiper/swiper-bundle.css";
 
-@media screen and (max-width:1900px){
 .banner-container {
     padding: 0;
     width: 100%;
@@ -11,37 +9,54 @@
     height: 260px;
 }
 
-.bannerImg{
-    height: 190px;
-    width: 100%;
-    background-color: gainsboro;
-}
+@media screen and (min-width:1700px){
 
-.containerInfoBanner{
-    width: 90%;
-    height: 20%;
-    margin: auto;
-    padding: 5px;
-    justify-content: center;
-}
-.infoBanner{
-    text-align: center;
-}
+    .banner-swiper{
+        height: 400px;
+    }
+
+    #bannerImg{
+        height: 280px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .containerInfoBanner{
+        width: 90%;
+        height: 20%;
+        margin: auto;
+        padding: 5px;
+        justify-content: center;
+    }
+    .infoBanner{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #info-banner{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+    }
+
+
+    
 }
 
 @media screen and (max-width: 500px) {
     .banner-container{
-        height: 230px;
+        height: 240px;
     } 
 
     .banner-swiper{
-        height: 250px;
+        height: 240px;
     }
 
-    .bannerImg{
-        height: 140px;
+    #bannerImg{
+        height: 180px;
         width: 100%;
-        background-color: gainsboro;
+        object-fit: cover;
     }
 
     .containerInfoBanner{
@@ -55,5 +70,11 @@
         text-align: center;
     }
 
-}
+    #info-banner{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+    }
 
+}
