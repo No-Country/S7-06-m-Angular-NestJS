@@ -11,6 +11,11 @@ import { OrdersModule } from 'src/orders/orders.module';
 @Module({
   controllers: [OrderItemController],
   providers: [OrderItemService],
-  imports: [TypeOrmModule.forFeature([OrderItem,Product,Order]),ProductsModule,OrdersModule],
+  imports: [
+    TypeOrmModule.forFeature([OrderItem, Product, Order]),
+    ProductsModule,
+    OrdersModule,
+  ],
+  exports: [OrderItemModule],
 })
 export class OrderItemModule {}

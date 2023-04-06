@@ -49,7 +49,7 @@ export class User {
   @Column('text', { array: true, default: ['admin'] })
   roles: string[];
 
-  @OneToMany(() => Order, (order) => order.users)
+  @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
 
   @OneToMany(() => Product, (product) => product.user)

@@ -8,6 +8,6 @@ import { RoleProtected } from './role-protected.decorator';
 export const Auth = (...roles: Roles[]) => {
   return applyDecorators(
     RoleProtected(...roles),
-    UseGuards(AuthGuard(), UserRoleGuard),
+    UseGuards(AuthGuard('jwt'), UserRoleGuard),
   );
 };

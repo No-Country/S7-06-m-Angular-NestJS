@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BeforeInsert, BeforeUpdate } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  BeforeInsert,
+  BeforeUpdate,
+} from 'typeorm';
 
 import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities';
@@ -8,13 +15,13 @@ export class OrderItem {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('text')
-  name: string;
+  // @Column('text')
+  // name: string;
 
-  @Column('numeric')
+  @Column('float')
   quantity: number;
 
-  @Column('decimal')
+  @Column('float')
   price: number;
 
   @ManyToOne(() => Order, (order) => order.items)
@@ -22,5 +29,4 @@ export class OrderItem {
 
   @ManyToOne(() => Product, (product) => product.orderItems)
   product: Product;
-
 }

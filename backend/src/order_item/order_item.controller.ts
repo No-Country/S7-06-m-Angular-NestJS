@@ -16,24 +16,24 @@ import { UpdateOrderItemDto } from './dto/update-order_item.dto';
 export class OrderItemController {
   constructor(private readonly orderItemService: OrderItemService) {}
 
-  @Post()
+  @Post(':product')
   create(
-    @Param("id",ParseUUIDPipe) id:string,
-    @Body() createOrderItemDto: CreateOrderItemDto
-    ) {
-    return this.orderItemService.create(id,createOrderItemDto);
+    @Param('product', ParseUUIDPipe) productId: string,
+    @Body() createOrderItemDto: CreateOrderItemDto,
+  ) {
+    return this.orderItemService.create(productId, createOrderItemDto);
   }
 
   @Patch(':id')
   update(
-    @Param('id',ParseUUIDPipe) id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateOrderItemDto: UpdateOrderItemDto,
   ) {
     return this.orderItemService.update(id, updateOrderItemDto);
   }
 
   @Delete(':id')
-  remove(@Param('id',ParseUUIDPipe) id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.orderItemService.remove(id);
   }
 }

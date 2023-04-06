@@ -22,21 +22,25 @@ export class OrderItemService {
     private productRepository: Repository<Product>,
   ) {}
 
-  async create(id: string, createOrderItemDto: CreateOrderItemDto) {
-    const product = await this.productRepository.findOne({ where: { id } });
+  async create(productId: string, createOrderItemDto: CreateOrderItemDto) {
+    const product = await this.productRepository.findOne({
+      where: { id: productId },
+    });
+    delete product.user;
+
     const { order_id } = createOrderItemDto;
-    const order = this.orderRepository.findOne({ where: { id: order_id } });
+    const order = await this.orderRepository.findOne({
+      where: { id: order_id },
+    });
+    delete order.user;
+
     if (!product) throw new BadRequestException('Error, product dont exist');
 
-    const orderItem = this.orderItemRepository.create({
-      order,
-      product,
-      ...createOrderItemDto,
-    });
+    const orderItem = this.orderItemRepository.create(createOrderItemDto);
 
     await this.productRepository.save(orderItem);
 
-    return orderItem;
+    return { orderItem };
   }
 
   async update(id: string, updateOrderItemDto: UpdateOrderItemDto) {

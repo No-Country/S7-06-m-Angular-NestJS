@@ -10,6 +10,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/auth/entities/auth.entity';
 import { OrderItem } from 'src/order_item/entities/order_item.entity';
+import { Type } from 'class-transformer';
 
 @Entity('orders')
 export class Order {
@@ -18,39 +19,42 @@ export class Order {
   id: string;
 
   @ApiProperty()
-  @Column('decimal', { default: 0 })
+  @Column('float', { default: 0 })
   totalPrice: number;
 
   @ApiProperty()
-  @Column('decimal', { default: 0 })
+  @Column('float', { default: 0 })
   taxPrice: number;
 
   @ApiProperty()
-  @Column('boolean', { nullable: true })
+  @Column('boolean', { nullable: true, default: false })
   isPaid: boolean;
 
   @ApiProperty()
+  @Type(() => Date)
   @Column('date')
-  createdAt: string;
+  createdAt: Date;
 
   @ApiProperty()
+  @Type(() => Date)
   @Column('date', { nullable: true })
-  paidAt: string;
+  paidAt: Date;
 
-  @ManyToOne(() => User, (user) => user.orders)
-  users: User;
+  @ManyToOne(() => User, (user) => user.orders, { eager: true })
+  user: User;
 
   @OneToMany(() => OrderItem, (item) => item.order)
-  items: OrderItem;
-
+  items: OrderItem[];
 
   @BeforeInsert()
-  taxPriceInsert() {
-    this.taxPrice=this.totalPrice/12
+  formatearFechas() {
+    const newDate = new Date(Date.now());
+
+    this.createdAt = new Date(newDate.toLocaleString('es-ES'));
   }
 
   @BeforeUpdate()
   taxPriceUpdate() {
-    this.taxPrice=this.totalPrice/12
+    this.taxPrice = this.totalPrice / 12;
   }
 }

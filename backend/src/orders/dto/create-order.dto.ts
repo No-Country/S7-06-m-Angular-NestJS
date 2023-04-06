@@ -1,9 +1,7 @@
 import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
+import { User } from 'src/auth/entities/auth.entity';
 
 export class CreateOrderDto {
-  @IsString()
-  createdAt: string;
-
   @IsOptional()
   @IsString()
   paidAt?: string;
@@ -13,8 +11,10 @@ export class CreateOrderDto {
   isPaid?: boolean;
 
   @IsNumber()
-  taxPrice: number;
+  @IsOptional()
+  taxPrice?: number;
 
   @IsNumber()
-  totalPrice: number;
+  @IsOptional()
+  totalPrice?: number;
 }
