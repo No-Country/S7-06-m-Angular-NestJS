@@ -9,8 +9,12 @@
         </div>
         <app-notepads-carrusel></app-notepads-carrusel>   
         
-        <app-products-carrusel [visibleCarrusel]="true" title="Categoria1"></app-products-carrusel>
-        <app-products-carrusel [visibleCarrusel]="true" title="Categoria2"></app-products-carrusel>
+        <app-products-carrusel [visibleCarrusel]="true" title="Papeleria"></app-products-carrusel>
+        <app-products-carrusel [visibleCarrusel]="true" title="Varios"></app-products-carrusel>
+
+        <div class="container store-link" >
+            <button (click)="navigateTo('/mimu/store')" class="btn btn-primary">Ir a la tienda</button>
+        </div>
     </body>
 </main>
 

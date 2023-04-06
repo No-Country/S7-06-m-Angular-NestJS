@@ -1,9 +1,16 @@
-<footer>
+<footer class="container">
     <div class="contenedor">
       <div class="pagos footer-container">
         <div>
-            <p>Aceptamos pagos:</p>
-        </div>
+            <div class="footer-nav">
+              <a role="button" (click)="navigateTo('/mimu/home')">inicio</a>
+              <a role="button" (click)="navigateTo('/mimu/store')">Productos</a>
+              <a role="button" >Contactanos</a>
+            </div>
+            <div class="payments">
+                <p>Aceptamos pagos:</p>
+            </div>
+        </div>   
       </div>
       <div class="redes footer-container">
         <div>

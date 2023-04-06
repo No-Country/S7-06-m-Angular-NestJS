@@ -28,16 +28,44 @@
 }
 
 .nav-icon{
+    background-color: transparent;
     transition: transform 0.3s;
 }
 .nav-icon:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
+}
+.dropdown-item{
+    cursor: pointer;
+}
+.nav-text{
+    margin: 8px;
 }
 
-@media screen and (min-width:1100px){
+@media screen and (min-width:1700px){
     .container-fluid{
-        width: 1200px
+        width: 1720px
     }
+    .container-navigation{
+        font-size: 20px;
+    }
+    
+    .nav-icon-group{
+        position: absolute;
+        margin-left: 1200px;
+    }
+
+    .nav-item{
+        margin: 10px;
+        transition: text-decoration 0.3s;
+    }
+    .nav-item:hover {
+    text-decoration: underline ;
+    }
+
+    .navbar-nav{
+        margin-right: 900px;
+        }
+        
 }
 
 @media screen and (max-width: 430px) {
@@ -46,6 +74,9 @@
     }
     #title-nav{
         font-size: 15px;
+    }
+    .nav-text{
+        display: none;
     }
 
 }
