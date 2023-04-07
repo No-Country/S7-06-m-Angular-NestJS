@@ -1,9 +1,6 @@
-
-@media screen and (min-width:1700px){
 .carrusel-title{
     margin: 20px 10px;
-
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 500;
     line-height: 45px;
     letter-spacing: 0em;
@@ -14,6 +11,60 @@
 .carrusel-body{
     padding: 20px;
 }
+
+.carrusel{
+    width: 1000px;
+    margin: auto;
+}
+
+.product-swiper{
+    height: 240px;
+}
+
+.contenedor-productos{
+    height: 240px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+#image{
+    height: 180px;
+    width: 180px;
+}
+
+.contenedor-name{
+    margin: 10px 0px 0px 20px;              
+}
+#product-name{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+
+
+
+
+
+@media screen and (min-width:1700px){
+.carrusel-title{
+    margin: 20px 10px;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.carrusel{
+    width: 1400px;
+    margin: auto;
+}
+
 
 .product-swiper{
     height: 340px;
@@ -58,10 +109,14 @@
     .carrusel-body{
         padding: 10px;
     }
+    .carrusel{
+        width: 100%;
+        margin: auto;
+    }
 
     .product-swiper{
         width: 90vw;
-        height: 250px;
+        height: 280px;
     }
 
     .contenedor-productos{
