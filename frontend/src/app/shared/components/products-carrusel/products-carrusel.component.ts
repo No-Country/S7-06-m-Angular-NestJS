@@ -27,7 +27,7 @@ export class ProductsCarruselComponent implements OnInit {
   navigation: false,
   pagination:true,
   breakpoints: {
-    500: {
+    550: {
       slidesPerView:4,
       navigation: true
     }

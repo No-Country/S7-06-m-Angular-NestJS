@@ -20,7 +20,7 @@ export class NotepadsCarruselComponent implements OnInit {
     loop: true,
     pagination:true,
     breakpoints: {
-      500: {
+      600: {
         slidesPerView:2,
       }
     }
