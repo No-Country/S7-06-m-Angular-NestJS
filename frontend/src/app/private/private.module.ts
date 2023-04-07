@@ -10,6 +10,7 @@ import { ResetPasswordComponent } from './reset-password/page/reset-password/res
 import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
 import { EditProfileFormComponent } from './user/components/edit-profile-form/edit-profile-form.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [ 
@@ -18,7 +19,7 @@ import { EditProfileFormComponent } from './user/components/edit-profile-form/ed
     ResetPasswordFormComponent,
     ProfileComponent, 
     EditProfileComponent, 
-    EditProfileFormComponent
+    EditProfileFormComponent, PaymentComponent
   ],
   imports: [
     CommonModule,
