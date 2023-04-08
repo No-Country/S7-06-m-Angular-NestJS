@@ -1,27 +1,23 @@
 <section class="banner-container">
 <swiper class="banner-swiper"
-[slidesPerView]="1"
-[spaceBetween]="10"
-[pagination]="{ clickable: false }"
-[mousewheel]="true"
-[autoplay]="{ delay: 2500, disableOnInteraction: false}"
-[loop]="true"
+[config]="config"
 >
   <ng-template swiperSlide >
     <div>
       <div class="col">
-        <div class="bannerImg">
+        <div>
           <img
-            [src]=""
+            src="../../../../assets/img/logo1.png"
             [alt]=""
             class="card-img-top"
+            id="bannerImg"
           >
         </div>
       </div>
       <div class="containerInfoBanner">
         <div class="infoBanner">
           <span>
-            <span>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."s</span>
+            <span id="info-banner">Bienvenidos a Mimu Store</span>
           </span>
         </div>
       </div>

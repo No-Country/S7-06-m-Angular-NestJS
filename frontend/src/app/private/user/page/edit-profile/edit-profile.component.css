@@ -1,0 +1,31 @@
+h1{
+    text-align: center;
+}
+
+.container-form{
+margin: auto;
+justify-content: center;
+align-items:center;
+}
+.container-avatar{
+    margin: 18px 0;
+    display: flex;
+    justify-content: center;
+}
+.avatar{
+    background-color: gray;
+    border-radius: 80px;
+    
+}
+
+@media screen and (max-width:500px){
+    .container-form{
+        width: 86%;
+        margin-top: 15px;
+    }
+
+    .avatar{
+        width: 80px;
+        height: 80px;
+    }
+}

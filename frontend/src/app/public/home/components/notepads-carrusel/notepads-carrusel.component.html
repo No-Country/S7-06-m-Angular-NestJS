@@ -1,0 +1,37 @@
+<section class="carrusel-body">
+    <div class="carrusel-title">
+      <span>Libretas</span>
+    </div>
+    <div class="carrusel">
+      <swiper class="product-swiper"
+      [config]="config"
+      >
+        <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">  
+             <div>
+              <div class="col">
+                <div>
+                  <img
+                    [src]="product.imageUrl"
+                    [alt]="product.imageUrl"
+                    class="card-img-top"
+                    id="image"
+                  >
+                </div>
+              </div>
+              <div id="contenedor-name">
+                <div>
+                  <span>
+                    <span id="product-name">{{ product.name }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+        </ng-template>
+        
+      </swiper>
+    </div>
+  
+  </section>
+  
+  
+  

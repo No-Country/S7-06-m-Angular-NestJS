@@ -22,10 +22,22 @@ export class AuthService {
   // LOGIN
   public login(loginUser: LoginUser): Observable<any> {
     return this.http.post<any>(this.URL + '/auth/login',loginUser)
-  }
+  }  
 
   // LOGOUT
   public logOut(): void{
     window.sessionStorage.clear();
   }
+
+  // RECUPERAR CONTRASEÑA
+  public recover(email: string): Observable<any> {
+    return this.http.post<any>(this.URL + '/auth/recover',email)
+  }
+
+  // RESETEAR CONTRASEÑA
+  public resetPassword(password: string): Observable<any> {
+    return this.http.post<any>(this.URL + '/auth/resetpassword',password)
+  }
+
+
 }

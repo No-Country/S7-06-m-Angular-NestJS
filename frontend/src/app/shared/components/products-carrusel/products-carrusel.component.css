@@ -1,11 +1,20 @@
-@import "~swiper/swiper-bundle.css";
-
 .carrusel-title{
-    margin: 10px 10px;
+    margin: 20px 10px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: left;
+
 }
 
 .carrusel-body{
     padding: 20px;
+}
+
+.carrusel{
+    width: 1000px;
+    margin: auto;
 }
 
 .product-swiper{
@@ -13,30 +22,101 @@
 }
 
 .contenedor-productos{
-    height: 210px;
-    width: 180px;
+    height: 240px;
+    width: 300px;
     display: flex;
     justify-content: center;
 }
 
-.image{
+#image{
     height: 180px;
-    width: 170px;
-    background-color: gainsboro;
+    width: 180px;
 }
 
-.name{
-    text-align: center;
+.contenedor-name{
+    margin: 10px 0px 0px 20px;              
+}
+#product-name{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    
 }
 
-@media(max-width: 500px) {S
 
+
+
+
+@media screen and (min-width:1700px){
+.carrusel-title{
+    margin: 20px 10px;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.carrusel{
+    width: 1400px;
+    margin: auto;
+}
+
+
+.product-swiper{
+    height: 340px;
+}
+
+.contenedor-productos{
+    height: 340px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+#image{
+    height: 250px;
+    width: 250px;
+}
+
+.contenedor-name{
+    margin: 10px 0px 0px 20px;              
+}
+#product-name{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+
+}
+
+@media screen and (max-width: 500px) {
+    .carrusel-title{
+        margin: 10px 10px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
     .carrusel-body{
         padding: 10px;
     }
+    .carrusel{
+        width: 100%;
+        margin: auto;
+    }
 
     .product-swiper{
-        height: 140px;
+        width: 90vw;
+        height: 280px;
     }
 
     .contenedor-productos{
@@ -46,14 +126,21 @@
         justify-content: center;
     }
 
-    .image{
-        height: 80px;
-        width: 70px;
-        background-color: gainsboro;
+    #image{
+        height: 200px;
+        width: 190px;
     }
 
     .name{
         text-align: center;
     }
     
+    #product-name{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 14px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
 }

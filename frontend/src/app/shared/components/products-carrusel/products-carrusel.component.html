@@ -1,31 +1,27 @@
-<section class="carrusel-body">
+<section *ngIf="visibleCarrusel" class="carrusel-body">
   <div class="carrusel-title">
     <span>{{title}}</span>
   </div>
   <div class="carrusel">
     <swiper class="product-swiper"
-    [slidesPerView]="4"
-    [spaceBetween]="10"
-    [pagination]="{ clickable: false }"
-    [mousewheel]="true"
-    [autoplay]="{ delay: 2500, disableOnInteraction: false}"
-    [loop]="true"
+    [config]="config"
     >
       <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
         <div>
           <div class="col">
-            <div class="image">
+            <div>
               <img
-                [src]="product.imageUrl[0]"
+                [src]="product.imageUrl"
                 [alt]="product.imageUrl"
                 class="card-img-top"
+                id="image"
               >
             </div>
           </div>
           <div class="contenedor-name">
             <div class="name">
               <span>
-                <span>{{ product.name }}</span>
+                <span id="product-name">{{ product.name }}</span>
               </span>
             </div>
           </div>

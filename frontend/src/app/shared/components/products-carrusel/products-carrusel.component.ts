@@ -1,9 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Product } from '../../models/products';
-import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper';
-
-
+import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay, SwiperOptions } from 'swiper';
 
 SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
@@ -18,55 +16,51 @@ export class ProductsCarruselComponent implements OnInit {
   @Input()
   title = "";
 
+  @Input()
+  visibleCarrusel = false;
+
+  config: SwiperOptions = {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  //autoplay: { delay: 5000, disableOnInteraction: false},
+  loop: true,
+  navigation: false,
+  pagination:true,
+  breakpoints: {
+    550: {
+      slidesPerView:4,
+      navigation: true
+    }
+  }
+  }
   
   products: Product[] = [
     {id:1,
-    name:'uno',
+    name:'Gomas de colores',
     price:123,
     category:'uno',
-    imageUrl:'imagen1',
+    imageUrl:'https://http2.mlstatic.com/D_NQ_NP_865110-MLA54031227294_022023-W.jpg',
     description:'un producto,'
     },
     {id:2,
-      name:'dos',
+      name:'Lapiceras',
       price:123,
       category:'dos',
-      imageUrl:'imagen2',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     {id:3,
-      name:'tres',
+      name:'Notas adesivas',
       price:123,
       category:'tres',
-      imageUrl:'imagen3',
+      imageUrl:'https://http2.mlstatic.com/D_NQ_NP_712764-MLA50970012056_082022-O.jpg',
       description:'y otro producto,'
     },
     {id:4,
       name:'ccuatro',
       price:123,
       category:'dos',
-      imageUrl:'imagen4',
-      description:'otro producto,'
-    },
-    {id:5,
-      name:'cinco',
-      price:123,
-      category:'dos',
-      imageUrl:'imagen5',
-      description:'otro producto,'
-    },
-    {id:6,
-      name:'seis',
-      price:123,
-      category:'dos',
-      imageUrl:'imagen6',
-      description:'otro producto,'
-    },
-    {id:7,
-      name:'siete',
-      price:123,
-      category:'dos',
-      imageUrl:'imagen7',
+      imageUrl:'../../../../../assets/store/products/Lapiceras 1100.png',
       description:'otro producto,'
     },
     ]

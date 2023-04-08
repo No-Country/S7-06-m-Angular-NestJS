@@ -1,9 +1,12 @@
-section{
+footer{
   display: flex;
   justify-content: space-around;
   align-items: center;
   background: gray;
+  max-width: none;
+  height: 400px;
 }
+
 .footer-container{
     margin: 20px auto;
     display: flex;
@@ -11,13 +14,140 @@ section{
 
 }
 
-@media(max-width: 300px) {
-    section{
-        width: 100%;
-        height: 220px;
-    } 
+.pagos{
+    position: relative;
+    margin-right: 800px;
+    width: 300px;
+    height: 100px;
+}
+
+.footer-nav{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.payments{
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
     
+}
+
+.redes{
+    margin-bottom: 120px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+.bi {
+    font-size: 1.2em;
+  }
+  
+.reserved{
+    margin: 10px auto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    position:relative;
+}
+
+.icons-redes{
+    display: flex;
+    justify-content: space-around;
+}
+
+a {color: black; text-decoration: none }
+a:hover {color: black; text-decoration: none;}
+a:visited {color: black;text-decoration: none;}
+
+
+@media screen and (min-width:1700px){
+    footer{
+        width: 100%;
+        height: 400px;
+    }
+
     .pagos{
+        position: relative;
+        margin-right: 1200px;
+        width: 300px;
+        height: 100px;
+    }
+    
+    .footer-nav{
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    .payments{
+
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        
+    }
+
+    .redes{
+        margin-bottom: 120px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    .bi {
+        font-size: 1.5em;
+      }
+      
+    .reserved{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: center;
+        position:relative;
+    }
+   
+}
+
+
+@media screen and (max-width: 500px) {
+    footer{
+        width: 100%;
+        height: 200px;
+    } 
+    .footer-nav{
+        display: none;
+    }
+    
+    .pagos{    
+      
+        margin-right: 0px;
         width: 150px;
         height: 50px;
         font-weight: 500;
@@ -25,21 +155,28 @@ section{
         line-height: 18px;
     }
 
-    .redes{
-        width: 90px;
-        height: 40px;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
+    
+    .payments{
+        font-size: 16px;
+        
     }
+
+    .redes{
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    .bi {
+        font-size: 1.3em;
+      }
 
     .reserved{
         height: 20px;
-        font-weight: 500;
         font-size: 12px;
-        line-height: 14px;
         text-align: center;
         position: absolute;
     }
+
 }
 

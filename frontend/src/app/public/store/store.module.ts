@@ -4,6 +4,7 @@ import { IdProductComponent } from './components/id-product/id-product.component
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { StoreComponent } from './page/store.component';
 import { SharedModule } from '../../shared/shared.module';
+import { PublicRoutingModule } from '../public-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    PublicRoutingModule
   ]
 })
 export class StoreModule { }

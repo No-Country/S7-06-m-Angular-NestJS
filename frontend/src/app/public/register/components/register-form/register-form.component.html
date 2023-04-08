@@ -48,11 +48,12 @@
           La contraseña debe tener como máximo 22 caracteres
         </p>
         <p *ngIf="Password?.hasError('pattern')" class="text-danger">
-          La contraseña debe contener al menos un número y una letra mayúscula
+          La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
         </p>
       </div>
     </div>
      <!----Repetir contraseña--->
+     <!------
      <div class="field">
       <label class="label" for="confirmPassword">Repetir contraseña</label>
       <input [type]="ocultar?'password':'text'" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" class="input-password form-control" [ngClass]="{'is-valid':!ConfirmPassword?.errors&&ConfirmPassword?.touched}"/>
@@ -60,12 +61,12 @@
       <div *ngIf="ConfirmPassword?.errors && ConfirmPassword?.touched">
         <p *ngIf="ConfirmPassword?.hasError('matchOther')" class="text-danger">La contraseñas no coinciden</p>
       </div>      
-    </div>  
+    </div>--->  
     <!----Footer de registro--->
     <div class="footer">
       <div class="descript">
           <p>¿Ya tienes cuenta?</p>
-          <a routerLink="/login">Ingresar</a>
+          <a routerLink="/mimu/login">Ingresar</a>
       </div>
       <div class="boton">
           <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Registrarse</button>

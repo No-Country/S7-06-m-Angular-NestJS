@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/shared/models/login/login-user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,8 +20,16 @@ export class LoginFormComponent implements OnInit {
   loginUser: LoginUser={email:"",password:""};
   emailUsuario: string="";
   password: string="";
+  usuarioHardcodeado={email:"juan@email.com",password:"Caballo1@"};
+  dataUsuarioHardcodeado={
+    id:"262cf7bd-2f93-4f61-91d9-b3c9f8134181",
+    email:"juan@email.com",
+    firstName:"Juan",
+    lastName:"Gutierrez",
+    token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2MmNmN2JkLTJmOTMtNGY2MS05MWQ5LWIzYzlmODEzNDE4MSIsImlhdCI6MTY4MDY1Njg0NiwiZXhwIjoxNjgwNjYwNDQ2fQ.6bg33oYcdCoTih9W2_9bY0ANpgKduZyLL0ZX8wRRu_Y"
+  }
 
-  constructor(private formBuilder:FormBuilder, private router: Router,private authService:AuthService,private tokenService:TokenService) {
+  constructor(private formBuilder:FormBuilder, private router: Router,private userService:UserService,private authService:AuthService,private tokenService:TokenService) {
     this.loginForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -33,18 +42,26 @@ export class LoginFormComponent implements OnInit {
   // OnLogin
   onLogin(event: any) {
     this.loginUser = this.loginForm.value;
+    console.log(this.loginUser);
+    if (this.loginUser.email=="juan@email.com"&&this.loginUser.password=="Caballo1@"){
+      sessionStorage.setItem("Role","User")
+      this.userService.saveDataUser(this.dataUsuarioHardcodeado);      
+      this.router.navigateByUrl('mimu/home')
+    } else {
     this.authService.login(this.loginUser).subscribe({
       next: (res) => {
         this.isLogged = true;
-        this.tokenService.setToken(res.data.token);
-        console.log("Usuario logueado")
+        this.tokenService.setToken(res.token);
+        this.userService.saveDataUser(res);
+        sessionStorage.setItem("Role","Admin")
+        this.router.navigateByUrl('mimu/home')
       },
       error: (error) => {
         console.error(error)
         this.wrongUser()
       },
       complete: () => {}
-    })
+    })}
   }
 
   // Properties Validators
@@ -67,8 +84,10 @@ export class LoginFormComponent implements OnInit {
       confirmButtonText: 'Quiero registrarme'
     }).then((result: any) => {
       if (result.isConfirmed) {
-        this.router.navigateByUrl('register')
+        this.router.navigateByUrl('mimu/register')
       }
     })
   }
 }
+
+
