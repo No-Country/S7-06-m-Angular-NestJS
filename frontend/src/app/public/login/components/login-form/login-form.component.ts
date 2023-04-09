@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/shared/models/login/login-user';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { TokenService } from 'src/app/shared/services/token.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { TokenService } from 'src/app/shared/services/token/token.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -45,7 +45,7 @@ export class LoginFormComponent implements OnInit {
     console.log(this.loginUser);
     if (this.loginUser.email=="juan@email.com"&&this.loginUser.password=="Caballo1@"){
       sessionStorage.setItem("Role","User")
-      this.userService.saveDataUser(this.dataUsuarioHardcodeado);      
+      this.userService.saveDataUser(this.dataUsuarioHardcodeado);
       this.router.navigateByUrl('mimu/home')
     } else {
     this.authService.login(this.loginUser).subscribe({

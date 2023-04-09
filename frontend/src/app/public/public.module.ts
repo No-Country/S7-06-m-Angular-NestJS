@@ -11,11 +11,13 @@ import { RegisterFormComponent } from './register/components/register-form/regis
 import { LoginFormComponent } from './login/components/login-form/login-form.component';
 
 import { HomeModule } from './home/home.module';
-import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from './store/store.module';
 import { RecoverFormComponent } from './recover/components/recover-form/recover-form.component';
 import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
 import { PublicComponent } from './public/public.component';
+import { SharedModule } from '../shared/shared.module';
+
+
 
 @NgModule({
   declarations: [
@@ -28,12 +30,13 @@ import { PublicComponent } from './public/public.component';
     PublicComponent
   ],
   imports: [
-    CommonModule,
     HttpClientModule,
+    CommonModule,
     PublicRoutingModule,
     ReactiveFormsModule,
     StoreModule,
     HomeModule,
+    SharedModule
   ]
 })
 export class PublicModule { }

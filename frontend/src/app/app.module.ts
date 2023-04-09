@@ -9,18 +9,23 @@ import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivateModule } from './private/private.module';
 import { interceptorProvider } from './shared/interceptors/interceptor.service';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 import { PublicRoutingModule } from './public/public-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     PublicRoutingModule,
+    SharedModule,
     NgbModule,
-    HttpClientModule,
     PublicModule,
     PrivateModule,
     BrowserAnimationsModule
