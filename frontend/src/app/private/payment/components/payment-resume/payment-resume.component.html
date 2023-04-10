@@ -1,0 +1,38 @@
+<section>
+    <h1>Confirme sus datos</h1>
+
+    <div id="user-info"> 
+        <div class="user-data">
+            <h2>Nombre:</h2>
+            <span>{{user.firstName}} {{user.lastName}}</span>
+        </div>
+        <div class="user-data">
+            <h2>Correo:</h2>
+            <span>{{user.email}}</span>
+        </div>
+        <div class="user-data">
+            <h2>Dirección:</h2>
+            <span>{{user.email}}</span>
+        </div>
+        
+      
+     
+       
+    </div>
+
+    <div id="payments-methods">
+        <h1>Método de pago:</h1>
+        <div class="pay-method"></div>
+    </div>
+
+    <div id="addition">
+            <li><span>Envío:</span><span>{{delivery}}</span></li>
+            <li><span>Subtotal:</span><span>{{price}}</span></li>
+            <hr size="1px" color="gray" />
+            <li><span>Total:</span><span>{{delivery + price}}</span></li>
+    </div>
+    <div id="btn-container">
+        <button class="btn btn-primary" (click)="paymentSuccess()">Confirmar y pagar</button>
+    </div>
+  
+</section>

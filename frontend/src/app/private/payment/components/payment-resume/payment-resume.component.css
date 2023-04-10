@@ -1,0 +1,85 @@
+
+#btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+section{
+    text-align: left;
+}
+
+
+h1{
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    margin: 20px 10px ;
+}
+
+h2{
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 0px;
+}
+span{
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: #474545;
+}
+@media screen and (max-width: 500px) {
+
+
+    h1{
+        font-size: 20px;
+    }
+    
+    h2{
+        font-size: 18px;
+
+    }
+    span{
+        font-size: 16px;
+    }
+    
+    #user-info{
+        background-color: rgba(95, 158, 160, 0.498);
+        width: 100%;
+        padding: 10px;
+    }
+    .user-data{
+        margin: 10px 0 30px 0;
+    }
+    
+    #payments-methods{
+        margin: 80px 0px;
+    }
+     
+    .pay-method{
+        margin: 30px;
+        width: 40px;
+        height: 40px;
+        background-color: aqua;
+    }
+    
+    #addition{
+        margin: 80px 10px;
+    }
+    li{
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .btn{
+        width: 88vw;
+        margin: 10px;
+    }
+    
+    
+    }

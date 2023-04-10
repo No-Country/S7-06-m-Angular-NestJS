@@ -7,19 +7,21 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
+
+
+
 export class PaymentComponent implements OnInit {
 
-  user = new User('','','','');
-
-  constructor(private sUser: UserService) { }
+  checkForm:boolean=false;
+  constructor() { }
 
   ngOnInit(): void {
-    this.getUser();
+  
   }
 
 
   getUser(): void {
-    this.user = this.sUser.getDataUser();
+   
   }
 
 }

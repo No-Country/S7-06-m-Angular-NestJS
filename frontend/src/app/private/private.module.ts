@@ -11,6 +11,9 @@ import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
 import { EditProfileFormComponent } from './user/components/edit-profile-form/edit-profile-form.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentFormComponent } from './payment/components/payment-form/payment-form.component';
+import { PaymentResumeComponent } from './payment/components/payment-resume/payment-resume.component';
+
 
 @NgModule({
   declarations: [ 
@@ -19,7 +22,7 @@ import { PaymentComponent } from './payment/payment.component';
     ResetPasswordFormComponent,
     ProfileComponent, 
     EditProfileComponent, 
-    EditProfileFormComponent, PaymentComponent
+    EditProfileFormComponent, PaymentComponent, PaymentFormComponent, PaymentResumeComponent
   ],
   imports: [
     CommonModule,
