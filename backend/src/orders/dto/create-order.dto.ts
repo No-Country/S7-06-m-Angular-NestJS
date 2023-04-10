@@ -1,5 +1,4 @@
 import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
-import { User } from 'src/auth/entities/auth.entity';
 
 export class CreateOrderDto {
   @IsOptional()

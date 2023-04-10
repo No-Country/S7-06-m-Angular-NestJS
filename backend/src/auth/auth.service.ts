@@ -70,6 +70,7 @@ export class AuthService {
         id: true,
         firstName: true,
         lastName: true,
+        roles: true,
       },
     });
 

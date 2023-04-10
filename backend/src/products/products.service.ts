@@ -87,7 +87,7 @@ export class ProductsService {
   async findAll(paginationDto: PaginationDto) {
     const { limit = 20, offset = 0 } = paginationDto;
 
-    return await this.productRepository.findAndCount({
+    return await this.productRepository.find({
       take: +limit,
       skip: offset,
       relations: { categories: true },
