@@ -8,18 +8,18 @@ import { AllProductsComponent } from './store/components/all-products/all-produc
 import { IdProductComponent } from './store/components/id-product/id-product.component';
 import { PublicComponent } from './public/public.component';
 import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
-
 const routes: Routes = [
   {
     path: '', component:PublicComponent,children:
       [
+        { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: HomeComponent },
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegisterComponent},
         { path: 'recoverpassword', component: RecoverPasswordComponent},
         { path: 'store', component: StoreComponent, children: [
             { path: '', component: AllProductsComponent },
-            { path: 'product', component: AllProductsComponent },
+            { path: 'product', component: IdProductComponent },
             { path: 'category', component: AllProductsComponent }
           ]
         },

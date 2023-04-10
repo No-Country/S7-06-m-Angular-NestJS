@@ -32,7 +32,21 @@
 
     <div class="price">
       <p>Precio <strong>{{ finalPrice | currency: "ARS" }}</strong></p>
+    </div>
 
+    <div class="contenedor-cant-error">
+      <div class="cant-group">
+        <span class="word-cant"><strong>Cantidad</strong></span>
+        <div class="botones">
+          <button (click)="handleProduct('remove')"><strong>-</strong> </button>
+          <input type="text" disabled [value]="productQuantity">
+          <button (click)="handleProduct('add')"><strong>+</strong></button>
+        </div>
+      </div>
+
+      <div class="error container" id="error">
+        <p class="removeError"><strong>No se puede descontar más productos</strong></p>
+      </div>
     </div>
 
     <div class="button">

@@ -1,0 +1,118 @@
+
+
+section{
+  display: flex;
+  flex-direction: column;
+}
+
+.hola{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.swiperContainer{
+  width: 310px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.swiperContainer h4{
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 45px;
+  line-height: 45px;
+  color: aliceblue;
+  background-color: rgba(0,0,0,.4);
+  text-align: center;
+  z-index: 2;
+}
+
+.swiperContainer .button-more{
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+
+.swiperContainer .button-more button{
+  border-radius: 10px;
+  width: 100px;
+  height: 35px;
+  background-color: rgba(53, 90, 253, 0.719);
+  color: aliceblue;
+}
+
+.swiper{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.image>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+
+@media screen and (max-width:1360px) {
+
+  .hola{
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+}
+
+@media screen and (max-width:1064px) {
+
+  .hola{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media screen and (max-width:720px) {
+
+  .hola{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media screen and (max-width:390px) {
+
+  .hola{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width:290px) {
+
+  .swiperContainer{
+    width: 100vw;
+  }
+
+  .swiper{
+    position: relative;
+    width: 100vw;
+    height: 300px;
+  }
+}

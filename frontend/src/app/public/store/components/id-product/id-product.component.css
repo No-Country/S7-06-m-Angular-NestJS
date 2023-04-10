@@ -1,6 +1,3 @@
-/* @import 'swiper/css/navigation';
-@import 'swiper/css/pagination'; */
-
 .title>.name-favorite{
   display: flex;
   justify-content: space-between;
@@ -29,6 +26,78 @@
   object-fit: cover;
 }
 
+.contenedor-cant-error{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  gap: 0.5em;
+}
+
+.cant-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  gap: 0.5em;
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5em;
+}
+
+.botones>input{
+  width: 1.8em;
+  border: 1px solid #000;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.botones>button{
+  width: 1.7em;
+  background-color: aliceblue;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 100%;
+}
+
+.error{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  visibility: hidden;
+}
+
+.error>.removeError{
+  color: red;
+  margin: 0;
+}
+
+.error-active{
+  padding: 0;
+  visibility: visible;
+}
+
+.error-active>.removeError{
+  color: red;
+  margin: 0;
+}
+
+.button{
+  display: flex;
+  justify-content: space-around;
+}
+
+.button>button{
+  background-color: rgb(100, 180, 255);
+  border: none;
+  border-radius: 8px;
+  width: 170px;
+  height: 40px;
+}
 
 @media screen and (max-width:290px) {
 
@@ -42,14 +111,6 @@
     height: 300px;
   }
 
-  .button>button{
-    background-color: rgb(100, 180, 255);
-    border: none;
-    border-radius: 8px;
-    width: 170px;
-    height: 40px;
-  }
-
   .product-detail{
     display: flex;
     flex-direction: column;
@@ -61,6 +122,29 @@
     font-size: 25px !important;
   }
 
+  .cant-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    gap: 0.5em;
+  }
 
+  .botones{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5em;
+  }
+
+  .botones>input{
+    width: 1.8em;
+    border-radius: 30px;
+  }
+
+  .botones>button{
+    width: 1.6em;
+    border-radius: 100%;
+  }
 
 }

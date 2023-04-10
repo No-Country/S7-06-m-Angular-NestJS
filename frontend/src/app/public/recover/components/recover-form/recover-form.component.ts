@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { TokenService } from 'src/app/shared/services/token.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { TokenService } from 'src/app/shared/services/token/token.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -46,7 +46,7 @@ export class RecoverFormComponent implements OnInit {
     return this.recoverForm.get('email')
   }
 
-  // ALERT: Recuperación de contraseña 
+  // ALERT: Recuperación de contraseña
   sendEmail() {
     Swal.fire({
       title: 'Recuperación de contraseña',
@@ -58,7 +58,7 @@ export class RecoverFormComponent implements OnInit {
     }).then((result:any) => {
       if (result.isConfirmed) {
         this.router.navigateByUrl('/home')
-      } 
+      }
     })
   }
   // ALERT: Incorrect Email

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-profile-form',
@@ -10,7 +10,7 @@ export class ProfileFormComponent implements OnInit {
 
   edit:boolean=false;
   dataUser:any;
-  
+
 
   constructor(private userService:UserService) { }
 
