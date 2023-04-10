@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginUser } from 'src/app/shared/models/login/login-user';
 import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { environment } from 'src/environments/environment';
+import { LOGIN_URL, REGISTER_URL } from '../../endpoints/endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -15,27 +16,27 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   // REGISTRARSE
-  public register(newUser: NewUser): Observable<any> {
-    return this.http.post<any>(this.URL + '/auth/register', newUser)
+  register(newUser: NewUser): Observable<any> {
+    return this.http.post<any>(REGISTER_URL, newUser)
   }
 
   // LOGIN
-  public login(loginUser: LoginUser): Observable<any> {
-    return this.http.post<any>(this.URL + '/auth/login',loginUser)
-  }  
+  login(loginUser: LoginUser): Observable<any> {
+    return this.http.post<any>(LOGIN_URL, loginUser)
+  }
 
   // LOGOUT
-  public logOut(): void{
+  logOut(): void{
     window.sessionStorage.clear();
   }
 
   // RECUPERAR CONTRASEÑA
-  public recover(email: string): Observable<any> {
+  recover(email: string): Observable<any> {
     return this.http.post<any>(this.URL + '/auth/recover',email)
   }
 
   // RESETEAR CONTRASEÑA
-  public resetPassword(password: string): Observable<any> {
+  resetPassword(password: string): Observable<any> {
     return this.http.post<any>(this.URL + '/auth/resetpassword',password)
   }
 

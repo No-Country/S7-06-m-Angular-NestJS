@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user';
+import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import Swal from 'sweetalert2';
@@ -12,17 +12,20 @@ import Swal from 'sweetalert2';
 })
 export class ProfileComponent implements OnInit {
 
-  user = new User('','','','');
+  user!:NewUser;
 
 
-  constructor(private router: Router, public sUser: UserService,private authService:AuthService) { }
+  constructor(
+    private router: Router,
+    private sUser: UserService,
+    private authService:AuthService
+  ) { }
 
   ngOnInit(): void {
     this.getUser();
   }
 
-
-  getUser(): void {
+  getUser() {
     this.user = this.sUser.getDataUser();
   }
 

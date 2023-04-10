@@ -20,4 +20,11 @@ export const PRODUCT_CATEGORIES_URL = BASE_URL + 'categories';
 // Trae un producto por categoria - GET
 export const PRODUCT_BY_CATEGORIES_URL = PRODUCT_URL + '';
 
+// -----------------------USER------------------------------------------------
+
+// REGISTRARSE
+export const REGISTER_URL = BASE_URL + 'auth/register';
+// LOGIN
+export const LOGIN_URL = BASE_URL + 'auth/login';
+
 

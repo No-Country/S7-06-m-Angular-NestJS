@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user';
+import { NewUser } from '../../models/sign-in/new-user';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -26,8 +26,8 @@ export class UserService {
   }
 
 
-  public update(id: number, user: User): Observable<User>{
-    return this.http.patch<User>(this.URL + `/update/${id}`, user);
+  public update(id: number, user: NewUser): Observable<NewUser>{
+    return this.http.patch<NewUser>(this.URL + `/update/${id}`, user);
   }
 
 }
