@@ -5,4 +5,4 @@ export class Product{
     category!:string;
     imageUrl!:string;
     description?:string;
-  }
+}

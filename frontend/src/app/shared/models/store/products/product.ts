@@ -1,3 +1,8 @@
+export class Image{
+  id?:number;
+  url!:string;
+}
+
 export class Product{
   id?:number;
   name!:string;
@@ -5,7 +10,7 @@ export class Product{
   discount?:number;
   finalPrice?:number;
   category!:string;
-  images!:string[];
+  images!:Image[];
   description?:string;
   stock?:boolean;
 }

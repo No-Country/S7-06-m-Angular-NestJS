@@ -15,7 +15,7 @@
         >
           <ng-template swiperSlide *ngFor="let img of product.images">
             <div class="image" >
-              <img [src]="img" loading="lazy">
+              <img [src]="img.url" loading="lazy">
             </div>
           </ng-template>
 

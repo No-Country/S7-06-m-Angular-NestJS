@@ -150,6 +150,7 @@ export class AllProductsComponent implements OnInit {
   getAllProducts(){
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+      console.log(data)
     }, error => {
       console.log(error);
     })
