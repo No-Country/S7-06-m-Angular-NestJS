@@ -1,21 +1,26 @@
 <main>
-    <body>
-        <div>
-           
-        <app-banner></app-banner>
-        </div>
-        <div>
-            <h2>Nuestros Productos</h2>
-        </div>
-        <app-notepads-carrusel></app-notepads-carrusel>   
-        
-        <app-products-carrusel [visibleCarrusel]="true" title="Papeleria"></app-products-carrusel>
-        <app-products-carrusel [visibleCarrusel]="true" title="Varios"></app-products-carrusel>
+  <body>
+    <div>
+      <app-banner></app-banner>
+    </div>
+    <div>
+      <h2>Nuestros Productos</h2>
+    </div>
+    <app-notepads-carrusel></app-notepads-carrusel>
 
-        <div class="container store-link" >
-            <button (click)="navigateTo('/mimu/store')" class="btn btn-primary">Ir a la tienda</button>
-        </div>
-    </body>
+    <app-products-carrusel
+      [visibleCarrusel]="true"
+      title="Papeleria"
+    ></app-products-carrusel>
+    <app-products-carrusel
+      [visibleCarrusel]="true"
+      title="Varios"
+    ></app-products-carrusel>
+
+    <div class="container store-link">
+      <button (click)="navigateTo('/mimu/store')" class="btn btn-primary">
+        Ir a la tienda
+      </button>
+    </div>
+  </body>
 </main>
-
-

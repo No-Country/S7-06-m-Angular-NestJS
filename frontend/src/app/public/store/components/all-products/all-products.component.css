@@ -1,13 +1,15 @@
-
-
 section{
   display: flex;
   flex-direction: column;
+  /* background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae); */
+  /* background: linear-gradient(to right, #5EA7E7, #E5BDE2, #FCE6EF, #A7D7FC, #8EC6FF); */
+  /* background: linear-gradient(to right, #5EA7E7, #E5BDE2, #FCE6EF, #A7D7FC); */
+
 }
 
-.hola{
+.product-container{
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 

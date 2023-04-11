@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/shared/models/store/products/product';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 import SwiperCore, { Navigation, Autoplay, Virtual, Scrollbar, SwiperOptions } from 'swiper';
 SwiperCore.use([Virtual, Navigation, Autoplay, Scrollbar ]);
 
@@ -34,7 +37,20 @@ export class IdProductComponent implements OnInit {
 
   productQuantity:number = 1;
 
-  constructor() { }
+  product!:Product;
+
+  constructor(
+    private productService: ProductService,
+    private activatedRoute:ActivatedRoute,
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id'])
+        this.productService.getProductById(params['id']).subscribe(getProductById => {
+          this.product = getProductById;
+        }
+        );
+    });
+  }
 
   ngOnInit(): void {
   }

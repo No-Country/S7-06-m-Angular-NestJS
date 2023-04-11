@@ -9,7 +9,7 @@ export class Categories {
 }
 
 export class Product{
-  id?:number;
+  id?:string;
   name!:string;
   price!:number;
   discount?:number;
