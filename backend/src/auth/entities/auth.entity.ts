@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Order } from 'src/orders/entities/order.entity';
 import {
   OneToMany,
   BeforeInsert,
@@ -9,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import { Order } from '../../orders/entities/order.entity';
 import { Product } from '../../products/entities';
 
 @Entity('users')
@@ -46,7 +46,7 @@ export class User {
   isActive: boolean;
 
   @ApiProperty()
-  @Column('text', { array: true, default: ['admin'] })
+  @Column('text', { array: true, default: ['user'] })
   roles: string[];
 
   @OneToMany(() => Order, (order) => order.user)

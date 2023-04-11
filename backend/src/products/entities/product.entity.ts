@@ -11,7 +11,7 @@ import {
 import { Category } from '../../categories/entities/category.entity';
 import { ProductImage } from './product-image.entity';
 import { User } from '../../auth/entities/auth.entity';
-import { OrderItem } from 'src/order_item/entities/order_item.entity';
+import { OrderItem } from '../../orders/entities/order-item.entity';
 
 @Entity('products')
 export class Product {

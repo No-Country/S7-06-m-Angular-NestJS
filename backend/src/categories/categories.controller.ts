@@ -13,6 +13,8 @@ import { Category } from './entities/category.entity';
 
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { Auth } from '../auth/decorators/auth.decorator';
+import { Roles } from '../auth/interfaces/roles';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -28,6 +30,7 @@ export class CategoriesController {
     status: 400,
     description: 'Bad request (category already exists)',
   })
+  @Auth(Roles.Admin)
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoriesService.create(createCategoryDto);
@@ -52,6 +55,7 @@ export class CategoriesController {
     status: 400,
     description: "Bad request (category doesn't found)",
   })
+  @Auth(Roles.Admin)
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.categoriesService.remove(id);

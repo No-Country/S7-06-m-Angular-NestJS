@@ -1,4 +1,11 @@
-import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsBoolean,
+  IsOptional,
+  IsArray,
+} from 'class-validator';
+import { OrderItem } from 'src/orders/entities/order-item.entity';
 
 export class CreateOrderDto {
   @IsOptional()
@@ -16,4 +23,7 @@ export class CreateOrderDto {
   @IsNumber()
   @IsOptional()
   totalPrice?: number;
+
+  @IsArray()
+  orderItems: OrderItem[];
 }

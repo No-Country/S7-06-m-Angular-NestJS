@@ -6,11 +6,12 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './entities/order.entity';
-import { User } from 'src/auth/entities/auth.entity';
-import { OrderItem } from 'src/order_item/entities/order_item.entity';
+
+import { Order, OrderItem } from './entities';
+import { User } from '../auth/entities/auth.entity';
+import { Product } from '../products/entities';
+
+import { CreateOrderDto, UpdateOrderDto } from './dto';
 
 @Injectable()
 export class OrdersService {
@@ -22,16 +23,41 @@ export class OrdersService {
 
     @InjectRepository(OrderItem)
     private readonly orderItemRepository: Repository<OrderItem>,
+
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto, user: User) {
     try {
+      const { orderItems, ...orderData } = createOrderDto;
+
+      if (orderItems && orderItems.length === 0)
+        throw new BadRequestException('No order items');
+
       const order = this.orderRepository.create({
-        ...createOrderDto,
+        ...orderData,
         user,
       });
-
       await this.orderRepository.save(order);
+
+      orderItems.map(async (item) => {
+        const product = await this.productRepository.findOneBy({
+          id: item.id,
+        });
+
+        const productItem = this.orderItemRepository.create({
+          name: product.name,
+          price: product.price * item.quantity,
+          product: product,
+          quantity: item.quantity,
+          order,
+        });
+
+        order.items = [productItem];
+
+        await this.orderItemRepository.save(productItem);
+      });
 
       return { order };
     } catch (error) {

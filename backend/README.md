@@ -9,7 +9,7 @@
 4. Ejecutar el siguiente comando:
 
 ```
-docker-compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
 6. Bajar el contenedor:

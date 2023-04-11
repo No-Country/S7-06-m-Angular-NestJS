@@ -7,10 +7,11 @@ import {
   BeforeInsert,
   BeforeUpdate,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/auth/entities/auth.entity';
-import { OrderItem } from 'src/order_item/entities/order_item.entity';
 import { Type } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
+
+import { User } from '../../auth/entities/auth.entity';
+import { OrderItem } from '../../orders/entities/order-item.entity';
 
 @Entity('orders')
 export class Order {
@@ -43,13 +44,15 @@ export class Order {
   @ManyToOne(() => User, (user) => user.orders, { eager: true })
   user: User;
 
-  @OneToMany(() => OrderItem, (item) => item.order)
+  @OneToMany(() => OrderItem, (item) => item.order, {
+    cascade: true,
+    eager: true,
+  })
   items: OrderItem[];
 
   @BeforeInsert()
   formatearFechas() {
     const newDate = new Date(Date.now());
-
     this.createdAt = new Date(newDate.toLocaleString('es-ES'));
   }
 
