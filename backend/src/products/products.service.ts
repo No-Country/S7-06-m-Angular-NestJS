@@ -60,17 +60,18 @@ export class ProductsService {
       const {
         images = [secureUrl],
         category_name,
+        price,
         ...productDetails
       } = createProductDto;
-      productDetails.price=Number(productDetails.price)
 
       const category = await this.categoriesServices.findOneByName(
         category_name.toLowerCase(),
       );
-      
+
       const product = this.productRepository.create({
         ...productDetails,
         categories: category,
+        price: Number(price),
         images: images.map((image) =>
           this.productImageRepository.create({ url: image }),
         ),
@@ -116,14 +117,14 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, user: User) {
-    const {images, category_name, ...productDetail } = updateProductDto;
-    productDetail.price=Number(productDetail.price)
+    const { images, category_name, price, ...productDetail } = updateProductDto;
+
     const category = await this.categoriesServices.findOneByName(category_name);
-    
 
     const product = await this.productRepository.preload({
       id,
-       ...productDetail
+      price: Number(price),
+      ...productDetail,
     });
 
     if (!product)

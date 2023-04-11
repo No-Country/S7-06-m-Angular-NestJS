@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNumber, MinLength, IsOptional } from 'class-validator';
+import { IsString, MinLength, IsOptional } from 'class-validator';
 import { Category } from '../../categories/entities/category.entity';
 
 export class CreateProductDto {
@@ -29,9 +29,9 @@ export class CreateProductDto {
     minLength: 1,
     default: 10.0,
   })
-  
+  @IsString()
   @IsOptional()
-  price?: string|number;
+  price?: string;
 
   @ApiProperty({
     description: 'Product category',

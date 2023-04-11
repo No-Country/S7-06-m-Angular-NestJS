@@ -28,8 +28,8 @@ export class Product {
   description: string;
 
   @ApiProperty()
-  @Column('float', { default: 0 })
-  price:string| number;
+  @Column('real', { default: 0 })
+  price: number;
 
   @ApiProperty()
   @Column('boolean', { default: true })
@@ -58,7 +58,4 @@ export class Product {
     this.name = this.name.toLowerCase();
     this.description = this.description.toLowerCase();
   }
-  //priceNumber(){
-  //this.price=Number(this.price)
-  //}
 }
