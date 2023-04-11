@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NewUser } from 'src/app/public/models/new-user';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { NewUser } from 'src/app/shared/models/sign-in/new-user';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup;
-  newUser!: NewUser;  
+  newUser!: NewUser;
   ocultar: boolean = true;
 
   constructor(
@@ -26,20 +26,20 @@ export class RegisterFormComponent implements OnInit {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        //password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],        
+        //password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
         //confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]],
-        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/)]],        
+        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/)]],
         //confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/),this.checkPasswords('password')]],
         contact: "+00000000000",
-        address: "address"          
+        address: "address"
       }
     )
   }
 
-  
+
 
   ngOnInit(): void {
-  }  
+  }
 
   // REGISTER
   onRegister() {
@@ -47,7 +47,7 @@ export class RegisterFormComponent implements OnInit {
     console.log(this.newUser)
     this.authService.register(this.newUser).subscribe({
       next: (res) => {
-        console.log(res)        
+        console.log(res)
         this.registeredUser()
       },
       error: (error) => {
@@ -58,7 +58,7 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  // ALERT: Usuario registrado 
+  // ALERT: Usuario registrado
   registeredUser() {
     Swal.fire({
       title: 'Usuario Registrado',
@@ -148,5 +148,5 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  
+
 }

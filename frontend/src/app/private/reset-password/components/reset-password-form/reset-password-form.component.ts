@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,23 +22,23 @@ export class ResetPasswordFormComponent implements OnInit {
 
     this.resetPasswordForm = this.formBuilder.group(
       {
-        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],        
-        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]          
+        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
+        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]
       }
     )
   }
 
-  
+
 
   ngOnInit(): void {
-  }  
+  }
 
   // REGISTER
   onResetPassword() {
     this.newPassword = this.resetPasswordForm.value;
     console.log(this.newPassword)
     this.authService.resetPassword(this.newPassword).subscribe({
-      next: (data) => {        
+      next: (data) => {
         this.resetedPassword()
       },
       error: (error) => {
@@ -48,7 +48,7 @@ export class ResetPasswordFormComponent implements OnInit {
     })
   }
 
-  // ALERT: Usuario registrado 
+  // ALERT: Usuario registrado
   resetedPassword() {
     Swal.fire({
       title: 'Contraseña actualizada',
@@ -88,7 +88,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   /*=================================================*/
 
-  // VALIDATORS  
+  // VALIDATORS
   get Password() {
     return this.resetPasswordForm.get('password')
   }
@@ -128,5 +128,5 @@ export class ResetPasswordFormComponent implements OnInit {
     }
   }
 
-  
+
 }

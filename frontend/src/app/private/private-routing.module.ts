@@ -7,7 +7,7 @@ import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
 import { PaymentComponent } from './payment/payment.component';
 
-const routes: Routes = [  
+const routes: Routes = [
   {
     path: '',component:PrivateComponent,
     children: [
