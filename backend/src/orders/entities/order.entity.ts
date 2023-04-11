@@ -5,7 +5,6 @@ import {
   ManyToOne,
   OneToMany,
   BeforeInsert,
-  BeforeUpdate,
 } from 'typeorm';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
@@ -23,9 +22,9 @@ export class Order {
   @Column('float', { default: 0 })
   totalPrice: number;
 
-  @ApiProperty()
-  @Column('float', { default: 0 })
-  taxPrice: number;
+  // @ApiProperty()
+  // @Column('float', { default: 12 })
+  // taxPrice: number;
 
   @ApiProperty()
   @Column('boolean', { nullable: true, default: false })
@@ -56,8 +55,8 @@ export class Order {
     this.createdAt = new Date(newDate.toLocaleString('es-ES'));
   }
 
-  @BeforeUpdate()
-  taxPriceUpdate() {
-    this.taxPrice = this.totalPrice / 12;
-  }
+  // @BeforeInsert()
+  // taxPriceInsert() {
+  //   this.totalPrice = this.totalPrice / this.taxPrice;
+  // }
 }

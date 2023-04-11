@@ -41,8 +41,7 @@ export class CreateProductDto {
   })
   @IsString()
   @MinLength(1)
-  @IsOptional()
-  category_name?: string;
+  category_name: string;
 
   @ApiProperty({
     description: 'Product image',

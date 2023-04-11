@@ -16,13 +16,12 @@ export class CreateOrderDto {
   @IsOptional()
   isPaid?: boolean;
 
-  @IsNumber()
-  @IsOptional()
-  taxPrice?: number;
+  // @IsNumber()
+  // @IsOptional()
+  // taxPrice?: number;
 
   @IsNumber()
-  @IsOptional()
-  totalPrice?: number;
+  totalPrice: number;
 
   @IsArray()
   orderItems: OrderItem[];
