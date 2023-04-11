@@ -29,9 +29,9 @@ export class CreateProductDto {
     minLength: 1,
     default: 10.0,
   })
-  @IsNumber()
+  
   @IsOptional()
-  price?: number;
+  price?: string|number;
 
   @ApiProperty({
     description: 'Product category',
