@@ -65,20 +65,35 @@ export class OrdersService {
     }
   }
 
-  findAll() {
-    return `This action returns all orders`;
+  async findAll() {
+    const orders=await this.orderRepository.find()
+    if(!orders) throw new BadRequestException('this user dont have orders');
+    return {orders}
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  async findOne(id: string) {
+    const order=await this.orderRepository.findOneBy({id})
+    if(!order) throw new BadRequestException("order no exist")
+    return {order}
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+ async update(id: string, updateOrderDto: UpdateOrderDto) {
+    const {isPaid}=updateOrderDto
+    if(isPaid==true){
+        const newDate = new Date(Date.now());
+        updateOrderDto.paidAt= new Date(newDate.toLocaleString('es-ES'));
+    }
+    const order=await this.orderRepository.findOneBy({id})
+    if(!order) throw new BadRequestException("order no exist")
+    const newOrder=await this.orderRepository.preload({id,...updateOrderDto})
+    return newOrder
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  async remove(id: string) {
+    const order=await this.orderRepository.findOneBy({id})
+    if(!order) throw new BadRequestException("order no exist")
+    this.orderRepository.remove(order)
+    return {message:`order deleted successful`}
   }
 
   private handleDBError(error: any): never {

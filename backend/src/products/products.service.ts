@@ -62,11 +62,12 @@ export class ProductsService {
         category_name,
         ...productDetails
       } = createProductDto;
+      productDetails.price=Number(productDetails.price)
 
       const category = await this.categoriesServices.findOneByName(
         category_name.toLowerCase(),
       );
-
+      
       const product = this.productRepository.create({
         ...productDetails,
         categories: category,
@@ -115,13 +116,14 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, user: User) {
-    const { images, category_name, ...productDetail } = updateProductDto;
-
+    const {images, category_name, ...productDetail } = updateProductDto;
+    productDetail.price=Number(productDetail.price)
     const category = await this.categoriesServices.findOneByName(category_name);
+    
 
     const product = await this.productRepository.preload({
       id,
-      ...productDetail,
+       ...productDetail
     });
 
     if (!product)
