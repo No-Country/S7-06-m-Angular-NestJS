@@ -137,12 +137,12 @@
     gap: 0.5em;
   }
 
-  .botones>input{
+  .botones input{
     width: 1.8em;
     border-radius: 30px;
   }
 
-  .botones>button{
+  .botones button{
     width: 1.6em;
     border-radius: 100%;
   }

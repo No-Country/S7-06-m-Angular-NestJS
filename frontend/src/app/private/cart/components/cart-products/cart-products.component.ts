@@ -10,34 +10,23 @@ import { ProductCart } from '../../models/productCart';
 export class CartProductsComponent implements OnInit {
 
   priceTotal:number=0;
-
-  productsCart:ProductCart[]=[
-    {
-      name:"Jabon",
-      price:20,
-      img:"https://amelipapeleria.uy/wp-content/uploads/2023/02/Cuaderno-caballito-01-300x300.jpeg",
-      amount:1
-    },
-    {
-      name:"Shampoo",
-      price:45,
-      img:"https://amelipapeleria.uy/wp-content/uploads/2023/02/Cuaderno-caballito-01-300x300.jpeg",      
-      amount:1
-    },
-    {
-      name:"Deterwater",
-      price:87,
-      img:"https://amelipapeleria.uy/wp-content/uploads/2023/02/Cuaderno-caballito-01-300x300.jpeg",
-      amount:1
-    }
-  ]
+  productsCart:ProductCart[]=[];
 
   cantidad:number=0;
 
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.totalPrice()
+    this.getProductsOfCart();
+    this.totalPrice();
+  }
+
+  // Mostrar Productos Cargados
+  getProductsOfCart(){
+    const productList = localStorage.getItem("productsCart");
+    if (productList){
+      this.productsCart = JSON.parse(productList);
+    }    
   }
 
   deleteProductOfCart(index: number) {
@@ -45,6 +34,7 @@ export class CartProductsComponent implements OnInit {
     this.priceTotal = 0;
     this.totalPrice()
   }
+  
   updateAmount(index: number, nuevaCantidad: number) {
     this.productsCart[index].amount = nuevaCantidad;
     this.priceTotal = 0;

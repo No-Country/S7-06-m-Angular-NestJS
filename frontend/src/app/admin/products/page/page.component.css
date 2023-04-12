@@ -48,16 +48,12 @@ hr {
     }
 }*/
 @media screen and (max-width: 500px) {
-    /*.productList {
-        padding:0px 0px;
-    }*/
     #products {
         padding:50px 3px
-    }/*
-    .product {
-        width:95%;
-        margin:15px 0px
-    }*/
+    }
+    .filter {
+        display:inline-block
+    }
 }
 
 /*--------MODAL--------*/
