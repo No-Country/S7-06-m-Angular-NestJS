@@ -51,7 +51,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearValidatorsAdd()"></button>
         </div>
                
-        <form  [formGroup]="addProductForm" class="add-form" novalidate autocomplete="off" required id="agregarGasto" (ngSubmit)="saveProduct()" autocomplete="off">
+        <form  [formGroup]="addProductForm" class="add-form" novalidate autocomplete="off" required id="agregarGasto" (ngSubmit)="saveProduct()" autocomplete="off" enctype="multipart/form-data">
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre del producto</label>
@@ -63,11 +63,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="categorie_name" class="form-label">Categoría</label><br>
-                    <select type="text" id="categorie_name"  formControlName="categorie_name" class="form-control text-center" [ngClass]="{'is-valid':!CategoryAdd?.errors&& CategoryAdd?.touched}"> 
+                    <label for="category_name" class="form-label">Categoría</label><br>
+                    <select type="text" id="category_name"  formControlName="category_name" class="form-control text-center" [ngClass]="{'is-valid':!CategoryAdd?.errors&& CategoryAdd?.touched}"> 
                         <option value="libretas">Libretas</option>
                         <option value="lapiceras">Lapiceras</option>
-                        <option value="varios">Varios</option>               
+                        <option value="varios">Varios</option>        "images
                     </select>
                     <div *ngIf="CategoryAdd?.errors && CategoryAdd?.touched">
                         <p *ngIf="CategoryAdd?.hasError('required')" class="text-danger">
@@ -100,7 +100,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="images" class="form-label">Imagen de producto (url)</label>
+                    <label for="images" class="form-label">Imagen de producto</label>
+                    <!-----
                     <input type="text" id="images"  formControlName="images" class="form-control" [ngClass]="{'is-valid':!Img_ProductAdd?.errors&& Img_ProductAdd?.touched}">
                     <div *ngIf="Img_ProductAdd?.errors && Img_ProductAdd?.touched">
                         <p *ngIf="Img_ProductAdd?.hasError('required')" class="text-danger">
@@ -109,7 +110,22 @@
                         <p *ngIf="Img_ProductAdd?.hasError('maxlength')" class="text-danger">
                             Menos de 300 caracteres
                         </p>
+                    </div>--->
+                    <input type="file" id="file" (change)="captureFile($event)" accept="image/*" class="form-control" [ngClass]="{'is-valid':!Img_ProductAdd?.errors&& Img_ProductAdd?.touched}">
+                    <div *ngIf="Img_ProductAdd?.errors && Img_ProductAdd?.touched" value="imagen">
+                        <p *ngIf="Img_ProductAdd?.hasError('required')" class="text-danger">
+                            Ingrese una imagen
+                        </p>
                     </div>
+                    <img *ngIf="previsualizacion" [src]="previsualizacion" id="img-base">
+                    <!----
+                    <img *ngIf="archivo!=''" [src]="archivo" id="img-base">
+
+                    <input alife-file-to-base64
+                    type="file"
+                    (onFileChanged)="onFileChanged($event)"
+                    formControlName="images"
+                    tabindex="0">--->
                 </div>
             </div>
             <div class="modal-footer botones">

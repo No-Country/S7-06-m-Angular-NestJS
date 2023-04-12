@@ -9,6 +9,10 @@ import { ProductListComponent } from './products/components/product-list/product
 import { DashboardPageComponent } from './dashboard/dashboard-page/dashboard-page.component';
 import { ProfileFormComponent } from './profile/components/profile-form/profile-form.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+
+
+
 
 @NgModule({
     declarations: [
@@ -22,7 +26,9 @@ import { ProfilePageComponent } from './profile/profile-page/profile-page.compon
     imports: [
         CommonModule,
         AdminRoutingModule,
-        SharedModule
+        SharedModule,
+        AlifeFileToBase64Module
+
     ]
 })
 export class AdminModule { }

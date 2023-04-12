@@ -37,6 +37,10 @@ label {
     flex-wrap: wrap;
     justify-content:space-around;
 }
+.buttons button{
+    margin:10px
+
+}
 
 @media screen and (max-width: 500px) {
     .data {

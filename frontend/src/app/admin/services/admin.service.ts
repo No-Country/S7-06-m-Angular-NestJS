@@ -16,12 +16,12 @@ export class AdminService {
   /*---PRODUCTS--------------------------------- */
 
   // SAVE PRODUCT : Guardar nuevo producto
-  public saveProduct(product:ProductAdmin): Observable<any> {
+  public saveProduct(product:FormData): Observable<any> {
     return this.http.post<any>(this.URL + "/products",product)
   }
 
   // UPDATE PRODUCT : Actualizar producto
-  public updateProduct(id:string,product:ProductAdmin): Observable<any> {
+  public updateProduct(id:string,product:FormData): Observable<any> {
     return this.http.patch<any>(this.URL + `/products/${id}`,product)
   }
 

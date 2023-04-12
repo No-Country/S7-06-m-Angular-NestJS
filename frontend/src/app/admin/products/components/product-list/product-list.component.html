@@ -38,8 +38,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="categorie_name" class="form-label">Categoría</label><br>
-                    <select type="text" id="categorie_name"  formControlName="categorie_name" class="form-control" [ngClass]="{'is-valid':!CategoryEdit?.errors&& CategoryEdit?.touched}"> 
+                    <label for="category_name" class="form-label">Categoría</label><br>
+                    <select type="text" id="category_name"  formControlName="category_name" class="form-control" [ngClass]="{'is-valid':!CategoryEdit?.errors&& CategoryEdit?.touched}"> 
                         <option value="libretas">Libretas</option>
                         <option value="lapiceras">Lapiceras</option>
                         <option value="varios">Varios</option>               
@@ -75,7 +75,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="images" class="form-label">Imagen de producto (url)</label>
+                    <label for="images" class="form-label">Imagen de producto</label>
+                    <!-----
                     <input type="text" id="images"  formControlName="images" class="form-control" [ngClass]="{'is-valid':!Img_ProductEdit?.errors&& Img_ProductEdit?.touched}">
                     <div *ngIf="Img_ProductEdit?.errors && Img_ProductEdit?.touched">
                         <p *ngIf="Img_ProductEdit?.hasError('required')" class="text-danger">
@@ -84,7 +85,17 @@
                         <p *ngIf="Img_ProductEdit?.hasError('maxlength')" class="text-danger">
                             Menos de 100 caracteres
                         </p>
+                    </div>--->
+                    <input type="file" id="file" (change)="captureFile($event)" accept="image/*" class="form-control" [ngClass]="{'is-valid':!Img_ProductEdit?.errors&& Img_ProductEdit?.touched}">
+                    <div *ngIf="Img_ProductEdit?.errors && Img_ProductEdit?.touched" value="Hola">
+                        <p *ngIf="Img_ProductEdit?.hasError('required')" class="text-danger">
+                            Ingrese una imagen
+                        </p>
                     </div>
+                    <img *ngIf="previsualizacion" [src]="previsualizacion" alt="" id="img-base">
+                    
+
+
                 </div>
             </div>
             <div class="modal-footer botones">

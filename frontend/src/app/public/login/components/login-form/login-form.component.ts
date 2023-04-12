@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
     this.loginForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(25),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]]
+        password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?])/)]]
       }
   )}
 
@@ -50,6 +50,7 @@ export class LoginFormComponent implements OnInit {
     } else {
     this.authService.login(this.loginUser).subscribe({
       next: (res) => {
+        console.log(res);
         this.isLogged = true;
         this.tokenService.setToken(res.token);
         this.userService.saveDataUser(res);

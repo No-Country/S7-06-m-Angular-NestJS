@@ -9,6 +9,8 @@ import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivateModule } from './private/private.module';
 import { interceptorProvider } from './shared/interceptors/interceptor.service';
+      
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { interceptorProvider } from './shared/interceptors/interceptor.service';
     HttpClientModule,
     PublicModule,
     PrivateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

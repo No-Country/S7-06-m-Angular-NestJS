@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ProductAdmin } from '../../models/product-admin';
+import { ProductData } from '../../models/product-data';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
@@ -10,16 +13,19 @@ import { AdminService } from '../../services/admin.service';
 export class PageComponent implements OnInit {
 
   addProductForm:FormGroup;
+  public archivo:string="";
+  previsualizacion: any;
 
-  constructor(private adminService:AdminService, private formBuilder:FormBuilder) { 
+  constructor(private sanitizer: DomSanitizer, private adminService:AdminService, private formBuilder:FormBuilder) { 
     // Formulario Nuevo Producto            
     this.addProductForm = this.formBuilder.group(
       {      
         name: ['', [Validators.required]],
         description: ['',[Validators.required,Validators.maxLength(50)]],
-        price:['',[Validators.required,Validators.min(0)]],
-        categorie_name:['',[Validators.required]],
-        images:[[],[Validators.required,,Validators.maxLength(300)]]
+        price:[0,[Validators.required,Validators.min(0)]],
+        category_name:['',[Validators.required]],
+        //images:[[],[Validators.required,Validators.maxLength(300)]]
+        file:[null,[Validators.required]]
       }
     )
   }
@@ -29,12 +35,14 @@ export class PageComponent implements OnInit {
 
 
   /*------------NUEVO PRODUCTO---------------*/  
+  /*
   saveProduct(){
-    // Almacenando el Formulario
+    
     const newProduct = this.addProductForm.value;
-    newProduct.images=newProduct.images.split();
+    newProduct.images=this.archivo;
+    console.log(this.archivo)
     console.log(newProduct)
-    // Servicio Save Product  
+
     this.adminService.saveProduct(newProduct).subscribe({
       next: (res) => {
       },
@@ -46,7 +54,43 @@ export class PageComponent implements OnInit {
       }
       }
     )
+  }*/
+
+  saveProduct(){
+    const newProduct = this.addProductForm.value;
+    newProduct.images=this.archivo;    
+    console.log(this.archivo)
+    console.log("Tipo de dato de product price")
+    console.log(typeof newProduct.price)
+
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('description', newProduct.description);
+    formData.set('price', newProduct.price);
+    formData.append('category_name', newProduct.category_name);
+    formData.append('file', this.addProductForm.get('file')?.value);
+    console.log(formData);
+    formData.forEach((value: any, key: string) => {
+      console.log(key, value);
+    });
+
+    this.adminService.saveProduct(formData).subscribe({
+      next: (_res) => {
+      },
+      error: (error) => {
+        console.log(error)
+      },
+      complete:()=>{
+        location.reload();
+      }
+      }
+    )
+
+
+
+
   }
+
 
   // Propiedades para los validadores
   // Propiedades Guardar PRODUCTO
@@ -61,14 +105,56 @@ export class PageComponent implements OnInit {
     return this.addProductForm.get('price'); 
   }
   get CategoryAdd() {
-    return this.addProductForm.get('categorie_name')
+    return this.addProductForm.get('category_name')
   }
   get Img_ProductAdd() {
-    return this.addProductForm.get('images')
+    return this.addProductForm.get('file')
   }
   clearValidatorsAdd() {
     this.addProductForm.reset()
   }
+  /*
+  onFileChanged(event:any){
+    console.log(event)
+    this.archivo = event[0].base64;
+  }*/
+
+  captureFile(event:any){
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.addProductForm.get('file')?.setValue(file);
+      this.extraerBase64(file).then((imagen: any) => {
+        this.previsualizacion = imagen.base;
+        console.log(imagen);  
+      })
+  }}
+
+  extraerBase64 = async ($event: any) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      return new Promise(resolve => {
+        reader.onload = () => {
+          resolve({
+            base: reader.result
+          });
+        };
+      });
+    } catch (e) {
+      return {
+        base: null
+      };
+    }
+  };
+  
+  
+  
+  
+  
+  
+  
 
 
 
