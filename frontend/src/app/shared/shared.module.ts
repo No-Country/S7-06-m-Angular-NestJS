@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductsCarruselComponent } from './components/products-carrusel/products-carrusel.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxPayPalModule,
   ],
   exports: [
     SwiperModule,
@@ -33,6 +35,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxPayPalModule,
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent,

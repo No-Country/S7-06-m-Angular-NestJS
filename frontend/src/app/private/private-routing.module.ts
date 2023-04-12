@@ -5,11 +5,13 @@ import { PrivateComponent } from './private.component';
 import { ResetPasswordComponent } from './reset-password/page/reset-password/reset-password.component';
 import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
     path: '',component:PrivateComponent,
     children: [
+      { path: 'checkout', component: PaymentComponent},
       { path: 'cart', component: CartComponent },
       { path: 'resetpassword/:token?', component: ResetPasswordComponent },
       { path: 'profile', component: ProfileComponent},

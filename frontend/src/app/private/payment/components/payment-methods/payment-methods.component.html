@@ -1,0 +1,19 @@
+<section>
+    <h1>Datos de envío</h1>
+    <div id="addition" >
+        <div *ngFor="let it of cart.items">
+            <li><span>{{it.product.name}}</span><span>{{it.product.price}}</span></li>
+        </div>
+        
+        <hr size="1px" color="gray" />
+        <li><span>Total:</span><span>{{cart.totalPrice}}</span></li>
+    </div>
+  
+    <div id="payments-methods">
+        <h1>Método de pago:</h1>
+        <div class="container-methods">
+           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+    </div>
+
+</section>
