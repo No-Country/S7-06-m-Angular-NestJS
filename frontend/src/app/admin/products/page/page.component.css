@@ -84,3 +84,8 @@ hr {
     justify-content:space-around;
     flex-wrap:wrap
 }
+#img-base {
+    width:200px;
+    height:auto;
+    margin-top:25px
+}
