@@ -26,6 +26,9 @@ export class OrdersService {
 
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto, user: User) {
@@ -65,10 +68,11 @@ export class OrdersService {
     }
   }
 
-  async findAll() {
-    const orders=await this.orderRepository.find()
+  async findAll(user:User) {
+    const findUser=this.userRepository.findOneBy({id:user.id})
+    const orders=await this.orderRepository.find({where:{user:{id:user.id}}})
     if(!orders) throw new BadRequestException('this user dont have orders');
-    return {orders}
+    return orders
   }
 
   async findOne(id: string) {
