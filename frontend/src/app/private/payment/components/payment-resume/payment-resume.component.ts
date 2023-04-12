@@ -13,8 +13,8 @@ export class PaymentResumeComponent implements OnInit {
   delivery:number = 8.89;
   price:number = 24.78;
   
-  user = new NewUser();
-
+  user!:NewUser;
+  edit:boolean=false;
 
   constructor(private sUser: UserService, private router: Router) { }
 

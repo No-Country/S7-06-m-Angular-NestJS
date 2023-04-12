@@ -33,6 +33,13 @@ span{
     letter-spacing: 0em;
     color: #474545;
 }
+
+#adress-select{
+    width: 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 @media screen and (max-width: 500px) {
 
 
@@ -55,6 +62,9 @@ span{
     }
     .user-data{
         margin: 10px 0 30px 0;
+    }
+    #adress-select{
+        width: 100%;
     }
     
     #payments-methods{

@@ -20,15 +20,12 @@ import { PaymentResumeComponent } from './payment/components/payment-resume/paym
     PrivateComponent,
     ResetPasswordComponent,
     ResetPasswordFormComponent,
-<<<<<<< HEAD
     ProfileComponent, 
     EditProfileComponent, 
-    EditProfileFormComponent, PaymentComponent, PaymentFormComponent, PaymentResumeComponent
-=======
-    ProfileComponent,
-    EditProfileComponent,
-    EditProfileFormComponent
->>>>>>> 85e9b8644fe524926ab43b27069f679c19d3b207
+    EditProfileFormComponent, 
+    PaymentComponent, 
+    PaymentFormComponent, 
+    PaymentResumeComponent
   ],
   imports: [
     CommonModule,

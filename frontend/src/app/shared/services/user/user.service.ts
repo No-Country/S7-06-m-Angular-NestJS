@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NewUser } from '../../models/sign-in/new-user';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,11 +21,6 @@ export class UserService {
     if (dataUser){
       return JSON.parse(dataUser)
     }
-  }
-
-
-  public update(id: number, user: NewUser): Observable<NewUser>{
-    return this.http.patch<NewUser>(this.URL + `/update/${id}`, user);
   }
 
 }
