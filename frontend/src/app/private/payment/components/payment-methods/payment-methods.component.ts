@@ -6,11 +6,11 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-payment-form',
-  templateUrl: './payment-form.component.html',
-  styleUrls: ['./payment-form.component.css']
+  selector: 'app-payment-methods',
+  templateUrl: './payment-methods.component.html',
+  styleUrls: ['./payment-methods.component.css']
 })
-export class PaymentFormComponent implements OnInit {
+export class PaymentMethodsComponent implements OnInit {
   
   delivery:number = 8.89;
   price:number = 24.78;
