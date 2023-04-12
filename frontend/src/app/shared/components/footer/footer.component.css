@@ -2,7 +2,9 @@ footer{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: gray;
+  background: rgba(154, 151, 151, 0.283);
+  box-shadow: 5px 3px 10px 2px #000000be ;
+  /* background-color: rgba(255, 255, 255, 0.363); */
   max-width: none;
   height: 400px;
 }
@@ -40,7 +42,7 @@ footer{
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
-    
+
 }
 
 .redes{
@@ -55,7 +57,7 @@ footer{
 .bi {
     font-size: 1.2em;
   }
-  
+
 .reserved{
     margin: 10px auto;
     font-size: 14px;
@@ -88,7 +90,7 @@ a:visited {color: black;text-decoration: none;}
         width: 300px;
         height: 100px;
     }
-    
+
     .footer-nav{
         width: 300px;
         display: flex;
@@ -108,7 +110,7 @@ a:visited {color: black;text-decoration: none;}
         line-height: 28px;
         letter-spacing: 0em;
         text-align: left;
-        
+
     }
 
     .redes{
@@ -123,7 +125,7 @@ a:visited {color: black;text-decoration: none;}
     .bi {
         font-size: 1.5em;
       }
-      
+
     .reserved{
         font-size: 16px;
         font-weight: 500;
@@ -132,7 +134,7 @@ a:visited {color: black;text-decoration: none;}
         text-align: center;
         position:relative;
     }
-   
+
 }
 
 
@@ -140,13 +142,13 @@ a:visited {color: black;text-decoration: none;}
     footer{
         width: 100%;
         height: 200px;
-    } 
+    }
     .footer-nav{
         display: none;
     }
-    
-    .pagos{    
-      
+
+    .pagos{
+
         margin-right: 0px;
         width: 150px;
         height: 50px;
@@ -155,10 +157,10 @@ a:visited {color: black;text-decoration: none;}
         line-height: 18px;
     }
 
-    
+
     .payments{
         font-size: 16px;
-        
+
     }
 
     .redes{

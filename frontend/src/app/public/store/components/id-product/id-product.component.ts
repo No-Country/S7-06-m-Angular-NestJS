@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/shared/models/store/products/product';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 import SwiperCore, { Navigation, Autoplay, Virtual, Scrollbar, SwiperOptions } from 'swiper';
 SwiperCore.use([Virtual, Navigation, Autoplay, Scrollbar ]);
 
@@ -21,20 +25,26 @@ export class IdProductComponent implements OnInit {
     }
   }
 
-  imagenes = [
-    '../../../../../assets/store/products/Lapiceras 1100.png',
-    '../../../../../assets/store/products/Lapiceras 2100.png'
-  ]
-
-  detail:string = 'Este es el detalle del producto, ahora lo estoy probando y acomodando para pantallas de 290px'
-
-  finalPrice:number = 125
-
   favoriteFill:string = 'favorite_border';
 
   productQuantity:number = 1;
 
-  constructor() { }
+  product!:Product;
+
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+    private router:Router,
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id'])
+        this.productService.getProductById(params['id']).subscribe(getProductById => {
+          this.product = getProductById;
+        }
+        );
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -45,6 +55,11 @@ export class IdProductComponent implements OnInit {
     } else{
       this.favoriteFill = 'favorite_border';
     }
+  }
+
+  addToCart(){
+    this.cartService.addToCart(this.product);
+    // this.router.navigateByUrl('/store/cart');
   }
 
   handleProduct(value:string){

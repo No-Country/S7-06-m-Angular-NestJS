@@ -1,12 +1,10 @@
 <section>
   <p>Title component</p>
-  <div class="hola">
-
-
+  <div class="product-container">
     <div class="swiperContainer" *ngFor="let product of products">
-      <h4>{{ product.name }}</h4>
+      <h4>{{ product.name | titlecase}}</h4>
       <div class="button-more">
-        <button >Ver más</button>
+        <button class="btn" routerLink="product/{{ product.id }}">Ver más</button>
       </div>
 
       <swiper

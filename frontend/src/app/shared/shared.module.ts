@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ProductsCarruselComponent } from './components/products-carrusel/products-carrusel.component';
 import { SwiperModule } from 'swiper/angular';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProductsCarruselComponent } from './components/products-carrusel/products-carrusel.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
     FooterComponent,
-    ProductsCarruselComponent
+    ProductsCarruselComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { MaterialModule } from './material/material.module';
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     SwiperModule,
@@ -29,11 +33,10 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    
     NavBarComponent,
     FooterComponent,
-    ProductsCarruselComponent
-
+    ProductsCarruselComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }

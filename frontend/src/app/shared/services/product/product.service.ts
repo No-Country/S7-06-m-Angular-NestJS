@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from '../../models/store/products/product';
-import { PRODUCT_URL } from '../../endpoints/endpoints';
+import { PRODUCT_BY_ID_URL, PRODUCT_URL } from '../../endpoints/endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,11 @@ export class ProductService {
   // TRAE TODOS LOS PRODUCTOS
   getAllProducts():Observable<Product[]>{
     return this.http.get<Product[]>(PRODUCT_URL).pipe(catchError(this.handlerUserError));;
+  }
+
+  // Traer los productos por ID
+  getProductById(id:string): Observable<Product>{
+    return this.http.get<Product>(`${PRODUCT_BY_ID_URL}/${id}`).pipe(catchError(this.handlerUserError));
   }
 
   handlerUserError(error: any): Observable<never> {

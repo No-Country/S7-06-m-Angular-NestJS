@@ -7,15 +7,15 @@ import { SelectorComponent } from './components/selector/selector.component';
 import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
-    declarations: [
-        CartProductsComponent,
-        CartComponent,
-        SelectorComponent
-    ],
-    imports: [
-        CommonModule,
-        CartRoutingModule,
-        SharedModule
-    ]
+  declarations: [
+    CartProductsComponent,
+    CartComponent,
+    SelectorComponent
+  ],
+  imports: [
+    CommonModule,
+    CartRoutingModule,
+    SharedModule
+  ]
 })
 export class CartModule { }
