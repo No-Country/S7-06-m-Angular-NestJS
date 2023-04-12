@@ -1,8 +1,8 @@
 <div>
   <div class="title">
-    <h1>Detalles del Producto</h1>
+    <!-- <h1>Detalles del Producto</h1> -->
     <div class="name-favorite">
-      <h5>Nombre del Producto</h5>
+      <h1>{{ product.name }}</h1>
       <button (click)="favorite()">
         <mat-icon>{{ favoriteFill }}</mat-icon>
       </button>
@@ -13,9 +13,9 @@
     [config]="config"
     class="mySwiper"
     >
-    <ng-template swiperSlide *ngFor="let img of imagenes">
+    <ng-template swiperSlide *ngFor="let img of product.images">
       <div class="image" >
-        <img [src]="img" >
+        <img [src]="img.url" >
       </div>
     </ng-template>
 
@@ -27,12 +27,26 @@
     </div>
 
     <div class="detail">
-      <p>{{ detail}}</p>
+      <p>{{ product.description }}</p>
     </div>
 
     <div class="price">
-      <p>Precio <strong>{{ finalPrice | currency: "ARS" }}</strong></p>
+      <p>Precio <strong>{{ product.price | currency: "ARS" }}</strong></p>
+    </div>
 
+    <div class="contenedor-cant-error">
+      <div class="cant-group">
+        <span class="word-cant"><strong>Cantidad</strong></span>
+        <div class="botones">
+          <button (click)="handleProduct('remove')"><strong>-</strong> </button>
+          <input type="text" disabled [value]="productQuantity">
+          <button (click)="handleProduct('add')"><strong>+</strong></button>
+        </div>
+      </div>
+
+      <div class="error container" id="error">
+        <p class="removeError"><strong>No se puede descontar más productos</strong></p>
+      </div>
     </div>
 
     <div class="button">

@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductAdmin } from 'src/app/admin/models/product-admin';
 import { AdminService } from 'src/app/admin/services/admin.service';
-import { ProductService } from 'src/app/shared/services/product.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
 
     // Formulario Editar Producto
     this.editProductForm = this.formBuilder.group(
-      {      
+      {
         name: ['', [Validators.required]],
         description: ['',[Validators.required]],
         price:[0,[Validators.required,Validators.min(0)]],
@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllProducts()    
+    this.getAllProducts()
   }
 
   getAllProducts(){
@@ -57,7 +57,7 @@ export class ProductListComponent implements OnInit {
   navigateTo(event:Event,id:string,product:ProductAdmin){
     event.preventDefault();
     event.stopPropagation();
-    //this.producto=JSON.stringify(product);    
+    //this.producto=JSON.stringify(product);
     //sessionStorage.setItem("productDetail",this.producto);
     if (id){
       sessionStorage.setItem("idProduct",id)
@@ -80,12 +80,12 @@ export class ProductListComponent implements OnInit {
     //console.log(editableProduct.images[0].url);
     //const imgOld = editableProduct.images[0].url;
     this.editId = id;
-    /* Mostrar datos en el modal */    
+    /* Mostrar datos en el modal */
     this.editProductForm.controls['name'].setValue(editableProduct.name);
     this.editProductForm.controls['description'].setValue(editableProduct.description);
     this.editProductForm.controls['price'].setValue(editableProduct.price);
     this.editProductForm.controls['category_name'].setValue(editableProduct.categories.name);
-    this.editProductForm.controls['file'].setValue("");    
+    this.editProductForm.controls['file'].setValue("");   
   }
 
   // Actualizar PRODUCTO
@@ -136,9 +136,9 @@ export class ProductListComponent implements OnInit {
   //BOTON abrir modal: Capturar Id y GASTO
   trashId(id:any,product:any): void{
     this.deleteId = id;
-    this.trashProduct = product.name; 
+    this.trashProduct = product.name;
   }
-  
+
   // deleteProduct:  ELIMINAR PRODUCTO
   deleteProduct(): void{
     this.adminService.deleteProduct(this.deleteId).subscribe({
@@ -155,25 +155,25 @@ export class ProductListComponent implements OnInit {
   }
 
   // VALIDATORS
-  
-  
+
+
 
   // Propiedades Editar Ingreso
-  get NameEdit() { 
-    return this.editProductForm.get('name'); 
+  get NameEdit() {
+    return this.editProductForm.get('name');
   }
   get DescriptionEdit() {
     return this.editProductForm.get('description')
   }
-  get PriceEdit() { 
-    return this.editProductForm.get('price'); 
+  get PriceEdit() {
+    return this.editProductForm.get('price');
   }
   get CategoryEdit() {
     return this.editProductForm.get('categorie_name')
   }
   get Img_ProductEdit() {
     return this.editProductForm.get('images')
-  }  
+  }
   clearValidatorsEdit() {
     this.editProductForm.reset(this.editProductForm.value);
   }
