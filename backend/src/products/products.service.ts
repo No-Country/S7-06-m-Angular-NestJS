@@ -116,8 +116,31 @@ export class ProductsService {
     return product;
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto, user: User) {
-    const { images, category_name, price, ...productDetail } = updateProductDto;
+  async update(
+    id: string,
+    updateProductDto: UpdateProductDto,
+    user: User,
+    file: Express.Multer.File,
+  ) {
+    // Configuration cloudinary
+    cloudinary.config({
+      cloud_name: this.configService.get('CLOUDINARY_CLOUD_NAME'),
+      api_key: this.configService.get('CLOUDINARY_API_KEY'),
+      api_secret: this.configService.get('CLOUDINARY_API_SECRET'),
+    });
+
+    const photoUrl = await cloudinary.uploader.upload(`${file.path}`, {
+      public_id: `${file.filename}`,
+    });
+
+    const secureUrl = `${photoUrl.secure_url}`;
+
+    const {
+      images = [secureUrl],
+      category_name,
+      price,
+      ...productDetail
+    } = updateProductDto;
 
     const category = await this.categoriesServices.findOneByName(category_name);
 

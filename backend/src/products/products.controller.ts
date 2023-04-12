@@ -99,12 +99,21 @@ export class ProductsController {
   })
   @Auth(Roles.Admin)
   @Patch(':id')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      fileFilter: fileFilter,
+      storage: diskStorage({
+        filename: fileNamer,
+      }),
+    }),
+  )
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
     @GetUser() user: User,
+    @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.productsService.update(id, updateProductDto, user);
+    return this.productsService.update(id, updateProductDto, user, file);
   }
 
   @ApiResponse({
