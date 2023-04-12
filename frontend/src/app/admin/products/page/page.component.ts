@@ -58,22 +58,21 @@ export class PageComponent implements OnInit {
 
   saveProduct(){
     const newProduct = this.addProductForm.value;
-    newProduct.images=this.archivo;    
-    console.log(this.archivo)
-    console.log("Tipo de dato de product price")
-    console.log(typeof newProduct.price)
-
+    newProduct.images=this.archivo;
+    // Convert To Form Data
     const formData = new FormData();
     formData.append('name', newProduct.name);
     formData.append('description', newProduct.description);
     formData.set('price', newProduct.price);
     formData.append('category_name', newProduct.category_name);
     formData.append('file', this.addProductForm.get('file')?.value);
+    /*
     console.log(formData);
     formData.forEach((value: any, key: string) => {
       console.log(key, value);
-    });
+    });*/
 
+    // Save Product
     this.adminService.saveProduct(formData).subscribe({
       next: (_res) => {
       },
@@ -85,16 +84,9 @@ export class PageComponent implements OnInit {
       }
       }
     )
-
-
-
-
   }
 
-
-  // Propiedades para los validadores
-  // Propiedades Guardar PRODUCTO
-  
+  // VALIDATORS  
   get NameAdd() { 
     return this.addProductForm.get('name'); 
   }
@@ -119,6 +111,7 @@ export class PageComponent implements OnInit {
     this.archivo = event[0].base64;
   }*/
 
+  // Capture File
   captureFile(event:any){
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -129,6 +122,7 @@ export class PageComponent implements OnInit {
       })
   }}
 
+  // Previsualizacion de imagen en el form
   extraerBase64 = async ($event: any) => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
@@ -148,14 +142,4 @@ export class PageComponent implements OnInit {
       };
     }
   };
-  
-  
-  
-  
-  
-  
-  
-
-
-
 }

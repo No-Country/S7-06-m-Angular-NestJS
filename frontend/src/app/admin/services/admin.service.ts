@@ -22,7 +22,11 @@ export class AdminService {
 
   // UPDATE PRODUCT : Actualizar producto
   public updateProduct(id:string,product:FormData): Observable<any> {
+    console.log("Se envia la data a la URL:")
+    console.log(this.URL + `/products/${id}`)
+    console.log(product)
     return this.http.patch<any>(this.URL + `/products/${id}`,product)
+    
   }
 
   // DELETE PRODUCT : Eliminar producto
