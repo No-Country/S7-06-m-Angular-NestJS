@@ -120,7 +120,7 @@ export class ProductsService {
     id: string,
     updateProductDto: UpdateProductDto,
     user: User,
-    file: Express.Multer.File,
+    file?: Express.Multer.File,
   ) {
     // Configuration cloudinary
     cloudinary.config({
@@ -129,18 +129,18 @@ export class ProductsService {
       api_secret: this.configService.get('CLOUDINARY_API_SECRET'),
     });
 
-    const photoUrl = await cloudinary.uploader.upload(`${file.path}`, {
-      public_id: `${file.filename}`,
-    });
+    // eslint-disable-next-line prefer-const
+    let { images, category_name, price, ...productDetail } = updateProductDto;
 
-    const secureUrl = `${photoUrl.secure_url}`;
+    let secureUrl: any;
 
-    const {
-      images = [secureUrl],
-      category_name,
-      price,
-      ...productDetail
-    } = updateProductDto;
+    if (file) {
+      const photoUrl = await cloudinary.uploader.upload(`${file.path}`, {
+        public_id: `${file.filename}`,
+      });
+      secureUrl = `${photoUrl.secure_url}`;
+      images = [secureUrl];
+    }
 
     const category = await this.categoriesServices.findOneByName(category_name);
 
