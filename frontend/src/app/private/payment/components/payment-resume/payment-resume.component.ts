@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user';
-import { UserService } from 'src/app/shared/services/user.service';
+import { NewUser } from 'src/app/shared/models/sign-in/new-user';
+import { UserService } from 'src/app/shared/services/user/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,8 +13,8 @@ export class PaymentResumeComponent implements OnInit {
   delivery:number = 8.89;
   price:number = 24.78;
   
-  user = new User('','','','');
-
+  user!:NewUser;
+  edit:boolean=false;
 
   constructor(private sUser: UserService, private router: Router) { }
 

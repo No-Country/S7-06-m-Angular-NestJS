@@ -8,7 +8,7 @@ import { SwiperModule } from 'swiper/angular';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPayPalModule,
   ],
   exports: [
     SwiperModule,
@@ -29,7 +30,7 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    
+    NgxPayPalModule,
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent

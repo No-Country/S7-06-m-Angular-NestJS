@@ -3,12 +3,6 @@ section{
     text-align: left;
 }
 
-#adress-select{
-    width: 800px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 @media screen and (max-width: 500px) {
 
@@ -28,13 +22,6 @@ span{
     letter-spacing: 0em;
     margin: 20px 10px ;
 }
-
-#adress-select{
-    background-color: rgba(95, 158, 160, 0.498);
-    width: 100%;
-    padding: 10px;
-}
-
 
 #payments-methods{
     margin: 80px 0px;

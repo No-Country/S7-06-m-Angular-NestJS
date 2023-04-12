@@ -1,27 +1,18 @@
 <section>
     <h1>Datos de envío</h1>
-    <span>Dirección de envío</span>
-
-    <div id="adress-select"> 
-        <input class="inputs" type="text" name="adress" value={{user.email}} [disabled]="!edit">
-        <button class="btn" type="button" *ngIf="!edit" (click)="edit=!edit"><i class="bi bi-pencil-square"></i></button>
-        <button class="btn" type="button" *ngIf="edit" (click)="edit=!edit"><i class="bi bi-check2-square"></i></button>
+    
+    <div id="addition">
+        <li><span>Envío:</span><span>{{delivery}}</span></li>
+        <li><span>Subtotal:</span><span>{{price}}</span></li>
+        <hr size="1px" color="gray" />
+        <li><span>Total:</span><span>{{total}}</span></li>
     </div>
 
     <div id="payments-methods">
         <h1>Método de pago:</h1>
         <div class="container-methods">
-            <div class="pay-method"></div>
-            <div class="pay-method"></div>
-            <div class="pay-method"></div>
+           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
         </div>
-    </div>
-
-    <div id="addition">
-            <li><span>Envío:</span><span>{{delivery}}</span></li>
-            <li><span>Subtotal:</span><span>{{price}}</span></li>
-            <hr size="1px" color="gray" />
-            <li><span>Total:</span><span>{{delivery + price}}</span></li>
     </div>
 
 </section>

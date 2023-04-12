@@ -2,7 +2,7 @@
     <app-payment-form *ngIf="!checkForm"></app-payment-form>
     <app-payment-resume *ngIf="checkForm"></app-payment-resume>
     <div id="btn-container">
-        <button class="btn btn-primary" *ngIf="!checkForm" (click)="checkForm=!checkForm">Continuar con el pago</button>
+        <button class="btn btn-primary" *ngIf="!checkForm" (click)="checkForm=!checkForm">Transferencia bancaria</button>
         <button class="btn btn-primary" *ngIf="checkForm" (click)="checkForm=false">Volver</button>
     </div>
 

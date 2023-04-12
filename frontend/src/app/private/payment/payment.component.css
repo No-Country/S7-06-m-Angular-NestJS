@@ -8,7 +8,8 @@
 @media screen and (max-width: 500px) {
 
     section{
-       height: 1000px;
+       height: fit-content;
+       margin-bottom: 50px;
     }
     .btn{
         width: 88vw;

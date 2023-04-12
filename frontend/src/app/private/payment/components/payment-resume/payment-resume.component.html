@@ -12,17 +12,17 @@
         </div>
         <div class="user-data">
             <h2>Dirección:</h2>
-            <span>{{user.email}}</span>
+            <div id="adress-select">
+                <input class="inputs" type="text" name="adress" value={{user.email}} [disabled]="!edit">
+                <button class="btn" type="button" *ngIf="!edit" (click)="edit=!edit"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn" type="button" *ngIf="edit" (click)="edit=!edit"><i class="bi bi-check2-square"></i></button>
+            </div>
         </div>
-        
-      
-     
        
     </div>
 
     <div id="payments-methods">
-        <h1>Método de pago:</h1>
-        <div class="pay-method"></div>
+        <h1>Método de pago: Transferencia bancaria</h1>
     </div>
 
     <div id="addition">
