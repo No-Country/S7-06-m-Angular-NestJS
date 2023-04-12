@@ -1,5 +1,58 @@
+<section>
+  <div class="productos-checkout" >
+    <ul>
+      <li *ngFor="let cartItem of cart.items">
+        <div class="product-name">
+          <div>
+            <h3>
+              {{cartItem.product.name | titlecase}}
+            </h3>
+          </div>
+        </div>
+
+        <div class="product-detail" *ngFor="let img of cartItem.product.images">
+          <div class="product-image">
+            <img [src]="img.url" [alt]="cartItem.product.name">
+          </div>
+
+          <div class="contenedor-cant">
+            <div class="cant-group">
+              <span class="word-cant"><strong>Cantidad</strong></span>
+              <div class="botones">
+                <button (click)="handleProduct('remove')"><strong>-</strong> </button>
+                <input type="text" [value]="productQuantity">
+                <button (click)="handleProduct('add')"><strong>+</strong></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="price">
+            <span class="current-price">
+              <strong>{{ cartItem.product.price| currency }}</strong>
+            </span>
+          </div>
+          <div class="btn">
+            <button class="btn bi bi-trash3 text-danger" (click)="removeFromCart(cartItem.product.id)"></button>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+
+    <div class="checkout">
+      <div class="count-price">
+        <div class="product-count">{{ cart.totalCount }}</div>
+        <div class="total-price">{{ cart.totalPrice | currency }}</div>
+      </div>
+
+      <a routerLink="/checkout">Realizar Compra</a>
+    </div>
+  </div>
+</section>
+
+
 <!-----------PRODUCTOS------------------------------->
-<div class="product" *ngFor="let product of productsCart,let i = index">
+<!-- <div class="product" *ngFor="let product of productsCart,let i = index">
     <div class="img-product">
         <img [src]="product.img" alt="">
     </div>
@@ -7,19 +60,32 @@
         <p class="product-name"><b>{{product.name}}</b></p>
         <p class="product-price">Precio: $ {{product.price}}</p>
         <div class="buttons">
-            <!------
-            <button (click)="deleteProductOfCart(i)" id="trash"><i class="bi bi-trash"></i></button>--->
+            <button (click)="deleteProductOfCart(i)" id="trash"><i class="bi bi-trash"></i></button>
             <app-selector [cantidad]="product.amount" (cantidadCambiada)="updateAmount(i, $event)"></app-selector>
+            <div class="contenedor-cant-error">
+              <div class="cant-group">
+                <span class="word-cant"><strong>Cantidad</strong></span>
+                <div class="botones">
+                  <button (click)="handleProduct('remove')"><strong>-</strong> </button>
+                  <input type="text" disabled [value]="productQuantity">
+                  <button (click)="handleProduct('add')"><strong>+</strong></button>
+                </div>
+              </div>
+
+              <div class="error container" id="error">
+                <p class="removeError"><strong>No se puede descontar más productos</strong></p>
+              </div>
+            </div>
         </div>
         <button (click)="deleteProductOfCart(i)" class="btn btn-outline-danger" id="delete">Eliminar producto</button>
     </div>
     <div class="heart">
         <button><i class="bi bi-heart-fill"></i></button>
     </div>
-</div>
+</div> -->
 
 <!------------TOTAL---------------------------------->
-<hr id="summary-line">
+<!-- <hr id="summary-line">
 <div class="summary">
     <div class="total">
         <p class="word">Total:</p>
@@ -32,4 +98,4 @@
             <button id="login" class="btn btn-primary" (click)="navigateToLogin()">Iniciar sesión</button>
         </div>
     </div>
-</div>
+</div> -->

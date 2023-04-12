@@ -2,7 +2,7 @@
   <div class="title">
     <!-- <h1>Detalles del Producto</h1> -->
     <div class="name-favorite">
-      <h1>{{ product.name }}</h1>
+      <h1>{{ product.name | titlecase }}</h1>
       <button (click)="favorite()">
         <mat-icon>{{ favoriteFill }}</mat-icon>
       </button>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="button">
-      <button>Agregar a la Bolsa</button>
+      <button (click)="addToCart()">Agregar a la Bolsa</button>
     </div>
   </div>
 

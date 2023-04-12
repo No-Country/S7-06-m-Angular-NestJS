@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,9 +11,20 @@ import { UserService } from '../../services/user/user.service';
 export class NavBarComponent implements OnInit {
 
   userData:any;
+
   rol:string="";
 
-  constructor(private router: Router,private userService:UserService) { }
+  cartQuantity = 0;
+
+  constructor(
+    private router: Router,
+    private userService:UserService,
+    private cartService: CartService
+  ) {
+    cartService.getCartObservable().subscribe((newCart) => {
+      this.cartQuantity = newCart.totalCount;
+    });
+  }
 
   ngOnInit(): void {
 
