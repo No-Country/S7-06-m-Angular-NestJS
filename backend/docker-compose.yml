@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nestjs-api:
+    image: r4zu91/mimu-api
+    container_name: mimu-api
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DB_HOST}
+    ports:
+      - '${PORT}:${PORT}'
+
+  postgres:
+    image: postgres:14.3
+    container_name: postgresDB
+    restart: always
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
