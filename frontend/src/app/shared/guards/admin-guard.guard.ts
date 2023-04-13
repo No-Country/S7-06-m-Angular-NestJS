@@ -15,9 +15,6 @@ export class AdminGuardGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const expectedRol = route.data['expectedRol'];
     const roles = this.tokenService.getAuthorities();
-    console.log("admin guard")
-    console.log(roles)
-    console.log(typeof roles)
     this.realRol = 'visit';
     if (roles.includes("admin")){
       this.realRol = 'admin'

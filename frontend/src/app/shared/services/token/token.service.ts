@@ -33,10 +33,6 @@ export class TokenService {
   public setAuthorities(authorities: string[]): void {
     window.sessionStorage.removeItem(AUTHORITIES_KEY)
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities))
-    console.log("set authotirities")
-    console.log(authorities)
-    console.log(typeof authorities)
-    console.log(JSON.stringify(authorities))
   }
   public getAuthorities(): string[] {
     if (sessionStorage.getItem(AUTHORITIES_KEY)) {
@@ -47,9 +43,6 @@ export class TokenService {
       )*/
       this.roles = sessionStorage.getItem(AUTHORITIES_KEY)
     }
-    console.log("get Authorities")
-    console.log(this.roles)
-    console.log(typeof this.roles)
     return this.roles
   }
 }

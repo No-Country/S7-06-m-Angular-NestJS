@@ -87,7 +87,6 @@ export class PageComponent implements OnInit {
       this.addProductForm.get('file')?.setValue(file);
       this.extraerBase64(file).then((imagen: any) => {
         this.previsualizacion = imagen.base;
-        console.log(imagen);  
       })
   }}
 
@@ -111,7 +110,4 @@ export class PageComponent implements OnInit {
       };
     }
   };
-
-
-
 }

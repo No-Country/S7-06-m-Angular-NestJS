@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nav-bar',
@@ -27,26 +28,53 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   navigateToLoginOrUser(){
-    this.userData = this.userService.getDataUser();
-    const role=sessionStorage.getItem("Role")
-    if (role){
-      this.rol=role
-    }
-    if (this.userData&&this.rol=="User"){
-      this.router.navigateByUrl("/user/profile")
-    } else if (this.userData&&this.rol=="Admin") {
+    const type = sessionStorage.getItem("AuthAuthorities");
+    if (type?.includes("admin")){
+      this.rol="admin";
       this.router.navigateByUrl("/admin/dashboard")
+    } else if (type?.includes("user")){
+      this.rol="user";
+      this.router.navigateByUrl("/user/profile");
     } else {
+      this.rol="visit";
       this.router.navigateByUrl("/mimu/login")
     }
+  }
 
+  navigateToCart(){
+    const type = sessionStorage.getItem("AuthAuthorities");
+    if (type?.includes("user")){
+      this.router.navigateByUrl("/user/cart")
+    } else {
+      this.userNotLogged()
+    }
   }
 
   navigateTo(route:string){
-    this.router.navigate([route])
+    this.router.navigateByUrl(route)
   }
+
+    // Alert: userNotLogged
+    userNotLogged(){
+      Swal.fire({
+        title: 'Inicie sesión',
+        text: 'Para poder comprar o visualizar los productos en el carrito se requiere loguearse',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iniciar sesión'
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.router.navigateByUrl('mimu/login')
+        }
+      })
+
+    }
+  
+
+  
 }
