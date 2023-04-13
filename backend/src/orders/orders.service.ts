@@ -68,36 +68,48 @@ export class OrdersService {
     }
   }
 
-  async findAll(user:User) {
-    const findUser=this.userRepository.findOneBy({id:user.id})
-    const orders=await this.orderRepository.find({where:{user:{id:user.id}}})
-    if(!orders) throw new BadRequestException('this user dont have orders');
-    return orders
+  async findAll(user: User) {
+    const findUser = this.userRepository.findOneBy({ id: user.id });
+    const orders = await this.orderRepository.find({
+      where: { user: { id: user.id } },
+    });
+    if (!orders) throw new BadRequestException('this user dont have orders');
+    return orders;
   }
 
   async findOne(id: string) {
-    const order=await this.orderRepository.findOneBy({id})
-    if(!order) throw new BadRequestException("order no exist")
-    return {order}
+    const order = await this.orderRepository.findOneBy({ id });
+    if (!order) throw new BadRequestException('order no exist');
+    return { order };
   }
 
- async update(id: string, updateOrderDto: UpdateOrderDto) {
-    const {isPaid}=updateOrderDto
-    if(isPaid==true){
-        const newDate = new Date(Date.now());
-        updateOrderDto.paidAt= new Date(newDate.toLocaleString('es-ES'));
+  async update(id: string, updateOrderDto: UpdateOrderDto) {
+    const { isPaid } = updateOrderDto;
+
+    if (isPaid == true) {
+      const newDate = new Date(Date.now());
+      updateOrderDto.paidAt = newDate;
     }
-    const order=await this.orderRepository.findOneBy({id})
-    if(!order) throw new BadRequestException("order no exist")
-    const newOrder=await this.orderRepository.preload({id,...updateOrderDto})
-    return newOrder
+
+    const order = await this.orderRepository.findOneBy({ id });
+
+    if (!order) throw new BadRequestException('order no exist');
+
+    const newOrder = await this.orderRepository.preload({
+      id,
+      ...updateOrderDto,
+    });
+
+    await this.orderRepository.save(newOrder);
+
+    return newOrder;
   }
 
   async remove(id: string) {
-    const order=await this.orderRepository.findOneBy({id})
-    if(!order) throw new BadRequestException("order no exist")
-    this.orderRepository.remove(order)
-    return {message:`order deleted successful`}
+    const order = await this.orderRepository.findOneBy({ id });
+    if (!order) throw new BadRequestException('order no exist');
+    this.orderRepository.remove(order);
+    return { message: `order deleted successful` };
   }
 
   private handleDBError(error: any): never {
