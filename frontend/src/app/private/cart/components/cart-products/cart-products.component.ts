@@ -10,17 +10,12 @@ import { CartService } from 'src/app/shared/services/cart/cart.service';
   templateUrl: './cart-products.component.html',
   styleUrls: ['./cart-products.component.css']
 })
+
 export class CartProductsComponent implements OnInit {
 
   cart!:Cart;
 
   product!:Product;
-
-  productQuantity:number = 1;
-
-  priceTotal:number=0;
-
-  // cantidad:number=0;
 
   constructor(
     private router:Router,
@@ -28,31 +23,38 @@ export class CartProductsComponent implements OnInit {
   ) {
     this.cartService.getCartObservable().subscribe((cart) => {
       this.cart = cart;
-    })
+    });
   }
 
   ngOnInit(): void {
-    // this.totalPrice()
+
   }
 
   removeFromCart(cartItem:any){
     this.cartService.removeFromCart(cartItem);
   }
 
-  changeQuantity(cartItem:CartItem, quantityInString:string){
-    const quantity = parseInt(quantityInString);
-    // this.cartService.changeQuantity(cartItem.product.id, quantity);
+  changeQuantity(cartItem:CartItem){
+    let quantity = Number(cartItem.total);
+    console.log('cant productos', quantity)
+
+    this.cartService.changeQuantity(cartItem.product.id!, quantity);
   }
 
-  handleProduct(value:string){
+  handleProduct(value:string, cartItem:CartItem){
     let active:any = document.getElementById('error')
-    if(this.productQuantity < 5 && value === 'add'){
-      this.productQuantity += 1
+    if(Number(cartItem.total) < 5 && value === 'add'){
+      cartItem.total++
+      this.changeQuantity(cartItem)
+      console.log(cartItem.total)
       active.classList.remove('error-active');
-    } else if( this.productQuantity>1 && value ==='remove'){
-      this.productQuantity -= 1
-    } else if(this.productQuantity == 1 && value ==='remove'){
+    } else if( Number(cartItem.total) > 1 && value ==='remove'){
+      cartItem.total--
+      this.changeQuantity(cartItem)
+      console.log(cartItem.total)
+    } else if(Number(cartItem.total) == 1 && value ==='remove'){
       active.classList.add('error-active')
+      this.changeQuantity(cartItem)
     }
   }
 

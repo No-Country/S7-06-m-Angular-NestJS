@@ -3,12 +3,12 @@
     <span>{{ cantidad }}</span>
     <button (click)="incrementar()">+</button>
 </div>--->
-<div class="btn-group" role="group" aria-label="Basic outlined example">
-  <button type="button" class="btn btn-outline-primary" (click)="decrementar()">
+<div class="btn-group" role="group" aria-label="Basic outlined example" *ngFor="let cartItem of cart.items">
+  <button type="button" class="btn btn-outline-primary" (click)="decrementar(cartItem)">
     <i class="bi bi-dash"></i>
   </button>
   <span>{{ cantidad }}</span>
-  <button type="button" class="btn btn-outline-primary" (click)="incrementar()">
+  <button type="button" class="btn btn-outline-primary" (click)="incrementar(cartItem)">
     <i class="bi bi-plus"></i>
   </button>
 </div>

@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.userService.getDataUser()
-    console.log(this.data)
+    // console.log(this.data)
   }
 
 }
