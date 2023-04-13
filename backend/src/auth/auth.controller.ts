@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
   Post,
   Patch,
   Param,
@@ -11,8 +10,6 @@ import { User } from './entities/auth.entity';
 
 import { AuthService } from './auth.service';
 import { CreateAuthDto, LoginUserDto } from './dto';
-import { Roles } from './interfaces';
-import { Auth, GetUser } from './decorators';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 
@@ -54,32 +51,31 @@ export class AuthController {
     return this.authService.update(id, updateUserDto);
   }
 
-
   @ApiResponse({ status: 201, description: 'Check your email', type: User })
   @ApiResponse({
     status: 400,
     description: 'Bad request (email not found)',
   })
-  @Post("forgot")
-  forgotPassword(
-    @Body("email") email:string
-  ){
-    return this.authService.forgot(email)
+  @Post('forgot')
+  forgotPassword(@Body('email') email: string) {
+    return this.authService.forgot(email);
   }
-  
 
-  @ApiResponse({ status: 201, description: 'Password changed successfuly', type: User })
+  @ApiResponse({
+    status: 201,
+    description: 'Password changed successfully',
+    type: User,
+  })
   @ApiResponse({
     status: 400,
     description: 'Bad request ()',
   })
-  @Post("reset/:token")
+  @Post('reset/:token')
   resetPassword(
-    @Param("token") token:string,
-    @Body("password") password:string,
-    @Body("confirmed_password") confirmed_password:string,
-  ){
-    return this.authService.reset(token,password,confirmed_password)
+    @Param('token') token: string,
+    @Body('password') password: string,
+    @Body('confirmed_password') confirmed_password: string,
+  ) {
+    return this.authService.reset(token, password, confirmed_password);
   }
-
 }
