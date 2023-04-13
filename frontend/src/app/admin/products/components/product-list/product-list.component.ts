@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
         description: ['',[Validators.required]],
         price:[0,[Validators.required,Validators.min(0)]],
         category_name:['',[Validators.required,Validators.maxLength(14)]],
-        file:[[]]
+        file:[null]
       }
     )
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nav-bar',
@@ -43,9 +44,37 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  navigateTo(route:string){
-    this.router.navigate([route])
+  navigateToCart(){
+    const type = sessionStorage.getItem("AuthAuthorities");
+    if (type?.includes("user")){
+      this.router.navigateByUrl("/user/cart")
+    } else {
+      this.userNotLogged()
+    }
   }
+
+  navigateTo(route:string){
+    this.router.navigateByUrl(route)
+  }
+
+    // Alert: userNotLogged
+    userNotLogged(){
+      Swal.fire({
+        title: 'Inicie sesión',
+        text: 'Para poder comprar o visualizar los productos en el carrito se requiere loguearse',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iniciar sesión'
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.router.navigateByUrl('mimu/login')
+        }
+      })
+
+    }
+  
 
   
 }
