@@ -27,26 +27,25 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   navigateToLoginOrUser(){
-    this.userData = this.userService.getDataUser();
-    const role=sessionStorage.getItem("Role")
-    if (role){
-      this.rol=role
-    }
-    if (this.userData&&this.rol=="User"){
-      this.router.navigateByUrl("/user/profile")
-    } else if (this.userData&&this.rol=="Admin") {
+    const type = sessionStorage.getItem("AuthAuthorities");
+    if (type?.includes("admin")){
+      this.rol="admin";
       this.router.navigateByUrl("/admin/dashboard")
+    } else if (type?.includes("user")){
+      this.rol="user";
+      this.router.navigateByUrl("/user/profile");
     } else {
+      this.rol="visit";
       this.router.navigateByUrl("/mimu/login")
     }
-
   }
 
   navigateTo(route:string){
     this.router.navigate([route])
   }
+
+  
 }

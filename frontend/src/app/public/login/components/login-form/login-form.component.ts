@@ -48,7 +48,6 @@ export class LoginFormComponent implements OnInit {
         this.userService.saveDataUser(res);
         this.tokenService.setToken(res.token);
         this.tokenService.setAuthorities(res.roles)
-        console.log(res.roles[0])
         if (res.roles[0]=='admin'){
           this.router.navigate(['/admin/dashboard'])
         } else {

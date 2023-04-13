@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
         description: ['',[Validators.required]],
         price:[0,[Validators.required,Validators.min(0)]],
         category_name:['',[Validators.required,Validators.maxLength(14)]],
-        file:[[],[Validators.required]]
+        file:[[]]
       }
     )
   }
@@ -44,7 +44,6 @@ export class ProductListComponent implements OnInit {
     this.productService.getAll().subscribe({
       next: (res) => {
         this.productList = res;
-        console.log(this.productList)
       },
       error: (error) => {
         console.error(error)
@@ -87,13 +86,9 @@ export class ProductListComponent implements OnInit {
   updateProduct(): void{
     const newProduct = this.editProductForm.value;
     const editId = this.editId;
-    console.log(this.editProductForm.get('file'))
 
     /*-------------------------------- */
-    newProduct.images=this.archivo;    
-    console.log(this.archivo)
-    console.log("Tipo de dato de product price")
-    console.log(typeof newProduct.price)
+    newProduct.images=this.archivo; 
 
     const formData = new FormData();
     formData.append('name', newProduct.name);
@@ -101,10 +96,9 @@ export class ProductListComponent implements OnInit {
     formData.set('price', newProduct.price);
     formData.append('category_name', newProduct.category_name);
     formData.append('file', this.editProductForm.get('file')?.value);
-    console.log(formData);
-    formData.forEach((value: any, key: string) => {
+    /*formData.forEach((value: any, key: string) => {
       console.log(key, value);
-    });
+    });*/
     /*-------------------------------- */
 
 
@@ -171,7 +165,6 @@ export class ProductListComponent implements OnInit {
       this.editProductForm.get('file')?.setValue(file);
       this.extraerBase64(file).then((imagen: any) => {
         this.previsualizacion = imagen.base;
-        console.log(imagen);  
       })
   }}
 
@@ -194,7 +187,4 @@ export class ProductListComponent implements OnInit {
       };
     }
   };
-
-
-
 }
