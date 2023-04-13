@@ -11,18 +11,21 @@ import { CartItem } from '../../models/store/cart/cartItem';
 export class CartService {
 
   private cart:Cart = this.getCartFromLocalStorage();
+
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
 
   productQuantity:number = 1;
 
   constructor() { }
 
-  addToCart(product:Product):void{
+  addToCart(product:Product, quantityTotal:number):void{
     let cartItem = this.cart.items.find(item => item.product.id === product.id);
+
     if (cartItem){
       return;
     }
-    this.cart.items.push(new CartItem(product));
+
+    this.cart.items.push(new CartItem(product, quantityTotal));
     this.setCartToLocalStorage();
   }
 

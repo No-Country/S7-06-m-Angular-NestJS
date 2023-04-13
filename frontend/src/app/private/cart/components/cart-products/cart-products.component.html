@@ -1,5 +1,5 @@
 <section>
-  <div class="productos-checkout" >
+  <div class="productos-checkout" *ngIf="cart && cart.items.length">
     <ul>
       <li *ngFor="let cartItem of cart.items">
         <div class="product-name">
@@ -19,9 +19,9 @@
             <div class="cant-group">
               <span class="word-cant"><strong>Cantidad</strong></span>
               <div class="botones">
-                <button (click)="handleProduct('remove')"><strong>-</strong> </button>
-                <input type="text" [value]="productQuantity">
-                <button (click)="handleProduct('add')"><strong>+</strong></button>
+                <button (click)="handleProduct('remove', cartItem)"><strong>-</strong> </button>
+                <input type="text" [(ngModel)]="cartItem.total" (input)="changeQuantity(cartItem)" disabled>
+                <button (click)="handleProduct('add', cartItem)"><strong>+</strong></button>
               </div>
             </div>
           </div>
@@ -34,6 +34,10 @@
           <div class="btn">
             <button class="btn bi bi-trash3 text-danger" (click)="removeFromCart(cartItem.product.id)"></button>
           </div>
+        </div>
+
+        <div class="error container" id="error">
+          <p class="removeError"><strong>No se puede descontar más productos</strong></p>
         </div>
 
       </li>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Product } from '../../models/store/products/product';
 import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay, SwiperOptions } from 'swiper';
+import { ProductService } from '../../services/product/product.service';
 
 
 
@@ -21,6 +22,8 @@ export class ProductsCarruselComponent implements OnInit {
   @Input()
   visibleCarrusel = false;
 
+  products!:Product[];
+
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 10,
@@ -37,10 +40,21 @@ export class ProductsCarruselComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
+    this.getAllProducts();
+  }
 
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe(data => {
+      this.products = data;
+      console.log(data)
+    }, error => {
+      console.log(error);
+    })
   }
 
 }

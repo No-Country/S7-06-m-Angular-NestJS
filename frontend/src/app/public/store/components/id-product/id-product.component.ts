@@ -58,7 +58,7 @@ export class IdProductComponent implements OnInit {
   }
 
   addToCart(){
-    this.cartService.addToCart(this.product);
+    this.cartService.addToCart(this.product, this.productQuantity);
     // this.router.navigateByUrl('/store/cart');
   }
 
