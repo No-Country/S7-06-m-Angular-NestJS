@@ -47,5 +47,9 @@ li{
     justify-content: space-between;
 }
 
+.btn{
+    width: 88vw;
+    margin: 10px;
+}
 
 }
