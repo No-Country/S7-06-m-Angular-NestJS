@@ -7,6 +7,7 @@ import { TokenService } from '../services/token/token.service';
   providedIn: 'root'
 })
 export class AdminGuardGuard implements CanActivate {
+  
   realRol: string="";
 
   constructor(private tokenService: TokenService, private router: Router) { }
@@ -14,12 +15,13 @@ export class AdminGuardGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const expectedRol = route.data['expectedRol'];
     const roles = this.tokenService.getAuthorities();
+    console.log("admin guard")
+    console.log(roles)
+    console.log(typeof roles)
     this.realRol = 'visit';
-    roles.forEach(rol => {
-      if (rol === 'ROLE_ADMIN') {
-        this.realRol = 'admin';
-      }
-    });
+    if (roles.includes("admin")){
+      this.realRol = 'admin'
+    }
     if (this.tokenService.getToken() && this.realRol=='admin') {
       return true
     } else {

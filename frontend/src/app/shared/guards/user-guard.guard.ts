@@ -14,16 +14,17 @@ export class UserGuardGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const expectedRol = route.data['expectedRol'];
     const roles = this.tokenService.getAuthorities();
+    console.log("admin guard")
+    console.log(roles)
+    console.log(typeof roles)
     this.realRol = 'visit';
-    roles.forEach(rol => {
-      if (rol === 'ROLE_USER') {
-        this.realRol = 'user';
-      }
-    });
+    if (roles.includes("user")){
+      this.realRol = 'user'
+    }
     if (this.tokenService.getToken() && this.realRol=='user') {
       return true
     } else {
-      this.router.navigateByUrl("/mumu/home")
+      this.router.navigateByUrl("/mimu/home")
       return false
     }
   }
