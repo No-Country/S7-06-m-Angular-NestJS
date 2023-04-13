@@ -10,15 +10,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsCarruselComponent } from './components/products-carrusel/products-carrusel.component';
 import { LoadingComponent } from './components/loading/loading.component';
-
 import { NgxPayPalModule } from 'ngx-paypal';
+import { AdminGuardGuard } from './guards/admin-guard.guard';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent,
-    LoadingComponent
+    LoadingComponent  
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    NgxPayPalModule,
+    NgxPayPalModule
   ],
   exports: [
     SwiperModule,
@@ -35,11 +35,15 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxPayPalModule,
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent,
-    LoadingComponent
-  ]
+    LoadingComponent,
+    NgxPayPalModule
+  ],
+  providers: [
+    AdminGuardGuard // registra el guard en el módulo
+  ],
+  
 })
 export class SharedModule { }
