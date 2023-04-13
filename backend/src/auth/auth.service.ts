@@ -7,19 +7,23 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-// import { transporter } from 'src/config/transporter';
+import { transporter } from 'src/config/transporter';
 import * as bcrypt from 'bcrypt';
 
 import { User } from './entities/auth.entity';
 import { CreateAuthDto, LoginUserDto } from './dto';
 import { JwtPayload } from './interfaces';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { ResetPassword } from './entities/resetpassword.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
+
+    @InjectRepository(ResetPassword)
+    private readonly resetPasswordRepository: Repository<ResetPassword>,
 
     private readonly jwtService: JwtService,
   ) {}
@@ -91,6 +95,44 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     return token;
   }
+
+  async forgot(email:string){
+    const token=Math.random().toString(20).substring(2,12)
+    const user= await this.authRepository.findOne({where:{email}})
+
+    if(!user)throw new BadRequestException("Email dont exist")
+
+   const reset=this.resetPasswordRepository.create({email,token})
+   await this.resetPasswordRepository.save(reset)
+//https://mimu-api.onrender.com/api
+    const url=`http://localhost:3000/api/auth/reset/${token}`
+    await transporter.sendMail({
+         to: email,
+         from: 'jobsmatch23@gmail.com',
+         subject: 'Reset your password',
+         html: `<h1>recuperar contraseña</h1> <a href="${url}">Reset here</a>`,
+       });
+      
+      return {message:"Please check your email"}
+  }
+
+  async reset(token:string,password:string,confirmed_password:string){
+
+      if(password !== confirmed_password) throw new BadRequestException("Password dont match")
+
+     const passwordReset= await this.resetPasswordRepository.findOne({where:{token}})
+    console.log(passwordReset)
+     const user= await this.authRepository.findOne({where:{email:passwordReset.email}})
+
+     if(!user) throw new BadRequestException("user not found")
+
+     const hashPassword=await bcrypt.hash(password,10)
+
+    await this.authRepository.update(user.id,{password:hashPassword})
+
+    return {message:"Password changed successfuly"}
+  }
+
 
   private handleDBError(error: any): never {
     if (error.code === '23505') throw new BadRequestException(error.detail);
