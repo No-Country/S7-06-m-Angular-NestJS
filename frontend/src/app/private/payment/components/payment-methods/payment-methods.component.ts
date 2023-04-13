@@ -56,7 +56,7 @@ export class PaymentMethodsComponent implements OnInit {
         this.cart.items.forEach((it: any)=>{
             item = {
                 name: it.product.name,
-                quantity: '1',
+                quantity: it.total,
                 unit_amount: {value: it.product.price, currency_code: 'USD'},
             };
         items.push(item);
