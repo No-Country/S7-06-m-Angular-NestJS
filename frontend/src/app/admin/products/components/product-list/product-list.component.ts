@@ -95,10 +95,13 @@ export class ProductListComponent implements OnInit {
     formData.append('description', newProduct.description);
     formData.set('price', newProduct.price);
     formData.append('category_name', newProduct.category_name);
-    formData.append('file', this.editProductForm.get('file')?.value);
-    /*formData.forEach((value: any, key: string) => {
+    
+    if (this.editProductForm.get('file')?.value){
+      formData.append('file', this.editProductForm.get('file')?.value);
+    }
+    formData.forEach((value: any, key: string) => {
       console.log(key, value);
-    });*/
+    });
     /*-------------------------------- */
 
 

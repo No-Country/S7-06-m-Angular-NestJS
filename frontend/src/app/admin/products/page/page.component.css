@@ -23,41 +23,10 @@ hr {
     padding:0px 5px
 }
 
-/*---------------List Product---------------*/
-/*
-.productList {
-    margin-top:25px;
-    padding:0px 25px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: center;
-}
-
-.product {
-    width: 45%;
-    height:200px;
-    border:1px solid grey;
-    margin:15px
-}
-
-@media screen and (max-width: 900px) {
-    .product {
-        width: 80%;
-        height:200px;
-        margin:15px
-    }
-}*/
 @media screen and (max-width: 500px) {
-    /*.productList {
-        padding:0px 0px;
-    }*/
     #products {
         padding:50px 3px
-    }/*
-    .product {
-        width:95%;
-        margin:15px 0px
-    }*/
+    }
 }
 
 /*--------MODAL--------*/
