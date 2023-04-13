@@ -26,7 +26,7 @@ export class PageComponent implements OnInit {
         description: ['',[Validators.required,Validators.maxLength(50)]],
         price:[0,[Validators.required,Validators.min(0)]],
         category_name:['',[Validators.required]],
-        file:[null,[Validators.required]]
+        file:['',[Validators.required]]
       }
     )
   }
@@ -45,7 +45,9 @@ export class PageComponent implements OnInit {
     formData.append('description', newProduct.description);
     formData.set('price', newProduct.price);
     formData.append('category_name', newProduct.category_name);
-    formData.append('file', this.addProductForm.get('file')?.value);
+    if (this.addProductForm.get('file')?.value) {
+      formData.append('file', this.addProductForm.get('file')?.value);
+    }    
     
     this.adminService.saveProduct(formData).subscribe({
       next: (_res) => {
