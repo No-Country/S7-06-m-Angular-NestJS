@@ -15,7 +15,8 @@ const ROL = 'Role'
 })
 export class TokenService {
   
-  roles: Array<string> = []
+  roles: any;
+  dato:any;
 
   constructor() {}
 
@@ -34,13 +35,13 @@ export class TokenService {
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities))
   }
   public getAuthorities(): string[] {
-    this.roles = []
     if (sessionStorage.getItem(AUTHORITIES_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach(
+      /*JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach(
         (authority: { authority: string }) => {
           this.roles.push(authority.authority)
         }
-      )
+      )*/
+      this.roles = sessionStorage.getItem(AUTHORITIES_KEY)
     }
     return this.roles
   }

@@ -88,3 +88,9 @@
         margin:15px 0px
     }
 }
+
+#img-base {
+    width:200px;
+    height:auto;
+    margin-top:25px
+}

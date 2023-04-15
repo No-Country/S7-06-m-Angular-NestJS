@@ -10,15 +10,22 @@ import { ResetPasswordComponent } from './reset-password/page/reset-password/res
 import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
 import { EditProfileFormComponent } from './user/components/edit-profile-form/edit-profile-form.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentMethodsComponent } from './payment/components/payment-methods/payment-methods.component';
+import { PaymentResumeComponent } from './payment/components/payment-resume/payment-resume.component';
+
 
 @NgModule({
   declarations: [
     PrivateComponent,
     ResetPasswordComponent,
     ResetPasswordFormComponent,
-    ProfileComponent,
-    EditProfileComponent,
-    EditProfileFormComponent
+    ProfileComponent, 
+    EditProfileComponent, 
+    EditProfileFormComponent, 
+    PaymentComponent, 
+    PaymentMethodsComponent, 
+    PaymentResumeComponent
   ],
   imports: [
     CommonModule,

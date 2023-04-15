@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductAdmin } from 'src/app/admin/models/product-admin';
 import { AdminService } from 'src/app/admin/services/admin.service';
@@ -18,7 +19,10 @@ export class ProductListComponent implements OnInit {
   trashProduct:string="";
   editProductForm: FormGroup;
 
-  constructor(private adminService:AdminService,private productService:ProductService,private router:Router, private formBuilder:FormBuilder) {
+  public archivo:string="";
+  previsualizacion: any;
+
+  constructor(private sanitizer: DomSanitizer, private adminService:AdminService,private productService:ProductService,private router:Router, private formBuilder:FormBuilder) {
 
     // Formulario Editar Producto
     this.editProductForm = this.formBuilder.group(
@@ -26,8 +30,8 @@ export class ProductListComponent implements OnInit {
         name: ['', [Validators.required]],
         description: ['',[Validators.required]],
         price:[0,[Validators.required,Validators.min(0)]],
-        categorie_name:['',[Validators.required,Validators.maxLength(14)]],
-        images:[[],[Validators.required]]
+        category_name:['',[Validators.required,Validators.maxLength(14)]],
+        file:[null]
       }
     )
   }
@@ -40,7 +44,6 @@ export class ProductListComponent implements OnInit {
     this.productService.getAll().subscribe({
       next: (res) => {
         this.productList = res;
-        console.log(this.productList)
       },
       error: (error) => {
         console.error(error)
@@ -67,31 +70,44 @@ export class ProductListComponent implements OnInit {
   /*--------EDITAR PRODUCTO------------*/
 
   //Boton abrir modal: Capturar Id y producto
-  editableId(id:any,product: ProductAdmin){
+  editableId(id:any,product: any){
     const editableProduct = product;
-    console.log(editableProduct);
-    console.log(editableProduct.categories.name);
-    console.log(editableProduct.images[0].url);
-    const imgOld = editableProduct.images[0].url;
+    this.previsualizacion = editableProduct.images[0].url;
     this.editId = id;
     /* Mostrar datos en el modal */
     this.editProductForm.controls['name'].setValue(editableProduct.name);
     this.editProductForm.controls['description'].setValue(editableProduct.description);
     this.editProductForm.controls['price'].setValue(editableProduct.price);
-    this.editProductForm.controls['categorie_name'].setValue(editableProduct.categories.name);
-    this.editProductForm.controls['images'].setValue(imgOld);
+    this.editProductForm.controls['category_name'].setValue(editableProduct.categories.name);
+    this.editProductForm.controls['file'].setValue("");   
   }
 
   // Actualizar PRODUCTO
   updateProduct(): void{
     const newProduct = this.editProductForm.value;
-    newProduct.images=newProduct.images.split();
-    this.editProductForm.reset();
     const editId = this.editId;
-    console.log(newProduct)
-    console.log(newProduct.images)
-    this.adminService.updateProduct(editId,newProduct).subscribe({
-      next: (res) => {
+
+    /*-------------------------------- */
+    newProduct.images=this.archivo; 
+
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('description', newProduct.description);
+    formData.set('price', newProduct.price);
+    formData.append('category_name', newProduct.category_name);
+    
+    if (this.editProductForm.get('file')?.value){
+      formData.append('file', this.editProductForm.get('file')?.value);
+    }
+    formData.forEach((value: any, key: string) => {
+      console.log(key, value);
+    });
+    /*-------------------------------- */
+
+
+    this.adminService.updateProduct(editId,formData).subscribe({
+      next: (res) => {        
+        console.log(res)
       },
       error: (error) => {
         console.log(error)
@@ -127,10 +143,6 @@ export class ProductListComponent implements OnInit {
   }
 
   // VALIDATORS
-
-
-
-  // Propiedades Editar Ingreso
   get NameEdit() {
     return this.editProductForm.get('name');
   }
@@ -150,6 +162,32 @@ export class ProductListComponent implements OnInit {
     this.editProductForm.reset(this.editProductForm.value);
   }
 
+  captureFile(event:any){
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.editProductForm.get('file')?.setValue(file);
+      this.extraerBase64(file).then((imagen: any) => {
+        this.previsualizacion = imagen.base;
+      })
+  }}
 
-
+  extraerBase64 = async ($event: any) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      return new Promise(resolve => {
+        reader.onload = () => {
+          resolve({
+            base: reader.result
+          });
+        };
+      });
+    } catch (e) {
+      return {
+        base: null
+      };
+    }
+  };
 }

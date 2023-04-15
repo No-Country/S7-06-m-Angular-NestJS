@@ -17,7 +17,6 @@ export class DashboardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataUser = this.userService.getDataUser()
-    console.log(this.dataUser)
   }
 
   navigateTo(route:string){
@@ -46,6 +45,4 @@ export class DashboardPageComponent implements OnInit {
       }
     })
   }
-
 }
-

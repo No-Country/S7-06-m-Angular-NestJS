@@ -1,0 +1,19 @@
+#btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 500px) {
+
+    section{
+       height: fit-content;
+       margin-bottom: 50px;
+    }
+    .btn{
+        width: 82vw;
+        margin: 10px;
+    }
+    
+}
