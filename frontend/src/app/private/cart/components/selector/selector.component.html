@@ -1,14 +1,8 @@
-<!-----<div>
-    <button (click)="decrementar()">-</button>
-    <span>{{ cantidad }}</span>
-    <button (click)="incrementar()">+</button>
-</div>--->
-<div class="btn-group" role="group" aria-label="Basic outlined example" *ngFor="let cartItem of cart.items">
-  <button type="button" class="btn btn-outline-primary" (click)="decrementar(cartItem)">
-    <i class="bi bi-dash"></i>
-  </button>
-  <span>{{ cantidad }}</span>
-  <button type="button" class="btn btn-outline-primary" (click)="incrementar(cartItem)">
-    <i class="bi bi-plus"></i>
-  </button>
+<div mat-dialog-content class="error">
+  <h5>
+    <strong>No se puede descontar más productos</strong>
+  </h5>
+</div>
+<div mat-dialog-actions class="button">
+  <button [mat-dialog-close]="true">Cerrar</button>
 </div>

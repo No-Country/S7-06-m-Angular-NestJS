@@ -1,12 +1,9 @@
-.section-cart {
-    min-height: 90vh;
-    height:max-content;
-    padding:20px
+.section-cart{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 20px;
 }
-.title-cart h3{
-    font-size:1.7rem;
-    margin-top:20px
-}
-.cart-products {
-    margin-top:50px
+.title-cart h3 {
+  font-size: 1.7rem;
 }

@@ -4,6 +4,8 @@ import { Cart } from 'src/app/shared/models/store/cart/cart';
 import { CartItem } from 'src/app/shared/models/store/cart/cartItem';
 import { Product } from 'src/app/shared/models/store/products/product';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectorComponent } from '../selector/selector.component';
 
 @Component({
   selector: 'app-cart-products',
@@ -20,14 +22,11 @@ export class CartProductsComponent implements OnInit {
   constructor(
     private router:Router,
     private cartService: CartService,
+    public dialog: MatDialog
   ) {
     this.cartService.getCartObservable().subscribe((cart) => {
       this.cart = cart;
     });
-  }
-
-  ngOnInit(): void {
-
   }
 
   removeFromCart(cartItem:any){
@@ -41,28 +40,59 @@ export class CartProductsComponent implements OnInit {
     this.cartService.changeQuantity(cartItem.product.id!, quantity);
   }
 
+  openDialog(): void {
+    this.dialog.open(SelectorComponent, {
+      width: '500px'
+    });
+  }
+
   handleProduct(value:string, cartItem:CartItem){
     let active:any = document.getElementById('error')
     if(Number(cartItem.total) < 5 && value === 'add'){
       cartItem.total++
       this.changeQuantity(cartItem)
-      console.log(cartItem.total)
-      active.classList.remove('error-active');
+      // active.classList.remove('error-active');
     } else if( Number(cartItem.total) > 1 && value ==='remove'){
       cartItem.total--
       this.changeQuantity(cartItem)
-      console.log(cartItem.total)
     } else if(Number(cartItem.total) == 1 && value ==='remove'){
-      active.classList.add('error-active')
+      // active.classList.add('error-active')
+      this.openDialog();
       this.changeQuantity(cartItem)
     }
   }
+
+
+
+  navigateToLogin(){
+    this.router.navigateByUrl("/mimu/login")
+  }
+  // ------------------------------------------------------------------
+  // priceTotal:number=0;
+  // productsCart:ProductCart[]=[];
+
+  // cantidad:number=0;
+
+   ngOnInit(): void {
+  //   this.getProductsOfCart();
+  //   this.totalPrice();
+   }
+
+
+  // // Mostrar Productos Cargados
+  // getProductsOfCart(){
+  //   const productList = localStorage.getItem("productsCart");
+  //   if (productList){
+  //     this.productsCart = JSON.parse(productList);
+  //   }
+  // }
 
   // deleteProductOfCart(index: number) {
   //   this.productsCart.splice(index, 1);
   //   this.priceTotal = 0;
   //   this.totalPrice()
   // }
+
   // updateAmount(index: number, nuevaCantidad: number) {
   //   this.productsCart[index].amount = nuevaCantidad;
   //   this.priceTotal = 0;
@@ -74,8 +104,4 @@ export class CartProductsComponent implements OnInit {
   //     this.priceTotal = this.priceTotal + product.amount*product.price
   //   })
   // }
-
-  navigateToLogin(){
-    this.router.navigateByUrl("/mimu/login")
-  }
 }

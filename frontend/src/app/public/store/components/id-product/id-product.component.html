@@ -1,6 +1,6 @@
-<div>
+<main *ngIf="product">
+
   <div class="title">
-    <!-- <h1>Detalles del Producto</h1> -->
     <div class="name-favorite">
       <h1>{{ product.name | titlecase }}</h1>
       <button (click)="favorite()">
@@ -54,4 +54,4 @@
     </div>
   </div>
 
-</div>
+</main>

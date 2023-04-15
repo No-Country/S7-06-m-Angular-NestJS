@@ -5,7 +5,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsCarruselComponent } from './components/products-carrusel/products-carrusel.component';
@@ -25,7 +25,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   exports: [
     SwiperModule,
@@ -33,6 +34,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    MatDialogModule,
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent,
