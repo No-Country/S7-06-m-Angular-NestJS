@@ -1,57 +1,70 @@
-<main *ngIf="product">
+<section *ngIf="product">
 
-  <div class="title">
-    <div class="name-favorite">
-      <h1>{{ product.name | titlecase }}</h1>
-      <button (click)="favorite()">
-        <mat-icon>{{ favoriteFill }}</mat-icon>
-      </button>
-    </div>
-  </div>
+  <div class="product">
 
-  <swiper
-    [config]="config"
-    class="mySwiper"
-    >
-    <ng-template swiperSlide *ngFor="let img of product.images">
-      <div class="image" >
-        <img [src]="img.url" >
-      </div>
-    </ng-template>
+    <swiper [config]="config" class="mySwiper">
+      <ng-template swiperSlide *ngFor="let img of product.images">
+        <div class="image">
+          <img [src]="img.url" />
+        </div>
+      </ng-template>
+    </swiper>
 
-  </swiper>
+    <div class="product-detail">
 
-  <div class="product-detail">
-    <div class="stars">
-      <ngx-star-rating [id]="'rating'"></ngx-star-rating>
-    </div>
-
-    <div class="detail">
-      <p>{{ product.description }}</p>
-    </div>
-
-    <div class="price">
-      <p>Precio <strong>{{ product.price | currency: "ARS" }}</strong></p>
-    </div>
-
-    <div class="contenedor-cant-error">
-      <div class="cant-group">
-        <span class="word-cant"><strong>Cantidad</strong></span>
-        <div class="botones">
-          <button (click)="handleProduct('remove')"><strong>-</strong> </button>
-          <input type="text" disabled [value]="productQuantity">
-          <button (click)="handleProduct('add')"><strong>+</strong></button>
+      <div class="name-favorite contenedor">
+        <div class="title">
+          <h1>{{ product.name | titlecase }}</h1>
+        </div>
+        <div class="boton-favorite">
+          <button (click)="favorite()">
+            <mat-icon>{{ favoriteFill }}</mat-icon>
+          </button>
         </div>
       </div>
 
-      <div class="error container" id="error">
-        <p class="removeError"><strong>No se puede descontar más productos</strong></p>
+      <div class="price-stars contenedor">
+        <div class="price">
+          <p>
+            Precio <strong>{{ product.price | currency : "ARS" }}</strong>
+          </p>
+        </div>
+
+        <div class="stars">
+          <ngx-star-rating [id]="'rating'"></ngx-star-rating>
+        </div>
+      </div>
+
+
+      <div class="contenedor-cant-error contenedor">
+        <div class="cant-group">
+          <span class="word-cant"><strong>Cantidad</strong></span>
+          <div class="botones">
+            <button (click)="handleProduct('remove')"><strong>-</strong></button>
+            <input type="text" disabled [value]="productQuantity" />
+            <button (click)="handleProduct('add')"><strong>+</strong></button>
+          </div>
+        </div>
+
+        <div class="error" id="error">
+          <p>
+            <strong>No se puede descontar más productos</strong>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="button">
+        <button (click)="addToCart()">Agregar a la Bolsa</button>
       </div>
     </div>
 
-    <div class="button">
-      <button (click)="addToCart()">Agregar a la Bolsa</button>
-    </div>
   </div>
 
-</main>
+  <div class="description">
+    <div class="text">
+      <h3>Descripcion del Producto</h3>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</section>

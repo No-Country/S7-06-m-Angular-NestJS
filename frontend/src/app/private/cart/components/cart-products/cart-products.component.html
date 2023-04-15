@@ -1,5 +1,5 @@
 <section>
-  <div class="product">
+  <div class="product" *ngIf="cart && cart.items.length">
     <ul>
       <li *ngFor="let cartItem of cart.items">
         <div class="name">
