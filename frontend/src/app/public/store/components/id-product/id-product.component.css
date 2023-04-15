@@ -1,17 +1,24 @@
-.title>.name-favorite{
+section{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  gap: 2em;
 }
 
-.title>.name-favorite>button{
-  border: none;
-  background: none;
+.product{
+  display: flex;
+  justify-content: space-around;
 }
+
+/* codigo de swiper */
 
 .swiper{
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  box-shadow: 5px 3px 10px 2px #000000be;
 }
 
 .image{
@@ -26,13 +33,66 @@
   object-fit: cover;
 }
 
+/* Detalles del producto */
+
+.product-detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.116);
+  box-shadow: 5px 3px 10px 2px #000000be;
+  width: 40%;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+/* Titulo del producto y boton de favoritos */
+
+.name-favorite{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.boton-favorite{
+  display: flex;
+  align-items: center;
+}
+
+.boton-favorite button{
+  border: none;
+  background: none;
+}
+
+/* Precio y estrellas */
+
+.price-stars{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price p{
+  font-size: 20px;
+  margin: 0;
+}
+
+/* ngx-star-rating */
+label.star{
+  font-size: 30px !important;
+}
+
+/* Cantidad del Producto y Mensaje de error */
+
 .contenedor-cant-error{
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-around;
   width: 100%;
   gap: 0.5em;
 }
+
+/* contenedor de suma y resta de productos */
 
 .cant-group{
   display: flex;
@@ -64,26 +124,23 @@
   border-radius: 100%;
 }
 
+/* Mensaje de error al descontar por debajo de un producto */
+
 .error{
-  display: flex;
-  flex-direction: column;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
   padding: 0;
-  visibility: hidden;
 }
 
-.error>.removeError{
+.error>p{
   color: red;
   margin: 0;
 }
 
 .error-active{
+  display: flex;
   padding: 0;
-  visibility: visible;
-}
-
-.error-active>.removeError{
-  color: red;
-  margin: 0;
 }
 
 .button{
@@ -99,52 +156,114 @@
   height: 40px;
 }
 
-@media screen and (max-width:290px) {
+/* Descripcion del producto */
 
-  .title{
-    padding: 10px;
+.description{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text{
+  width: 70%;
+}
+
+.text h3{
+  text-align: center;
+}
+
+.text p{
+  font-size: 20px;
+}
+
+.text p::first-letter{
+  text-transform: uppercase;
+}
+
+@media screen and (max-width:1100px) {
+
+  .price p{
+    font-size: 17px;
   }
 
-  .swiper{
-    position: relative;
-    width: 100vw;
-    height: 300px;
-  }
-
-  .product-detail{
-    display: flex;
+  .contenedor{
     flex-direction: column;
-    padding: 10px;
+    align-items: center;
   }
 
   /* ngx-star-rating */
   label.star{
     font-size: 25px !important;
   }
+}
 
-  .cant-group{
-    display: flex;
+@media screen and (max-width:780px) {
+
+  .product{
     flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    gap: 0.5em;
+    align-items: center;
+    gap: 1.5em;
   }
 
-  .botones{
+  .swiper{
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+  .product-detail{
+    width: 70%;
+    gap: 1em;
+  }
+
+  .contenedor-cant-error{
+    flex-direction: column;
+  }
+
+  .error{
+    display: none;
+  }
+
+  .error-active{
     display: flex;
-    justify-content: center;
+  }
+
+  .error p{
     text-align: center;
-    gap: 0.5em;
   }
 
-  .botones>input{
-    width: 1.8em;
-    border-radius: 30px;
+}
+
+@media screen and (max-width:560px) {
+
+  .swiper{
+    position: relative;
+    width: 300px;
+    height: 300px;
   }
 
-  .botones>button{
-    width: 1.6em;
-    border-radius: 100%;
+  .product-detail{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width:290px) {
+
+  .swiper{
+    position: relative;
+    width: 100%;
+    height: 300px;
+  }
+
+  .product-detail{
+    width: 100%;
+    gap: 1em;
+  }
+
+  .contenedor{
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
   }
 
 }

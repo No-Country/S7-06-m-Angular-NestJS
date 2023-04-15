@@ -1,105 +1,59 @@
 <section>
-  <div class="productos-checkout" *ngIf="cart && cart.items.length">
+  <div class="product" *ngIf="cart && cart.items.length">
     <ul>
       <li *ngFor="let cartItem of cart.items">
-        <div class="product-name">
-          <div>
-            <h3>
-              {{cartItem.product.name | titlecase}}
-            </h3>
-          </div>
+        <div class="name">
+          <h3>{{ cartItem.product.name | titlecase }}</h3>
         </div>
 
-        <div class="product-detail" *ngFor="let img of cartItem.product.images">
-          <div class="product-image">
-            <img [src]="img.url" [alt]="cartItem.product.name">
+        <div class="detail" *ngFor="let img of cartItem.product.images">
+          <div class="image">
+            <img [src]="img.url" [alt]="cartItem.product.name" />
           </div>
 
           <div class="contenedor-cant">
-            <div class="cant-group">
-              <span class="word-cant"><strong>Cantidad</strong></span>
-              <div class="botones">
-                <button (click)="handleProduct('remove', cartItem)"><strong>-</strong> </button>
-                <input type="text" [(ngModel)]="cartItem.total" (input)="changeQuantity(cartItem)" disabled>
-                <button (click)="handleProduct('add', cartItem)"><strong>+</strong></button>
-              </div>
+            <span class="word-cant"><strong>Cantidad</strong></span>
+            <div class="botones">
+              <button (click)="handleProduct('remove', cartItem)">
+                <strong>-</strong>
+              </button>
+              <input
+                type="text"
+                [(ngModel)]="cartItem.total"
+                (input)="changeQuantity(cartItem)"
+                disabled
+              />
+              <button (click)="handleProduct('add', cartItem)">
+                <strong>+</strong>
+              </button>
             </div>
           </div>
 
           <div class="price">
+            <span class="word-cant">
+              <strong>Precio</strong>
+            </span>
             <span class="current-price">
-              <strong>{{ cartItem.product.price| currency }}</strong>
+              <strong>{{ cartItem.product.price | currency }}</strong>
             </span>
           </div>
           <div class="btn">
-            <button class="btn bi bi-trash3 text-danger" (click)="removeFromCart(cartItem.product.id)"></button>
+            <button
+              class="btn btn-outline-danger bi bi-trash3"
+              (click)="removeFromCart(cartItem.product.id)"
+            ></button>
           </div>
         </div>
-
-        <div class="error container" id="error">
-          <p class="removeError"><strong>No se puede descontar más productos</strong></p>
-        </div>
-
       </li>
     </ul>
+  </div>
 
-    <div class="checkout">
-      <div class="count-price">
-        <div class="product-count">{{ cart.totalCount }}</div>
-        <div class="total-price">{{ cart.totalPrice | currency }}</div>
-      </div>
+  <div class="checkout">
+    <div class="count-price">
+      <p class="count">{{ cart.totalCount }}</p>
+      <p class="total-price">{{ cart.totalPrice | currency }}</p>
 
-      <a routerLink="/user/checkout">Realizar Compra</a>
     </div>
+    <a routerLink="/checkout">Realizar Compra</a>
   </div>
 </section>
-
-
-<!-----------PRODUCTOS------------------------------->
-<!-- <div class="product" *ngFor="let product of productsCart,let i = index">
-    <div class="img-product">
-        <img [src]="product.img" alt="">
-    </div>
-    <div class="data-product">
-        <p class="product-name"><b>{{product.name}}</b></p>
-        <p class="product-price">Precio: $ {{product.price}}</p>
-        <div class="buttons">
-            <button (click)="deleteProductOfCart(i)" id="trash"><i class="bi bi-trash"></i></button>
-            <app-selector [cantidad]="product.amount" (cantidadCambiada)="updateAmount(i, $event)"></app-selector>
-            <div class="contenedor-cant-error">
-              <div class="cant-group">
-                <span class="word-cant"><strong>Cantidad</strong></span>
-                <div class="botones">
-                  <button (click)="handleProduct('remove')"><strong>-</strong> </button>
-                  <input type="text" disabled [value]="productQuantity">
-                  <button (click)="handleProduct('add')"><strong>+</strong></button>
-                </div>
-              </div>
-
-              <div class="error container" id="error">
-                <p class="removeError"><strong>No se puede descontar más productos</strong></p>
-              </div>
-            </div>
-        </div>
-        <button (click)="deleteProductOfCart(i)" class="btn btn-outline-danger" id="delete">Eliminar producto</button>
-    </div>
-    <div class="heart">
-        <button><i class="bi bi-heart-fill"></i></button>
-    </div>
-</div> -->
-
-<!------------TOTAL---------------------------------->
-<!-- <hr id="summary-line">
-<div class="summary">
-    <div class="total">
-        <p class="word">Total:</p>
-        <p class="totalPrice"><b>$ {{priceTotal}}</b></p>
-    </div>
-    <div class="more">
-        <p>Descuentos</p>
-        <p class="invite">Inicia sesión y recibe descuentos</p>
-        <div class="button">
-            <button id="login" class="btn btn-primary" (click)="navigateToLogin()">Iniciar sesión</button>
-        </div>
-    </div>
-</div> -->

@@ -1,25 +1,38 @@
 <section>
-  <p>Title component</p>
-  <div class="product-container">
-    <div class="swiperContainer" *ngFor="let product of products">
-      <h4>{{ product.name | titlecase}}</h4>
-      <div class="button-more">
-        <button class="btn" routerLink="product/{{ product.id }}">Ver más</button>
-      </div>
+  <div class="name-category">
+    <div class="title">
+      <h2>{{ title }}</h2>
+    </div>
 
-      <swiper
-        [config]="config"
-        class="mySwiper"
-        >
-          <ng-template swiperSlide *ngFor="let img of product.images">
-            <div class="image" >
-              <img [src]="img.url" loading="lazy">
-            </div>
-          </ng-template>
-
-      </swiper>
-
+    <div class="category" *ngIf="categories && categories.length">
+      <!-- *ngIf="products && products.length" -->
+      <a routerLink="/mimu/store">Todos</a>
+      <a
+        *ngFor="let tag of categories"
+        routerLink="/mimu/store/category/{{ tag.name }}"
+        class="tag"
+      >
+        <strong>{{ tag.name | titlecase }}</strong>
+      </a>
     </div>
   </div>
 
+  <div class="product-container" *ngIf="products && products.length">
+    <div class="swiperContainer" *ngFor="let product of products">
+      <h4>{{ product.name | titlecase }}</h4>
+      <div class="button-more">
+        <button class="btn" routerLink="product/{{ product.id }}">
+          Ver más
+        </button>
+      </div>
+
+      <swiper [config]="config" class="mySwiper">
+        <ng-template swiperSlide *ngFor="let img of product.images">
+          <div class="image">
+            <img [src]="img.url" loading="lazy" />
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
 </section>
