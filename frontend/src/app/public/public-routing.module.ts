@@ -8,6 +8,7 @@ import { AllProductsComponent } from './store/components/all-products/all-produc
 import { IdProductComponent } from './store/components/id-product/id-product.component';
 import { PublicComponent } from './public.component';
 import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
+import { PageResetComponent } from './reset-password/page-reset/page-reset.component';
 const routes: Routes = [
   {
     path: '', component:PublicComponent,children:
@@ -17,6 +18,7 @@ const routes: Routes = [
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegisterComponent},
         { path: 'recoverpassword', component: RecoverPasswordComponent},
+        { path: 'resetpassword/:token?', component: PageResetComponent},
         { path: 'store', component: StoreComponent, children: [
             { path: '', component: AllProductsComponent },
             { path: 'product/:id', component: IdProductComponent },

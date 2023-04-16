@@ -39,9 +39,9 @@ export class AuthService {
   }
 
   // RESETEAR CONTRASEÑA
-  resetPassword(password: string): Observable<any> {
-    return this.http.post<any>(this.URL + '/auth/resetpassword',password)
-  }
-
-
+  resetPassword(password:string,token:string): Observable<any> {
+    console.log("El Servicio de reseteo peticiona en la URL: ",this.URL + '/auth/reset/'+token)
+    console.log("Y lleva la password: ",password)
+    return this.http.post<any>(this.URL + `/auth/reset/${token}`,password)
+  }  
 }
