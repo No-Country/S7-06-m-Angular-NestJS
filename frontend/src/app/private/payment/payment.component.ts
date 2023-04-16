@@ -57,6 +57,39 @@ export class PaymentComponent implements OnInit {
         return total;
     }
 
+    //integracion de Mercado Pago
+    payToMP = async () =>{
+        const items: any[] = [];
+        let newItem = {};
+        this.cart.items.forEach((it: any)=>{
+    
+            newItem = {
+                title: it.product.name,
+                description: it.product.description,
+                picture_url: it.product.images[1],
+                category_id: '..',
+                quantity: it.total,
+                currency_id: 'ARS',
+                unit_price: it.product.price, 
+            };
+        items.push(newItem);
+        });
+        let response = await fetch('https://api.mercadopago.com/checkout/preferences',{
+            
+            method:"POST",
+            headers:{
+                Authorization: 'Bearer TEST-467669511262743-041613-6c78f4b93c737407adacd38258c59972-808806188'
+            },
+            body: JSON.stringify({
+                items: items
+            })
+        })
+        let data = await response.json();
+        console.log(data);
+        window.open(data.init_point,'_blank')
+    }
+
+
     getItemsList(): any[]{
         const items: any[] = [];
         let item = {};
@@ -74,7 +107,6 @@ export class PaymentComponent implements OnInit {
         });
         return items;
     }
-
 
   private initConfig(): void {
     this.payPalConfig = {
