@@ -1,38 +1,15 @@
-<section>
-    <h1>Confirme sus datos</h1>
-
-    <div id="user-info"> 
-        <div class="user-data">
-            <h2>Nombre:</h2>
-            <span>{{user.firstName}} {{user.lastName}}</span>
+<section class="container">
+    <h1>Datos de la compra:</h1>
+    <div id="addition" >
+        <div *ngFor="let it of cart.items">
+            <li><span>{{it.product.name}}({{it.total}})</span><span>{{it.product.price*it.total}}</span></li>
         </div>
-        <div class="user-data">
-            <h2>Correo:</h2>
-            <span>{{user.email}}</span>
-        </div>
-        <div class="user-data">
-            <h2>Dirección:</h2>
-            <div id="adress-select">
-                <input class="inputs" type="text" name="adress" value={{user.email}} [disabled]="!edit">
-                <button class="btn" type="button" *ngIf="!edit" (click)="edit=!edit"><i class="bi bi-pencil-square"></i></button>
-                <button class="btn" type="button" *ngIf="edit" (click)="edit=!edit"><i class="bi bi-check2-square"></i></button>
-            </div>
-        </div>
-       
+        
+        <hr size="1px" color="gray" />
+        <li><span>Total:</span><span>{{cart.totalPrice}}</span></li>
     </div>
-
-    <div id="payments-methods">
-        <h1>Método de pago: Transferencia bancaria</h1>
-    </div>
-
-    <div id="addition">
-            <li><span>Envío:</span><span>{{delivery}}</span></li>
-            <li><span>Subtotal:</span><span>{{price}}</span></li>
-            <hr size="1px" color="gray" />
-            <li><span>Total:</span><span>{{delivery + price}}</span></li>
-    </div>
-    <div id="btn-container">
-        <button class="btn btn-primary" (click)="paymentSuccess()">Confirmar y pagar</button>
-    </div>
-  
 </section>
+
+
+
+

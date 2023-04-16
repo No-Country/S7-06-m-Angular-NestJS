@@ -27,7 +27,7 @@ import { AdminGuardGuard } from './guards/admin-guard.guard';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
     NgxPayPalModule
   ],
   exports: [

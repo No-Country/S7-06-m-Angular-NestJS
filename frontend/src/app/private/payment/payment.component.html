@@ -1,9 +1,26 @@
 <section>
-    <app-payment-methods *ngIf="!checkForm"></app-payment-methods>
-    <app-payment-resume *ngIf="checkForm"></app-payment-resume>
-    <div id="btn-container">
-        <button class="btn btn-primary" *ngIf="!checkForm" (click)="checkForm=!checkForm">Transferencia bancaria</button>
-        <button class="btn btn-primary" *ngIf="checkForm" (click)="checkForm=false">Volver</button>
+    <div id="general">
+        <div id="purchase">
+            <app-payment-resume></app-payment-resume>
+            </div>
+        
+            <div id="user-info" *ngIf="checkForm">
+                <app-payment-methods></app-payment-methods>
+            </div>
+         
+            <div *ngIf="!checkForm" id="payments-methods">
+                <h1>Método de pago:</h1>
+                <div class="container-methods">
+                   <button class="btn btn-primary"  (click)="checkForm=!checkForm">Transferencia bancaria</button>
+                   <button class="btn btn-primary" (click)="payToMP()" >Mercado Pago</button>
+                   <ngx-paypal id="btn-paypal" [config]="payPalConfig"></ngx-paypal>
+                </div>
+            </div> 
+        
     </div>
-
+    
+    <div *ngIf="checkForm" id="back">
+        <button class="btn btn-primary" (click)="checkForm=false">Volver</button>
+        <button class="btn btn-primary">Confirmar</button>
+    </div>
 </section>
