@@ -3,9 +3,10 @@ export class Image{
   url!:string;
 }
 
-export class Categories {
-  id?:string;
-  name!:string;
+export class Category {
+  id?: string;
+  name!: string;
+  products?: Product[];
 }
 
 export class Product{
@@ -14,7 +15,7 @@ export class Product{
   price!:number;
   discount?:number;
   finalPrice?:number;
-  category!:Categories[];
+  category!:Category[];
   images!:Image[];
   description?:string;
   stock?:boolean;

@@ -20,7 +20,7 @@ const routes: Routes = [
         { path: 'store', component: StoreComponent, children: [
             { path: '', component: AllProductsComponent },
             { path: 'product/:id', component: IdProductComponent },
-            { path: 'category', component: AllProductsComponent }
+            { path: 'category/:category', component: AllProductsComponent }
           ]
         },
         { path: '**', redirectTo: 'home', pathMatch: 'full' }
