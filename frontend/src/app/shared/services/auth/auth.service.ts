@@ -32,13 +32,16 @@ export class AuthService {
 
   // RECUPERAR CONTRASEÑA
   recover(email: string): Observable<any> {
-    return this.http.post<any>(this.URL + '/auth/recover',email)
+    console.log("Petición a URL:")
+    console.log(this.URL + '/auth/forgot')
+    console.log("estas credendenciales: ",email)
+    return this.http.post<any>(this.URL + '/auth/forgot',email)
   }
 
   // RESETEAR CONTRASEÑA
-  resetPassword(password: string): Observable<any> {
-    return this.http.post<any>(this.URL + '/auth/resetpassword',password)
-  }
-
-
+  resetPassword(password:string,token:string): Observable<any> {
+    console.log("El Servicio de reseteo peticiona en la URL: ",this.URL + '/auth/reset/'+token)
+    console.log("Y lleva la password: ",password)
+    return this.http.post<any>(this.URL + `/auth/reset/${token}`,password)
+  }  
 }

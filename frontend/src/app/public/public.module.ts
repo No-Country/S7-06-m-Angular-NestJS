@@ -16,6 +16,8 @@ import { RecoverFormComponent } from './recover/components/recover-form/recover-
 import { RecoverPasswordComponent } from './recover/page/recover-password/recover-password.component';
 import { PublicComponent } from './public.component';
 import { SharedModule } from '../shared/shared.module';
+import { PageResetComponent } from './reset-password/page-reset/page-reset.component';
+import { ResetFormComponent } from './reset-password/components/reset-form/reset-form.component';
 
 
 
@@ -27,7 +29,9 @@ import { SharedModule } from '../shared/shared.module';
     LoginFormComponent,
     RecoverPasswordComponent,
     RecoverFormComponent,
-    PublicComponent
+    PublicComponent,
+    PageResetComponent,
+    ResetFormComponent
   ],
   imports: [
     HttpClientModule,
