@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-reset-password-form',
-  templateUrl: './reset-password-form.component.html',
-  styleUrls: ['./reset-password-form.component.css']
+  selector: 'app-reset-form',
+  templateUrl: './reset-form.component.html',
+  styleUrls: ['./reset-form.component.css']
 })
-export class ResetPasswordFormComponent implements OnInit {
+export class ResetFormComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
   ocultar: boolean = true;
   newPassword:string="";
+  @Input() token:string="";
 
   constructor(
     private authService: AuthService,
@@ -23,12 +24,10 @@ export class ResetPasswordFormComponent implements OnInit {
     this.resetPasswordForm = this.formBuilder.group(
       {
         password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
-        confirmPassword: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]
+        confirm_Password: ['',[Validators.required, Validators.minLength(8),Validators.maxLength(22),Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/),this.checkPasswords('password')]]
       }
     )
   }
-
-
 
   ngOnInit(): void {
   }
@@ -37,7 +36,7 @@ export class ResetPasswordFormComponent implements OnInit {
   onResetPassword() {
     this.newPassword = this.resetPasswordForm.value;
     console.log(this.newPassword)
-    this.authService.resetPassword(this.newPassword).subscribe({
+    this.authService.resetPassword(this.newPassword,this.token).subscribe({
       next: (data) => {
         this.resetedPassword()
       },
@@ -93,7 +92,7 @@ export class ResetPasswordFormComponent implements OnInit {
     return this.resetPasswordForm.get('password')
   }
   get ConfirmPassword(){
-    return this.resetPasswordForm.get('confirmPassword')
+    return this.resetPasswordForm.get('confirm_Password')
   }
 
   /*=================================================*/
@@ -101,25 +100,25 @@ export class ResetPasswordFormComponent implements OnInit {
   // Password Comparator
   checkPasswords (passwordControl: string) {
     let password: FormControl;
-    let confirmPassword: FormControl;
+    let confirm_Password: FormControl;
     return function checkPasswords (control: FormControl) {
       if (!control.parent) {
         return null;
       }
       if (!password) {
         password = control;
-        confirmPassword = control.parent.get(passwordControl) as FormControl;
-        if (!confirmPassword) {
+        confirm_Password = control.parent.get(passwordControl) as FormControl;
+        if (!confirm_Password) {
           throw new Error('checkPasswords(): other control is not found in parent group');
         }
-        confirmPassword.valueChanges.subscribe(() => {
+        confirm_Password.valueChanges.subscribe(() => {
           password.updateValueAndValidity();
         });
       }
       if (!password) {
         return null;
       }
-      if (password.value !== confirmPassword.value) {
+      if (password.value !== confirm_Password.value) {
         return {
           matchOther: true
         };
