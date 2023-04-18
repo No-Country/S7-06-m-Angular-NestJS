@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Category, Product } from 'src/app/shared/models/store/products/product';
 import { ProductService } from 'src/app/shared/services/product/product.service';
+
 import SwiperCore, { Navigation, Autoplay, Virtual, Scrollbar, SwiperOptions, EffectFade, Parallax  } from 'swiper';
 SwiperCore.use([Virtual, Navigation, Autoplay, Scrollbar, EffectFade, Parallax ]);
 
@@ -32,11 +32,7 @@ export class AllProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    // private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -49,10 +45,17 @@ export class AllProductsComponent implements OnInit {
   getAllProducts(){
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
-      console.log(data)
     }, error => {
       console.log(error);
     })
+  }
+
+  getProductsByCategory(category:string){
+    this.productService.getProductByCategory(category).subscribe(data => {
+      this.products = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

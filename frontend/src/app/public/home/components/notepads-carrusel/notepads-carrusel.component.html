@@ -9,10 +9,10 @@
         <ng-template class="contenedor-productos" swiperSlide *ngFor="let product of products">
              <div>
               <div class="col">
-                <div>
+                <div *ngFor="let img of product.images">
                   <img
-                    [src]="product.images"
-                    [alt]="product.images"
+                    [src]="img.url"
+                    [alt]="img.url"
                     class="card-img-top"
                     id="image"
                   >
@@ -21,7 +21,7 @@
               <div id="contenedor-name">
                 <div>
                   <span>
-                    <span id="product-name">{{ product.name }}</span>
+                    <span id="product-name">{{ product.name | titlecase }}</span>
                   </span>
                 </div>
               </div>
