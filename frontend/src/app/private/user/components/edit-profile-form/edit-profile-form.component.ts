@@ -12,9 +12,8 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 export class EditProfileFormComponent implements OnInit {
 
   edit:boolean=false;
-
   editUser: any;
-  
+
 
   constructor(private userService:UserService,private activatedRouter: ActivatedRoute, private router: Router) { }
 
