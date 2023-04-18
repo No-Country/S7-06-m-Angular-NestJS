@@ -42,26 +42,24 @@ export class LoginFormComponent implements OnInit {
   // OnLogin
   onLogin(event: any) {
     this.loginUser = this.loginForm.value;
-    console.log(this.loginUser);
-    if (this.loginUser.email=="juan@email.com"&&this.loginUser.password=="Caballo1@"){
-      sessionStorage.setItem("Role","User")
-      this.userService.saveDataUser(this.dataUsuarioHardcodeado);
-      this.router.navigateByUrl('mimu/home')
-    } else {
     this.authService.login(this.loginUser).subscribe({
       next: (res) => {
         this.isLogged = true;
-        this.tokenService.setToken(res.token);
         this.userService.saveDataUser(res);
-        sessionStorage.setItem("Role","Admin")
-        this.router.navigateByUrl('mimu/home')
+        this.tokenService.setToken(res.token);
+        this.tokenService.setAuthorities(res.roles)
+        if (res.roles[0]=='admin'){
+          this.router.navigate(['/admin/dashboard'])
+        } else {
+          this.router.navigate(['/mimu/home'])
+        }  
       },
       error: (error) => {
         console.error(error)
         this.wrongUser()
       },
       complete: () => {}
-    })}
+    })
   }
 
   // Properties Validators
@@ -89,5 +87,3 @@ export class LoginFormComponent implements OnInit {
     })
   }
 }
-
-

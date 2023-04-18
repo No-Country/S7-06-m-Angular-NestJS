@@ -1,0 +1,9 @@
+<section>
+    <app-payment-methods *ngIf="!checkForm"></app-payment-methods>
+    <app-payment-resume *ngIf="checkForm"></app-payment-resume>
+    <div id="btn-container">
+        <button class="btn btn-primary" *ngIf="!checkForm" (click)="checkForm=!checkForm">Transferencia bancaria</button>
+        <button class="btn btn-primary" *ngIf="checkForm" (click)="checkForm=false">Volver</button>
+    </div>
+
+</section>

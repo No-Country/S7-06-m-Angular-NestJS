@@ -15,15 +15,13 @@ export class UserGuardGuard implements CanActivate {
     const expectedRol = route.data['expectedRol'];
     const roles = this.tokenService.getAuthorities();
     this.realRol = 'visit';
-    roles.forEach(rol => {
-      if (rol === 'ROLE_USER') {
-        this.realRol = 'user';
-      }
-    });
+    if (roles.includes("user")){
+      this.realRol = 'user'
+    }
     if (this.tokenService.getToken() && this.realRol=='user') {
       return true
     } else {
-      this.router.navigateByUrl("/mumu/home")
+      this.router.navigateByUrl("/mimu/home")
       return false
     }
   }

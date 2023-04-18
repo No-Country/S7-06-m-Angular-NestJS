@@ -54,7 +54,6 @@ export class ProductsCarruselComponent implements OnInit {
   getProductsByCategory(category:string){
     this.productService.getProductByCategory(category).subscribe(data => {
       this.products = data;
-      console.log(this.products)
     }, error => {
       console.log(error);
     });

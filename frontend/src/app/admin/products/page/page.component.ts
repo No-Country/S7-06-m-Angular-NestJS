@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { AdminService } from '../../services/admin.service';
 export class PageComponent implements OnInit {
 
   addProductForm:FormGroup;
+  public archivo:string="";
+  previsualizacion: any;
 
   constructor(
+    private sanitizer: DomSanitizer,
     private adminService:AdminService,
     private formBuilder:FormBuilder
   ) {
@@ -20,9 +24,9 @@ export class PageComponent implements OnInit {
       {
         name: ['', [Validators.required]],
         description: ['',[Validators.required,Validators.maxLength(50)]],
-        price:['',[Validators.required,Validators.min(0)]],
-        categorie_name:['',[Validators.required]],
-        images:[[],[Validators.required,,Validators.maxLength(300)]]
+        price:[0,[Validators.required,Validators.min(0)]],
+        category_name:['',[Validators.required]],
+        file:['',[Validators.required]]
       }
     )
   }
@@ -33,13 +37,20 @@ export class PageComponent implements OnInit {
 
   /*------------NUEVO PRODUCTO---------------*/
   saveProduct(){
-    // Almacenando el Formulario
     const newProduct = this.addProductForm.value;
-    newProduct.images=newProduct.images.split();
-    console.log(newProduct)
-    // Servicio Save Product
-    this.adminService.saveProduct(newProduct).subscribe({
-      next: (res) => {
+    newProduct.images=this.archivo;
+    // Convert To Form Data
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('description', newProduct.description);
+    formData.set('price', newProduct.price);
+    formData.append('category_name', newProduct.category_name);
+    if (this.addProductForm.get('file')?.value) {
+      formData.append('file', this.addProductForm.get('file')?.value);
+    }    
+    
+    this.adminService.saveProduct(formData).subscribe({
+      next: (_res) => {
       },
       error: (error) => {
         console.log(error)
@@ -51,10 +62,8 @@ export class PageComponent implements OnInit {
     )
   }
 
-  // Propiedades para los validadores
-  // Propiedades Guardar PRODUCTO
-
-  get NameAdd() {
+  // VALIDATORS  
+  get NameAdd() { 
     return this.addProductForm.get('name');
   }
   get DescriptionAdd() {
@@ -64,15 +73,43 @@ export class PageComponent implements OnInit {
     return this.addProductForm.get('price');
   }
   get CategoryAdd() {
-    return this.addProductForm.get('categorie_name')
+    return this.addProductForm.get('category_name')
   }
   get Img_ProductAdd() {
-    return this.addProductForm.get('images')
+    return this.addProductForm.get('file')
   }
   clearValidatorsAdd() {
     this.addProductForm.reset()
   }
 
+  // Capture File
+  captureFile(event:any){
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.addProductForm.get('file')?.setValue(file);
+      this.extraerBase64(file).then((imagen: any) => {
+        this.previsualizacion = imagen.base;
+      })
+  }}
 
-
+  // Previsualizacion de imagen en el form
+  extraerBase64 = async ($event: any) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      return new Promise(resolve => {
+        reader.onload = () => {
+          resolve({
+            base: reader.result
+          });
+        };
+      });
+    } catch (e) {
+      return {
+        base: null
+      };
+    }
+  };
 }
