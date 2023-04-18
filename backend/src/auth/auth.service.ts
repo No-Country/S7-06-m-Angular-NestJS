@@ -105,7 +105,7 @@ export class AuthService {
     const reset = this.resetPasswordRepository.create({ email, token });
     await this.resetPasswordRepository.save(reset);
 
-    const url = `https://mimu-api.onrender.com/api/auth/reset/${token}`;
+    const url = `https://mimustore.vercel.app/mimu/resetpassword/${token}`;
 
     await transporter.sendMail({
       to: email,
