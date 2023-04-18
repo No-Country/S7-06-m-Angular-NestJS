@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { Cart } from 'src/app/shared/models/store/cart/cart';
 import { Product } from 'src/app/shared/models/store/products/product';
@@ -31,8 +31,6 @@ export class PaymentMethodsComponent implements OnInit {
     this.user = this.sUser.getDataUser();
   }
   
-
-
   // ALERT: Payment Successful
   paymentSuccess() {
     Swal.fire({
@@ -47,6 +45,34 @@ export class PaymentMethodsComponent implements OnInit {
         this.router.navigateByUrl('mimu/home')
       }
     })
+  }
+
+//  && 
+//  type?.includes("contact") && 
+//  type?.includes("address"))
+
+
+  confirmData(){
+    const type = sessionStorage.getItem("dataUser");
+    if (type?.includes("firstName") && 
+        type?.includes("lastName") && 
+        type?.includes("email")
+          ){
+
+     this.router.navigateByUrl('user/banking')
+    } else {
+      this.userDataIncomplete()
+    }
+  }
+  userDataIncomplete(){
+    Swal.fire({
+      title: 'Informacion Incompleta',
+      text: 'Por favor, verifique si ha completado todos sus datos de usuario para poder confirmar su compra',
+      icon: 'info',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Entendido'
+    })
+
   }
 }
 

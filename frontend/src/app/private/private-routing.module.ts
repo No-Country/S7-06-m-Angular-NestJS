@@ -6,11 +6,13 @@ import { ResetPasswordComponent } from './reset-password/page/reset-password/res
 import { ProfileComponent } from './user/page/profile/profile.component';
 import { EditProfileComponent } from './user/page/edit-profile/edit-profile.component';
 import { PaymentComponent } from './payment/payment.component';
+import { WireTransferDataComponent } from './payment/components/wire-transfer-data/wire-transfer-data.component';
 
 const routes: Routes = [
   {
     path: '',component:PrivateComponent,
     children: [
+      { path: 'banking', component: WireTransferDataComponent},
       { path: 'checkout', component: PaymentComponent},
       { path: 'cart', component: CartComponent },
       { path: 'resetpassword/:token?', component: ResetPasswordComponent },
