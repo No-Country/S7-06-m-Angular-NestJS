@@ -1,0 +1,82 @@
+
+h1{
+    text-align:center;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
+p{
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: gray;
+}
+p span{
+    color: black;
+}
+
+#help-container{
+   margin: 50px auto;
+}
+
+@media screen and (max-width: 1500px) {
+
+    section{
+        width: 70%;
+        margin: auto;
+    }
+    #account-data{
+        width: 90%;
+        margin: auto;
+    }
+    h1{
+        font-size: 26px;
+    }
+
+    p{
+        margin: 1.5em;
+        font-size: 20px;
+    }
+
+    #help-container{
+        width: 80%;
+    }
+
+    #help-text{
+        text-align: center;
+        font-size: 18px;
+        color: black;
+    }
+
+}
+
+
+@media screen and (max-width: 500px) {
+    section{
+        width: 90%;
+        margin: auto;
+    }
+
+    #account-data{
+        width: 100%;
+    }
+    h1{
+        font-size: 20px;
+    }
+
+    p{
+        margin: 1em;
+        font-size: 18px;
+    }
+    #help-container{
+        width: 100%;
+    }
+    #help-text{
+        text-align: center;
+        font-size: 16px;
+        color: black;
+    }
+
+
+}

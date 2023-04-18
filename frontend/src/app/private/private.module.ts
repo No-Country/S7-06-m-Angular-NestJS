@@ -11,6 +11,7 @@ import { EditProfileFormComponent } from './user/components/edit-profile-form/ed
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodsComponent } from './payment/components/payment-methods/payment-methods.component';
 import { PaymentResumeComponent } from './payment/components/payment-resume/payment-resume.component';
+import { WireTransferDataComponent } from './payment/components/wire-transfer-data/wire-transfer-data.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PaymentResumeComponent } from './payment/components/payment-resume/paym
     EditProfileFormComponent, 
     PaymentComponent, 
     PaymentMethodsComponent, 
-    PaymentResumeComponent
+    PaymentResumeComponent, 
+    WireTransferDataComponent
   ],
   imports: [
     CommonModule,
