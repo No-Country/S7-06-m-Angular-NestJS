@@ -16,7 +16,7 @@ import { ResetPassword } from './entities/resetpassword.entity';
   providers: [AuthService, JwtStrategy],
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([User,ResetPassword]),
+    TypeOrmModule.forFeature([User, ResetPassword]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],

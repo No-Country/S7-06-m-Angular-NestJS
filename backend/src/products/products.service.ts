@@ -108,6 +108,7 @@ export class ProductsService {
           categories: term.toLowerCase(),
         })
         .leftJoinAndSelect('prod.categories', 'categories')
+        .leftJoinAndSelect('prod.images', 'images')
         .getMany();
     }
 
