@@ -35,8 +35,7 @@ export class OrdersService {
     try {
       const { orderItems, ...orderData } = createOrderDto;
 
-      if (orderItems && orderItems.length === 0)
-        throw new BadRequestException('No order items');
+      if (orderItems && orderItems.length === 0) return {message:'No order items'}
 
       const order = this.orderRepository.create({
         ...orderData,
