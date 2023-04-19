@@ -144,10 +144,11 @@ export class ProductsService {
     }
 
     const category = await this.categoriesServices.findOneByName(category_name);
+    const currentPrice = await this.productRepository.findOneBy({ id: id });
 
     const product = await this.productRepository.preload({
       id,
-      price: Number(price),
+      price: price ? Number(price) : currentPrice.price,
       ...productDetail,
     });
 
