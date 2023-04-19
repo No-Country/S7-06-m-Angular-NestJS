@@ -24,7 +24,7 @@ Deploy del backend: [Mimu Store-Backend](https://mimu-api.onrender.com/api)
 
 #### Frontend: ANGULAR
 
-* Lenguaje -> Typescript [TypeScript](https://www.typescriptlang.org/)
+* Lenguaje -> [TypeScript](https://www.typescriptlang.org/)
 * Framework utilizado -> [Angular 13](https://angular.io/)
 * Bootstrap 5 -> [Bootstrap](https://getbootstrap.com/)
 * Angular Material 13 -> [Angular material](https://v13.material.angular.io/)
@@ -35,7 +35,7 @@ Deploy del backend: [Mimu Store-Backend](https://mimu-api.onrender.com/api)
 
 #### Backend: NEST.JS - PostgreSQL - TypeORM - Docker
 
-* Lenguaje -> Typescript [TypeScript](https://www.typescriptlang.org/)
+* Lenguaje -> [TypeScript](https://www.typescriptlang.org/)
 * Framework utilizado -> [Nest.JS](https://nestjs.com/) 
 * Documentación -> [Swagger](https://swagger.io/docs/)
 * Base de Datos -> [PostgreSQL](https://www.postgresql.org/)
