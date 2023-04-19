@@ -4,6 +4,7 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
+  BeforeInsert,
 } from 'typeorm';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
@@ -31,7 +32,7 @@ export class Order {
 
   @ApiProperty()
   @Type(() => Date)
-  @Column('timestamp', { default: 'now()' })
+  @Column('timestamp', { default: null })
   createdAt: Date;
 
   @ApiProperty()
@@ -47,6 +48,12 @@ export class Order {
     eager: true,
   })
   items: OrderItem[];
+
+  @BeforeInsert()
+  dateInsert(){
+   this.createdAt=new Date()
+  }
+
 
   // @BeforeInsert()
   // taxPriceInsert() {
