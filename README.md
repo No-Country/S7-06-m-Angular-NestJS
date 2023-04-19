@@ -24,7 +24,7 @@ Deploy del backend: [Mimu Store-Backend](https://mimu-api.onrender.com/api)
 
 #### Frontend: ANGULAR
 
-* Lenguaje -> Typescript
+* Lenguaje -> Typescript [TypeScript](https://www.typescriptlang.org/)
 * Framework utilizado -> [Angular 13](https://angular.io/)
 * Bootstrap 5 -> [Bootstrap](https://getbootstrap.com/)
 * Angular Material 13 -> [Angular material](https://v13.material.angular.io/)
@@ -33,13 +33,14 @@ Deploy del backend: [Mimu Store-Backend](https://mimu-api.onrender.com/api)
 * Implementación de pagos con Paypal
 * Implementación de de pagos con Mercado Pago
 
-#### Backend: NEST.JS - PostgreSQL
+#### Backend: NEST.JS - PostgreSQL - TypeORM - Docker
 
-* Lenguaje -> Javascript
+* Lenguaje -> Typescript [TypeScript](https://www.typescriptlang.org/)
 * Framework utilizado -> [Nest.JS](https://nestjs.com/) 
 * Documentación -> [Swagger](https://swagger.io/docs/)
 * Base de Datos -> [PostgreSQL](https://www.postgresql.org/)
-
+* Manejo de datos -> [TypeORM](https://typeorm.io/)
+* Containers -> [Docker](https://www.docker.com/)
 
 #### Diseño UI-UX:
 
@@ -57,7 +58,7 @@ Deploy del backend: [Mimu Store-Backend](https://mimu-api.onrender.com/api)
 | Federico Di Cillo | Desarrollador Frontend Angular | [LinkedIn] |
 | Sharon Ormachea | Desarrolladora Frontend Angular | [LinkedIn] |
 | Santiago Castellani | Desarrollador Frontend Angular | [LinkedIn] |
-| Josue Ordonez| Desarrollador Backend NestJS | [LinkedIn] |
+| Josue Ordonez| Desarrollador Backend NestJS | [LinkedIn](https://www.linkedin.com/in/josueordonezm/) |
 | Bryan Davis Sanabria | Desarrollador Backend NestJS | [LinkedIn] |
 | Dayana Zeledon | Diseñadora UI-UX | [Linkedin] |
 | Natalia Pedraza | QA | [LinkedIn] |
