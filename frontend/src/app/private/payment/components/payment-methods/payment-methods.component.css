@@ -1,55 +1,125 @@
-
 section{
     text-align: left;
 }
 
+h1{
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
+h2{
+    font-size: 20px;
+}
+span{
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+}
+
+#adress-select{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+@media screen and (max-width: 1500px) {
+
+    section{
+        height: max-content;
+    }
+    
+    h1{
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        margin: 0 0 20px 10px ;
+    }
+
+    #user-info{
+        width: 100%;
+        height: max-content;
+        margin: 20px;
+        padding: 1vw;
+    }
+
+    .user-data{
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    li{
+        height: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        margin: 20px 10px ;
+    }
+
+    
+    #confirm-container{
+        width: 100%;
+        display: flex;
+    }
+    #confirm-container > .btn{
+        margin: auto;
+        height: 46px;
+        width: 50%;
+    }
+    
+
+    }
 
 @media screen and (max-width: 500px) {
+section{
+    display: block;
+    width: 100%;
+}
 
 
 h1{
     font-size: 20px;
-    font-weight: 500;
-    line-height: 23px;
-    letter-spacing: 0em;
     margin: 20px 10px ;
 }
 
 span{
     font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    margin: 20px 10px ;
+    margin: 10px ;
 }
 
-#payments-methods{
-    margin: 80px 0px;
+#user-info{
+    width: 100%;
+    height: max-content;
+    margin: 20px;
+    padding: 1vw;
+}
+.user-data{
+    margin: 20px 0;
+    width: 100%;
 }
 
-.container-methods{
-    display: flex;
-    justify-content: space-around;
-}
-
-.pay-method{
-    width: 50px;
-    height: 50px;
-    background-color: aqua;
-}
-
-#addition{
-    margin: 80px 10px;
-}
 li{
     height: 40px;
     display: flex;
     justify-content: space-between;
 }
 
-.btn{
-    width: 88vw;
-    margin: 10px;
+#confirm-container{
+    margin: 20px auto;
+    width: 100%;
+    display: grid;
+}
+#confirm-container > .btn{
+    margin: auto;
+    height: 46px;
+    width: 50vw;
 }
 
 }
