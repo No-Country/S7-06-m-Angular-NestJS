@@ -99,11 +99,9 @@ export class PaymentComponent implements OnInit {
         const items: any[] = [];
         let newItem = {};
         this.cart.items.forEach((it: any)=>{
-        
             newItem = {
                     title: it.product.name,
                     description: it.product.description,
-                    picture_url: it.product.images[0],
                     category_id: '..',
                     quantity: it.total,
                     currency_id: 'ARS',
@@ -115,7 +113,7 @@ export class PaymentComponent implements OnInit {
                 
             method:"POST",
             headers:{
-                Authorization: 'Bearer TEST-7858278593150125-041920-2fa81f64af2cae8ab1862c7b2791ca56-808806188'
+                Authorization: 'Bearer TEST-8937754529580533-042008-6adaca4dcd616839faaee32ea6171647-808806188'
             },
             body: JSON.stringify({
                 items: items
