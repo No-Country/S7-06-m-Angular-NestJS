@@ -30,7 +30,7 @@ export class PaymentComponent implements OnInit {
   
   //Declaramos cotizacion dolar en moneda local de la tienda para conversión de paypal
   //En nuestro caso peso ARS con impuestos, porque paypal no tiene esa moneda
-  usdCot:number = 400;
+  usdCot:number = 250;
 
 constructor(private sUser: UserService, private router: Router, private sOrder: OrderService) { }
 
@@ -77,6 +77,7 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
     postOrder(){
             const newOrder = new Order();
             newOrder.totalPrice = this.cart.totalPrice;
+            newOrder.isPaid = true
             newOrder.orderItems = this.getOrderItems();
 
             this.sOrder.saveOrder(newOrder).subscribe({
@@ -87,7 +88,6 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
                 },
                 complete:()=>{
                  this.paymentAlert('Tu compra fue realizada con éxito','En breve nos contactaremos','success',false);
-                 localStorage.removeItem('Cart');
                 }
                 }
             )
@@ -103,7 +103,7 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
             newItem = {
                     title: it.product.name,
                     description: it.product.description,
-                    picture_url: it.product.images[1],
+                    picture_url: it.product.images[0],
                     category_id: '..',
                     quantity: it.total,
                     currency_id: 'ARS',
@@ -115,7 +115,7 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
                 
             method:"POST",
             headers:{
-                Authorization: 'Bearer TEST-467669511262743-041613-6c78f4b93c737407adacd38258c59972-808806188'
+                Authorization: 'Bearer TEST-7858278593150125-041920-2fa81f64af2cae8ab1862c7b2791ca56-808806188'
             },
             body: JSON.stringify({
                 items: items
@@ -179,11 +179,12 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
                 console.log('onApprove - transaction was approved, but not authorized', data, actions);
                 actions.order.get().then((details:any) => {
                     console.log('onApprove - you can get full order details inside onApprove: ', details);
-                    this.postOrder();
+                    localStorage.removeItem('Cart');
                 });
 
             },
             onClientAuthorization: (data) => {
+                this.postOrder();
                 console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point',data);
             },  
             onError: err => {

@@ -1,0 +1,42 @@
+.container{
+    width: 80%;
+}
+
+.card{
+    margin: 20px auto;
+    height: 20vh;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 20px;
+}
+ul {
+    list-style: none;
+}
+
+
+#orderDetail{
+    margin: 50%;
+    height: 95%;
+    width: 90%;
+}
+
+#paidTrue{
+    color: blue;
+    font-weight: bold;
+    }
+
+#paidFalse{
+    color: red;
+    font-weight: bold;
+    }
+
+@media screen and (max-width: 500px) {
+    .card{
+        font-size: 14px;
+        width: 100%
+    }
+
+}

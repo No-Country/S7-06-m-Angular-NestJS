@@ -5,11 +5,13 @@ import { AdminComponent } from './admin.component';
 import { DashboardPageComponent } from './dashboard/dashboard-page/dashboard-page.component';
 import { PageComponent } from './products/page/page.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
+import { OrdersComponent } from './orders/pages/orders.component';
 
 const routes: Routes = [
   {
     path: '',component:AdminComponent,
     children: [
+      { path:'order-list', component:OrdersComponent},
       { path: 'dashboard', component: DashboardPageComponent },
       { path: 'products', component: PageComponent },
       { path: 'profile', component: ProfilePageComponent },

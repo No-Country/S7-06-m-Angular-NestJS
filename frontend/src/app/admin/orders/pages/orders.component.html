@@ -1,0 +1,12 @@
+<div class="container">
+    <div *ngFor="let order of orders">
+      <button class="boto btn fa-solid fa-delete-left" (click)="deleteOrder(order.id)"></button>
+      <header class="d-flex align-items-center pb-2 mb-2 border-bottom">
+        <div class="row">
+          <div class="titulo">{{order.totalPrice}}</div>
+          <div class="insti"></div>
+        </div>
+      </header>
+    </div>
+
+  </div>

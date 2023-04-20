@@ -9,6 +9,8 @@ import { ProductListComponent } from './products/components/product-list/product
 import { DashboardPageComponent } from './dashboard/dashboard-page/dashboard-page.component';
 import { ProfileFormComponent } from './profile/components/profile-form/profile-form.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
+import { OrdersComponent } from './orders/pages/orders.component';
+import { OrdersCardsComponent } from './orders/components/orders-cards/orders-cards.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { ProfilePageComponent } from './profile/profile-page/profile-page.compon
         ProductListComponent,
         DashboardPageComponent,
         ProfileFormComponent,
-        ProfilePageComponent
+        ProfilePageComponent,
+        OrdersComponent,
+        OrdersCardsComponent
     ],
     imports: [
         CommonModule,

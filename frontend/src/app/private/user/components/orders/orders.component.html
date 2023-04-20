@@ -1,0 +1,18 @@
+<div class="container">
+  <div *ngFor="let order of orders">
+    <header class="d-flex  pb-2 mb-2 border-bottom card">
+      <div id="orderDetail" class="row">
+        <div class="col">
+          <div *ngFor="let item of order.orderItems"> {{item.name}} ({{item.quantity}})<span></span></div>
+          <span>Fecha de compra: {{order.createdAt|date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="col">
+          <p>Total: {{order.totalPrice | currency: 'ARS'}}</p>
+          <div id="paidTrue" *ngIf="order.isPaid ; else elseBlock">Pago completado</div>
+            <ng-template #elseBlock><span id="paidFalse">Pago pendiente de aprovación</span></ng-template>
+        </div>
+        
+      </div>
+    </header>
+  </div>
+</div>

@@ -19,4 +19,13 @@ export class OrderService {
   public saveOrder(order: Order): Observable<any>{
     return this.http.post<any>(this.URL + "/orders",order)
   }
+  
+
+  public update(id: string, order: Order): Observable<any>{
+    return this.http.patch<any>(this.URL + `/orders/${id}`, order);
+  }
+
+  public delete(id: string){
+    return this.http.delete<any>(this.URL + `/orders/${id}`);
+  }
 }

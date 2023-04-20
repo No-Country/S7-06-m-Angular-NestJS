@@ -66,25 +66,12 @@
               </li>
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  (click)="navigateTo('/mimu/store')"
+                  class="nav-link"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
                 >
                   Productos
                 </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" (click)="navigateTo('/mimu/store')"
-                      >Ver todos los productos</a
-                    >
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li><a class="dropdown-item">Another action</a></li>
-                  <li><a class="dropdown-item">Something else here</a></li>
-                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" role="button">Contactenos</a>
