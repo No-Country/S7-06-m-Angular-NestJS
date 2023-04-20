@@ -50,9 +50,11 @@ export class LoginFormComponent implements OnInit {
         this.tokenService.setAuthorities(res.roles)
         if (res.roles[0]=='admin'){
           this.router.navigate(['/admin/dashboard'])
+        } else if (res.roles[0]=='user'){
+          this.router.navigate(['/user/profile'])
         } else {
           this.router.navigate(['/mimu/home'])
-        }  
+        } 
       },
       error: (error) => {
         console.error(error)

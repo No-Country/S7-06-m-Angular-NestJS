@@ -9,6 +9,8 @@ import { NewUser } from '../../models/sign-in/new-user';
 })
 export class UserService {
 
+  isLogged:boolean=false;
+
   URL = environment.baseUrl + "/auth";
 
   constructor(private http: HttpClient) { }

@@ -13,6 +13,8 @@ import { AuthService } from '../../services/auth/auth.service';
 export class NavBarComponent implements OnInit {
 
   userData: any;
+  isLogged:boolean=false;
+  firstName:string="";
 
   rol: string = "";
 
@@ -30,15 +32,18 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.statusLogin()
   }
 
   navigateToLoginOrUser() {
     const type = sessionStorage.getItem("AuthAuthorities");
     if (type?.includes("admin")) {
       this.rol = "admin";
+      this.isLogged=true;
       this.router.navigateByUrl("/admin/dashboard")
     } else if (type?.includes("user")) {
       this.rol = "user";
+      this.isLogged=true;
       this.router.navigateByUrl("/user/profile");
     } else {
       this.rol = "visit";
@@ -46,8 +51,21 @@ export class NavBarComponent implements OnInit {
     }
   }
 
+  
+  statusLogin(){
+    const data = this.userService.getDataUser();
+    if (data) {
+      this.isLogged=true;
+      this.firstName = data.firstName;
+      console.log(data)
+    } else {
+      this.isLogged=false;
+    }
+  }
+
   onLogout(){
     this.authService.logOut();
+    this.isLogged=false;
   }
 
   navigateToCart() {
