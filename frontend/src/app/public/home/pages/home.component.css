@@ -1,4 +1,4 @@
-main {
+section {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -6,7 +6,7 @@ main {
   background: none;
 }
 
-body {
+.all-components {
   flex: 1;
   background: none;
 }
