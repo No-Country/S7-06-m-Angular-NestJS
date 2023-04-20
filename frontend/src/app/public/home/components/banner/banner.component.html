@@ -1,9 +1,12 @@
+<div class="nav-bar">
+  <app-nav-bar></app-nav-bar>
+</div>
 <section class="banner-container">
   <swiper class="banner-swiper" [config]="config">
     <ng-template swiperSlide>
       <div>
         <div class="col">
-          <div>
+          <div class="image">
             <img
               src="../../../../assets/img/logo1.png"
               [alt]=""
@@ -11,12 +14,8 @@
               id="bannerImg"
             />
           </div>
-        </div>
-        <div class="containerInfoBanner">
-          <div class="infoBanner">
-            <span>
-              <span id="info-banner">Bienvenidos a Mimu Store</span>
-            </span>
+          <div class="title">
+            <h1>Bienvenidos a Mimu Store</h1>
           </div>
         </div>
       </div>

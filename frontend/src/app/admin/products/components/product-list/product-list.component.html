@@ -1,116 +1,247 @@
 <div class="productList">
-    <div class="card" style="width: 15rem;" *ngFor="let product of productList">
-        <a href="#" (click)="navigateTo($event,product.id,product)">
-            <img [src]="product.images[0].url" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center">{{product.name}}</h5>
-                <p class="card-text text-center">{{product.description}}</p>
-                <p class="card-text text-center">$ {{product.price}}</p>
-            </div>
-        </a>
-        <div class="text-center buttons">
-            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteProduct" (click)="trashId(product.id,product)">Eliminar</button>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProduct" (click)="editableId(product.id,product)">Editar</button>                             
-        </div>        
+  <div class="card" style="width: 15rem" *ngFor="let product of productList">
+    <a href="#" (click)="navigateTo($event, product.id, product)">
+      <img [src]="product.images[0].url" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title text-center">{{ product.name }}</h5>
+        <p class="card-text text-center">{{ product.description }}</p>
+        <p class="card-text text-center">$ {{ product.price }}</p>
+      </div>
+    </a>
+    <div class="text-center buttons">
+      <button
+        class="btn btn-outline-danger"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteProduct"
+        (click)="trashId(product.id, product)"
+      >
+        Eliminar
+      </button>
+      <button
+        class="btn btn-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#editProduct"
+        (click)="editableId(product.id, product)"
+      >
+        Editar
+      </button>
     </div>
+  </div>
 </div>
 
 <!------------MODALES---------------->
 
 <!--MODAL EDITAR GASTO--->
-<div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content modal-agregar">        
-        <div class="modal-header text-center">
-          <h5 class="modal-title" id="staticBackdropLabel">EDITAR PRODUCTO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearValidatorsEdit()"></button>
-        </div>
-        <!------Formulario------->
-        <form  [formGroup]="editProductForm" class="add-form" novalidate autocomplete="off" required id="editProduct" (ngSubmit)="updateProduct()" autocomplete="off">
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="name" class="form-label">Nombre del producto</label>
-                    <input type="text" id="fecha"  formControlName="name" class="form-control" [ngClass]="{'is-valid':!NameEdit?.errors&& NameEdit?.touched}">
-                    <div *ngIf="NameEdit?.errors && NameEdit?.touched">
-                        <p *ngIf="NameEdit?.hasError('required')" class="text-danger">
-                          Ingrese un nombre de producto
-                        </p>  
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="category_name" class="form-label">Categoría</label><br>
-                    <select type="text" id="category_name"  formControlName="category_name" class="form-control" [ngClass]="{'is-valid':!CategoryEdit?.errors&& CategoryEdit?.touched}"> 
-                        <option value="libretas">Libretas</option>
-                        <option value="lapiceras">Lapiceras</option>
-                        <option value="varios">Varios</option>               
-                    </select>
-                    <div *ngIf="CategoryEdit?.errors && CategoryEdit?.touched">
-                        <p *ngIf="CategoryEdit?.hasError('required')" class="text-danger">
-                          Ingrese una categoría
-                        </p>  
-                    </div>
-                </div>                   
-                <div class="form-group">
-                    <label for="description" class="form-label">Descripción</label>
-                    <input type="text" id="description"  formControlName="description" class="form-control" [ngClass]="{'is-valid':!DescriptionEdit?.errors&& DescriptionEdit?.touched}">
-                    <div *ngIf="DescriptionEdit?.errors && DescriptionEdit?.touched">
-                        <p *ngIf="DescriptionEdit?.hasError('required')" class="text-danger">
-                            Ingrese una descripción
-                        </p>
-                        <p *ngIf="DescriptionEdit?.hasError('maxlength')" class="text-danger">
-                            Menos de 100 caracteres
-                        </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="price" class="form-label">Precio</label>
-                    <input type="number" id="price"  formControlName="price" class="form-control" [ngClass]="{'is-valid':!PriceEdit?.errors&& PriceEdit?.touched}">
-                    <div *ngIf="PriceEdit?.errors && PriceEdit?.touched">
-                        <p *ngIf="PriceEdit?.hasError('required')" class="text-danger">
-                          Ingrese un importe
-                        </p>
-                        <p *ngIf="PriceEdit?.hasError('min')" class="text-danger">
-                            El importe debe ser mayor a cero
-                        </p>  
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="images" class="form-label">Imagen de producto</label>
-                    <input type="file" id="file" (change)="captureFile($event)" accept="image/*" class="form-control" [ngClass]="{'is-valid':!Img_ProductEdit?.errors&& Img_ProductEdit?.touched}">
-                    <div *ngIf="Img_ProductEdit?.errors && Img_ProductEdit?.touched" value="Hola">
-                        <p *ngIf="Img_ProductEdit?.hasError('required')" class="text-danger">
-                            Ingrese una imagen
-                        </p>
-                    </div>
-                    <img *ngIf="previsualizacion" [src]="previsualizacion" alt="" id="img-base">
-                </div>
-            </div>
-            <div class="modal-footer botones">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearValidatorsEdit()">Cancelar</button> 
-                <button type="submit" class="btn btn-aceptar" data-bs-dismiss="modal"  [disabled]="!editProductForm.valid">Aceptar</button>                               
-            </div>
-        </form>
+<div
+  class="modal fade"
+  id="editProduct"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-agregar">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="staticBackdropLabel">EDITAR PRODUCTO</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="clearValidatorsEdit()"
+        ></button>
       </div>
+      <!------Formulario------->
+      <form
+        [formGroup]="editProductForm"
+        class="add-form"
+        novalidate
+        autocomplete="off"
+        required
+        id="editProduct"
+        (ngSubmit)="updateProduct()"
+        autocomplete="off"
+      >
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name" class="form-label">Nombre del producto</label>
+            <input
+              type="text"
+              id="fecha"
+              formControlName="name"
+              class="form-control"
+              [ngClass]="{ 'is-valid': !NameEdit?.errors && NameEdit?.touched }"
+            />
+            <div *ngIf="NameEdit?.errors && NameEdit?.touched">
+              <p *ngIf="NameEdit?.hasError('required')" class="text-danger">
+                Ingrese un nombre de producto
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="category_name" class="form-label">Categoría</label
+            ><br />
+            <select
+              type="text"
+              id="category_name"
+              formControlName="category_name"
+              class="form-control"
+              [ngClass]="{
+                'is-valid': !CategoryEdit?.errors && CategoryEdit?.touched
+              }"
+            >
+              <option
+                *ngFor="let category of categoryList"
+                [value]="category.name"
+              >
+                {{ category.name | titlecase }}
+              </option>
+            </select>
+            <div *ngIf="CategoryEdit?.errors && CategoryEdit?.touched">
+              <p *ngIf="CategoryEdit?.hasError('required')" class="text-danger">
+                Ingrese una categoría
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="form-label">Descripción</label>
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+              [ngClass]="{
+                'is-valid': !DescriptionEdit?.errors && DescriptionEdit?.touched
+              }"
+            />
+            <div *ngIf="DescriptionEdit?.errors && DescriptionEdit?.touched">
+              <p
+                *ngIf="DescriptionEdit?.hasError('required')"
+                class="text-danger"
+              >
+                Ingrese una descripción
+              </p>
+              <p
+                *ngIf="DescriptionEdit?.hasError('maxlength')"
+                class="text-danger"
+              >
+                Menos de 100 caracteres
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="price" class="form-label">Precio</label>
+            <input
+              type="number"
+              id="price"
+              formControlName="price"
+              class="form-control"
+              [ngClass]="{
+                'is-valid': !PriceEdit?.errors && PriceEdit?.touched
+              }"
+            />
+            <div *ngIf="PriceEdit?.errors && PriceEdit?.touched">
+              <p *ngIf="PriceEdit?.hasError('required')" class="text-danger">
+                Ingrese un importe
+              </p>
+              <p *ngIf="PriceEdit?.hasError('min')" class="text-danger">
+                El importe debe ser mayor a cero
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="images" class="form-label">Imagen de producto</label>
+            <input
+              type="file"
+              id="file"
+              (change)="captureFile($event)"
+              accept="image/*"
+              class="form-control"
+              [ngClass]="{
+                'is-valid': !Img_ProductEdit?.errors && Img_ProductEdit?.touched
+              }"
+            />
+            <div
+              *ngIf="Img_ProductEdit?.errors && Img_ProductEdit?.touched"
+              value="Hola"
+            >
+              <p
+                *ngIf="Img_ProductEdit?.hasError('required')"
+                class="text-danger"
+              >
+                Ingrese una imagen
+              </p>
+            </div>
+            <img
+              *ngIf="previsualizacion"
+              [src]="previsualizacion"
+              alt=""
+              id="img-base"
+            />
+          </div>
+        </div>
+        <div class="modal-footer botones">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="clearValidatorsEdit()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-aceptar"
+            data-bs-dismiss="modal"
+            [disabled]="!editProductForm.valid"
+          >
+            Aceptar
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <!--MODAL ELIMINAR PRODUCTO--->
-<div class="modal fade" id="deleteProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content modal-agregar">
-        <form >
-            <div class="modal-body">
-                <div>
-                    <h5 class="titulo-modal-borrar">¿Desea eliminar este producto?</h5>
-                    <p id="deleteName">{{trashProduct}}</p>
-                </div>
-            </div>
-            <div class="modal-footer botones">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-aceptar" data-bs-dismiss="modal" (click)="deleteProduct()" >Eliminar</button>
-            </div>
-        </form>
-      </div>
+<div
+  class="modal fade"
+  id="deleteProduct"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-agregar">
+      <form>
+        <div class="modal-body">
+          <div>
+            <h5 class="titulo-modal-borrar">¿Desea eliminar este producto?</h5>
+            <p id="deleteName">{{ trashProduct }}</p>
+          </div>
+        </div>
+        <div class="modal-footer botones">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-aceptar"
+            data-bs-dismiss="modal"
+            (click)="deleteProduct()"
+          >
+            Eliminar
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
-

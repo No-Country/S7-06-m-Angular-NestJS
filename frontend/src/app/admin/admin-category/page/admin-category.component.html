@@ -1,0 +1,69 @@
+<section>
+  <h1>Categorías</h1>
+
+  <div class="all-categories">
+    <div class="category" *ngIf="categories && categories.length">
+      <p *ngFor="let tag of categories" class="tag">
+        <strong>{{ tag.name | titlecase }}</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="options">
+    <div class="modal-form add-category">
+      <h4>Agregar Categoría</h4>
+
+      <form
+        class="form"
+        [formGroup]="addCategoryForm"
+        (ngSubmit)="saveCategory()"
+        name="add-category"
+      >
+        <mat-form-field class="example-full-width" color="primary">
+          <mat-label for="">Nombre</mat-label>
+          <input type="text" matInput formControlName="name" tabindex="0" />
+        </mat-form-field>
+
+        <div class="submit">
+          <button
+            [disabled]="addCategoryForm.invalid"
+            class="btn btn-success btn-lg button-submit"
+            type="submit"
+            tabindex="0"
+          >
+            Agregar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="delete-category">
+      <h4>Eliminar Categoría</h4>
+      <form
+        class="form"
+        [formGroup]="deleteCategoryForm"
+        (ngSubmit)="deleteCategory()"
+        name="delete-category"
+      >
+        <mat-form-field class="example-full-width" color="accent">
+          <mat-label for="">Categoría</mat-label>
+          <mat-select formControlName="id" tabindex="0">
+            <mat-option *ngFor="let tag of categories" value="{{ tag.id }}">
+              {{ tag.name | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="submit">
+          <button
+            [disabled]="deleteCategoryForm.invalid"
+            class="btn btn-danger btn-lg button-submit"
+            type="submit"
+            tabindex="0"
+          >
+            Eliminar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

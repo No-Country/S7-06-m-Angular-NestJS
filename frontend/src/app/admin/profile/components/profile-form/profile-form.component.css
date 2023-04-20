@@ -1,48 +1,48 @@
 .data {
-    width:350px;
-    text-align: center;
-    margin:0 auto
+  width: 350px;
+  text-align: center;
+  margin: 0 auto;
 }
 .item {
-    margin-top:20px
+  margin-top: 20px;
 }
 .name-lastName {
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .name {
-    margin-right:20px
+  margin-right: 20px;
 }
 .input-name {
-    width:150px;
+  width: 150px;
 }
 .btn-edit {
-    border:none;
-    background:transparent;
-    color:black;
-    margin-top:25px
+  border: none;
+  background: transparent;
+  color: black;
+  margin-top: 25px;
 }
 
 .inputs {
-    width:350px;
+  width: 350px;
 }
 label {
-    font-weight: bolder;
-    text-align: initial;
+  font-weight: bolder;
+  text-align: initial;
 }
 .buttons {
-    margin-top:30px;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 500px) {
-    .data {
-        width:95%
-    }
-    .inputs {
-        width:100%
-    }
+  .data {
+    width: 95%;
+  }
+  .inputs {
+    width: 100%;
+  }
 }
