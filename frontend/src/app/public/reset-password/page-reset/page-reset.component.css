@@ -1,5 +1,5 @@
 /* Estilos comunes login y registro */
-.login-register{
+#login-register{
     display: flex;
     align-items: center; 
     justify-content: center;
