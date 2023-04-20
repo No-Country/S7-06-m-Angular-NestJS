@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { Cart } from 'src/app/shared/models/store/cart/cart';
 import { Order, OrderItem } from 'src/app/shared/models/store/order/order';
 import { Product } from 'src/app/shared/models/store/products/product';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -35,78 +34,39 @@ export class PaymentMethodsComponent implements OnInit {
   }
 
 
-    getTotal(): number{
-        let total = 0;
-        total += this.cart.totalPrice;
-        return total;
-    }
+//post Order
+getOrderItems(): OrderItem[]{
+  const orderItems: OrderItem[] = [];
+  let orderItem = {};
+  this.cart.items.forEach((it: any)=>{
 
-    getItemsList(): any[]{
-        const items: any[] = [];
-        let item = {};
-        this.cart.items.forEach((it: any)=>{
-            item = {
-                name: it.product.name,
-                quantity: it.total,
-                unit_amount: {value: it.product.price, currency_code: 'USD'},
-            };
-        items.push(item);
+      orderItem = {
+          id: it.product.id,
+          quantity: it.total,
+          };
+      orderItems.push(orderItem);
+      });
+      return orderItems;
+  }
 
-        });
-        return items;
-    }
 
-  private initConfig(): void {
-    this.payPalConfig = {
-        currency: 'USD',
-        clientId: 'AW0wgLK6b1xefxnZBCQBdOUTVSaaMisbl9IgNNb1T4W59lL2Onn5roCtYEh9-EmbyBAIqOswduAjCq5m',
-        createOrderOnClient: (data) => < ICreateOrderRequest > {
-            intent: 'CAPTURE',
-            purchase_units: [{
-                amount: {
-                    currency_code: 'USD',
-                    value: this.getTotal().toString(),
-                    breakdown: {
-                        item_total: {
-                            currency_code: 'USD',
-                            value: this.getTotal().toString(),
-                        }
-                    }
-                },
-                items: this.getItemsList(),
-            }]
-        },
-        advanced: {
-            commit: 'true'
-        },
-        style: {
-            label: 'paypal',
-            layout: 'vertical'
-        },
-        onApprove: (data, actions) => {
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then((details:any) => {
-                console.log('onApprove - you can get full order details inside onApprove: ', details);
-                this.paymentAlert('El pago fue aprobado!','En breve nos contactaremos','success',false);
-            });
+postOrder(){
+      const newOrder = new Order();
+      newOrder.totalPrice = this.cart.totalPrice;
+      newOrder.orderItems = this.getOrderItems();
 
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point',data);
-        },
-        onError: err => {
-            console.log('OnError', err);
-            this.paymentAlert('Ups..','Parece que ha ocurrido un error.','error', true);
-        },
-        onCancel: (data, actions) => {
-            console.log('OnCancel', data, actions);
-            this.paymentAlert('La operacion se detuvo voluntariamente.','Puede volver a iniciarla cuando guste.','error', true);
-        },
-        onClick: (data, actions) => {
-            console.log('onClick', data, actions);
-        }
-    };
-}
+      this.sOrder.saveOrder(newOrder).subscribe({
+          next: (_res) => {
+          },
+          error: (error) => {
+          console.log(error)
+          },
+          complete:()=>{
+           localStorage.removeItem('Cart');
+          }
+          }
+      )
+  }
 
 
 
@@ -135,11 +95,3 @@ export class PaymentMethodsComponent implements OnInit {
 
   }
 }
-
-
-
-
-
-
-
-
