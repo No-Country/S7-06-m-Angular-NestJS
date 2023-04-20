@@ -20,30 +20,30 @@ import Swal from 'sweetalert2';
 
 export class PaymentComponent implements OnInit {
 
-  checkForm:boolean=false;
+  checkForm: boolean = false;
   user = new NewUser();
 
   public payPalConfig?: IPayPalConfig;
 
-  cartItems:Product[]=[];
+  cartItems: Product[] = [];
   cart = new Cart();
-  
+
   //Declaramos cotizacion dolar en moneda local de la tienda para conversión de paypal
   //En nuestro caso peso ARS con impuestos, porque paypal no tiene esa moneda
   usdCot:number = 250;
 
-constructor(private sUser: UserService, private router: Router, private sOrder: OrderService) { }
+  constructor(private sUser: UserService, private router: Router, private sOrder: OrderService) { }
 
-    ngOnInit(): void {
-        this.getUser();
-        this.getCart()
-        this.initConfig();
-     }
+  ngOnInit(): void {
+    this.getUser();
+    this.getCart()
+    this.initConfig();
+  }
 
 
-    getUser(): void {
-        this.user = this.sUser.getDataUser();
-     }
+  getUser(): void {
+    this.user = this.sUser.getDataUser();
+  }
 
     getCart(){
         const productList = localStorage.getItem("Cart");
@@ -217,5 +217,4 @@ constructor(private sUser: UserService, private router: Router, private sOrder: 
         }
         })
     }
-
-}
+  }

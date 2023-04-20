@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { NewUser } from 'src/app/shared/models/sign-in/new-user';
 import { Cart } from 'src/app/shared/models/store/cart/cart';
 import { Order, OrderItem } from 'src/app/shared/models/store/order/order';
@@ -14,11 +14,11 @@ import Swal from 'sweetalert2';
     styleUrls: ['./payment-methods.component.css']
 })
 export class PaymentMethodsComponent implements OnInit {
-  
+
   user!:NewUser;
   edit:boolean=false;
 
-  
+
   cartItems:Product[]=[];
   cart = new Cart();
 
@@ -32,14 +32,14 @@ export class PaymentMethodsComponent implements OnInit {
   getUser(): void {
     this.user = this.sUser.getDataUser();
   }
-  
+
 
 //post Order
 getOrderItems(): OrderItem[]{
   const orderItems: OrderItem[] = [];
   let orderItem = {};
   this.cart.items.forEach((it: any)=>{
-   
+
       orderItem = {
           id: it.product.id,
           quantity: it.total,
@@ -48,8 +48,8 @@ getOrderItems(): OrderItem[]{
       });
       return orderItems;
   }
-  
-  
+
+
 postOrder(){
       const newOrder = new Order();
       newOrder.totalPrice = this.cart.totalPrice;
@@ -72,13 +72,13 @@ postOrder(){
 
   confirmData(){
     const type = sessionStorage.getItem("dataUser");
-    if (type?.includes("firstName") && 
-        type?.includes("lastName") && 
-        type?.includes("email") //&& 
-//      type?.includes("contact") && 
+    if (type?.includes("firstName") &&
+        type?.includes("lastName") &&
+        type?.includes("email") //&&
+//      type?.includes("contact") &&
 //      type?.includes("address")
           ){
-     this.postOrder(); 
+     this.postOrder();
      this.router.navigateByUrl('user/banking')
     } else {
       this.userDataIncomplete()
@@ -95,11 +95,3 @@ postOrder(){
 
   }
 }
-
-
-
-
-
-
-
-
