@@ -29,15 +29,19 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-              {{firstName}}
+                {{ firstName }}
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" (click)="navigateToLoginOrUser()" tabindex="”0”">
-                      Perfil
+                  <a
+                    class="dropdown-item"
+                    (click)="navigateToLoginOrUser()"
+                    tabindex="”0”"
+                  >
+                    Perfil
                   </a>
                 </li>
-                <li><hr class="dropdown-divider"/></li>
+                <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" (click)="onLogout()" tabindex="”0”">
                     <strong>Cerrar Sesión</strong>
@@ -52,7 +56,10 @@
             type="button"
           >
             <i class="bi bi-bag"></i>
-            <span class="nav-text" *ngIf="cartQuantity">Carrito (<strong>{{ cartQuantity }}</strong>)</span>
+            <span class="nav-text" *ngIf="cartQuantity"
+              >Carrito (<strong>{{ cartQuantity }}</strong
+              >)</span
+            >
           </button>
         </div>
         <button
@@ -117,7 +124,12 @@
                 </ul>
               </li>--->
               <li class="nav-item">
-                <a class="nav-link" role="button" (click)="navigateTo('/mimu/store')">Productos</a>
+                <a
+                  class="nav-link"
+                  role="button"
+                  (click)="navigateTo('/mimu/store')"
+                  >Productos</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" role="button">Contactenos</a>

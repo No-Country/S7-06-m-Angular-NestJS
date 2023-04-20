@@ -1,53 +1,57 @@
+section{
+  /* background-color: none; */
+  background: linear-gradient(to right, #5EA7E7, #FCE6EF, #E5BDE2, #FCE6EF, #8EC6FF);
+}
 #dashboard {
-    min-height:80vh;
-    height: max-content;
-    padding-bottom:80px
+  min-height: 80vh;
+  height: max-content;
+  padding-bottom: 80px;
 }
 .header {
-    padding:30px;
-    display:flex;
-    justify-content: space-between;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .greeting {
-    padding:10px
+  padding: 10px;
 }
 .greeting p {
-    font-size:1.2rem
+  font-size: 1.2rem;
 }
 .img-avatar img {
-    border-radius:100%;
-    width:50px;
-    height:50px
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
 }
 .buttons {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .buttons button {
-    width:175px;
-    height:50px;
-    margin:10px auto
+  width: 175px;
+  height: 50px;
+  margin: 10px auto;
 }
 .img-logo {
-    margin-top:50px
+  margin-top: 50px;
 }
-.img-logo img{
-    width:50vw;
-    height:auto
+.img-logo img {
+  width: 50vw;
+  height: auto;
 }
 
 @media screen and (max-width: 500px) {
-    .buttons button {
-        width:45%;
-        height:50px;
-        margin:10px auto
-    }
-    .img-logo {
-        margin-top:20px
-    }
-    .img-logo img{
-        width:80vw;
-        height:auto
-    }
+  .buttons button {
+    width: 45%;
+    height: 50px;
+    margin: 10px auto;
+  }
+  .img-logo {
+    margin-top: 20px;
+  }
+  .img-logo img {
+    width: 80vw;
+    height: auto;
+  }
 }

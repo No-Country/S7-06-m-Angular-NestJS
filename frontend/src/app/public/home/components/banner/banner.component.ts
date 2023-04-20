@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import SwiperCore, { Navigation, Pagination, Mousewheel, SwiperOptions } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Autoplay, SwiperOptions, Virtual } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination, Mousewheel]);
+SwiperCore.use([Navigation, Pagination, Autoplay, Virtual]);
 
 @Component({
   selector: 'app-banner',
@@ -15,16 +15,18 @@ export class BannerComponent implements OnInit {
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 10,
-    pagination:{clickable:false},
     navigation: false,
-   // autoplay: { delay: 4000, disableOnInteraction: false},
-    loop: true,
-    breakpoints:{
-      500:{
+    pagination: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false
+    },
+    breakpoints: {
+      500: {
         navigation: true
       }
     }
-    }
+  }
 
   constructor() { }
 

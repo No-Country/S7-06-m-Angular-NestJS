@@ -1,26 +1,33 @@
 <section id="products">
-    <div class="header text-center">
-        <h2 class="text-center">Productos</h2>
-        <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#newProduct" (click)="clearValidatorsAdd()">Nuevo Producto</button>
+  <div class="header text-center">
+    <h2 class="text-center">Productos</h2>
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#newProduct"
+      (click)="clearValidatorsAdd()"
+    >
+      Nuevo Producto
+    </button>
+  </div>
+  <hr />
+  <div class="productsSection">
+    <div class="present">
+      <div class="title">
+        <h4>Lista de productos</h4>
+      </div>
+      <div class="filter">
+        <p>Filtrar por categoria:</p>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Todos</option>
+          <option value="libretas">Libretas</option>
+          <option value="lapiceras">Lapiceras</option>
+          <option value="varios">Varios</option>
+        </select>
+      </div>
     </div>
-    <hr>
-    <div class="productsSection">
-        <div class="present">
-            <div class="title">
-                <h4>Lista de productos</h4>
-            </div>
-            <div class="filter">
-                <p>Filtrar por categoria:</p>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Todos</option>
-                    <option value="libretas">Libretas</option>
-                    <option value="lapiceras">Lapiceras</option>
-                    <option value="varios">Varios</option>
-                </select>
-            </div>            
-        </div>
-        <app-product-list></app-product-list>
-        <!-------
+    <app-product-list></app-product-list>
+    <!-------
         <div class="productList">
             <div class="product">
                 <p>Hola</p>
@@ -35,85 +42,177 @@
                 <p>Hola</p>
             </div>
         </div>---->
-    </div>
+  </div>
 </section>
 
 <!---------------MODAL------------------------->
 
 <!--MODAL NUEVO PRODUCTO--->
 
-<div class="modal fade" id="newProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content modal-agregar">
-        <div class="modal-header text-center">
-          <h5 class="modal-title" id="staticBackdropLabel">NUEVO PRODUCTO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearValidatorsAdd()"></button>
-        </div>
-               
-        <form  [formGroup]="addProductForm" class="add-form" novalidate autocomplete="off" required id="agregarGasto" (ngSubmit)="saveProduct()" autocomplete="off">
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="name" class="form-label">Nombre del producto</label>
-                    <input type="text" id="name"  formControlName="name" class="form-control text-center" [ngClass]="{'is-valid':!NameAdd?.errors&& NameAdd?.touched}">
-                    <div *ngIf="NameAdd?.errors && NameAdd?.touched">
-                        <p *ngIf="NameAdd?.hasError('required')" class="text-danger">
-                          Ingrese un nombre de producto
-                        </p>  
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="category_name" class="form-label">Categoría</label><br>
-                    <select type="text" id="category_name"  formControlName="category_name" class="form-control text-center" [ngClass]="{'is-valid':!CategoryAdd?.errors&& CategoryAdd?.touched}"> 
-                        <option value="libretas">Libretas</option>
-                        <option value="lapiceras">Lapiceras</option>
-                        <option value="varios">Varios</option>        "images
-                    </select>
-                    <div *ngIf="CategoryAdd?.errors && CategoryAdd?.touched">
-                        <p *ngIf="CategoryAdd?.hasError('required')" class="text-danger">
-                          Ingrese una categoría
-                        </p>  
-                    </div>
-                </div>              
-                <div class="form-group">
-                    <label for="description" class="form-label">Descripción</label>
-                    <input type="text" id="description"  formControlName="description" class="form-control text-center" [ngClass]="{'is-valid':!DescriptionAdd?.errors&& DescriptionAdd?.touched}">
-                    <div *ngIf="DescriptionAdd?.errors && DescriptionAdd?.touched">
-                        <p *ngIf="DescriptionAdd?.hasError('required')" class="text-danger">
-                            Ingrese una descripción
-                        </p>
-                        <p *ngIf="DescriptionAdd?.hasError('maxlength')" class="text-danger">
-                            Menos de 50 caracteres
-                        </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="price" class="form-label">Precio</label>
-                    <input type="number" id="price"  formControlName="price" class="form-control text-center" [ngClass]="{'is-valid':!PriceAdd?.errors&& PriceAdd?.touched}">
-                    <div *ngIf="PriceAdd?.errors && PriceAdd?.touched">
-                        <p *ngIf="PriceAdd?.hasError('required')" class="text-danger">
-                          Ingrese un importe
-                        </p>
-                        <p *ngIf="PriceAdd?.hasError('min')" class="text-danger">
-                            El importe debe ser mayor a cero
-                        </p>  
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="images" class="form-label">Imagen de producto (url)</label>
-                    <input type="file" id="file" (change)="captureFile($event)" accept="image/*" class="form-control" [ngClass]="{'is-valid':!Img_ProductAdd?.errors&& Img_ProductAdd?.touched}">
-                    <div *ngIf="Img_ProductAdd?.errors && Img_ProductAdd?.touched" value="imagen">
-                        <p *ngIf="Img_ProductAdd?.hasError('required')" class="text-danger">
-                            Ingrese una imagen
-                        </p>
-                    </div>
-                    <img *ngIf="previsualizacion" [src]="previsualizacion" id="img-base">
-                </div>
-            </div>
-            <div class="modal-footer botones">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearValidatorsAdd()">Cancelar</button> 
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"  [disabled]="!addProductForm.valid">Aceptar</button>                               
-            </div>
-        </form>
+<div
+  class="modal fade"
+  id="newProduct"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-agregar">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="staticBackdropLabel">NUEVO PRODUCTO</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="clearValidatorsAdd()"
+        ></button>
       </div>
+
+      <form
+        [formGroup]="addProductForm"
+        class="add-form"
+        novalidate
+        autocomplete="off"
+        required
+        id="agregarGasto"
+        (ngSubmit)="saveProduct()"
+        autocomplete="off"
+      >
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name" class="form-label">Nombre del producto</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control text-center"
+              [ngClass]="{ 'is-valid': !NameAdd?.errors && NameAdd?.touched }"
+            />
+            <div *ngIf="NameAdd?.errors && NameAdd?.touched">
+              <p *ngIf="NameAdd?.hasError('required')" class="text-danger">
+                Ingrese un nombre de producto
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="category_name" class="form-label">Categoría</label
+            ><br />
+            <select
+              type="text"
+              id="category_name"
+              formControlName="category_name"
+              class="form-control text-center"
+              [ngClass]="{
+                'is-valid': !CategoryAdd?.errors && CategoryAdd?.touched
+              }"
+            >
+              <option *ngFor="let category of categoryList" [value]="category.name">{{ category.name | titlecase }}</option>
+              "images
+            </select>
+            <div *ngIf="CategoryAdd?.errors && CategoryAdd?.touched">
+              <p *ngIf="CategoryAdd?.hasError('required')" class="text-danger">
+                Ingrese una categoría
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="form-label">Descripción</label>
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control text-center"
+              [ngClass]="{
+                'is-valid': !DescriptionAdd?.errors && DescriptionAdd?.touched
+              }"
+            />
+            <div *ngIf="DescriptionAdd?.errors && DescriptionAdd?.touched">
+              <p
+                *ngIf="DescriptionAdd?.hasError('required')"
+                class="text-danger"
+              >
+                Ingrese una descripción
+              </p>
+              <p
+                *ngIf="DescriptionAdd?.hasError('maxlength')"
+                class="text-danger"
+              >
+                Menos de 50 caracteres
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="price" class="form-label">Precio</label>
+            <input
+              type="number"
+              id="price"
+              formControlName="price"
+              class="form-control text-center"
+              [ngClass]="{ 'is-valid': !PriceAdd?.errors && PriceAdd?.touched }"
+            />
+            <div *ngIf="PriceAdd?.errors && PriceAdd?.touched">
+              <p *ngIf="PriceAdd?.hasError('required')" class="text-danger">
+                Ingrese un importe
+              </p>
+              <p *ngIf="PriceAdd?.hasError('min')" class="text-danger">
+                El importe debe ser mayor a cero
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="images" class="form-label"
+              >Imagen de producto (url)</label
+            >
+            <input
+              type="file"
+              id="file"
+              (change)="captureFile($event)"
+              accept="image/*"
+              class="form-control"
+              [ngClass]="{
+                'is-valid': !Img_ProductAdd?.errors && Img_ProductAdd?.touched
+              }"
+            />
+            <div
+              *ngIf="Img_ProductAdd?.errors && Img_ProductAdd?.touched"
+              value="imagen"
+            >
+              <p
+                *ngIf="Img_ProductAdd?.hasError('required')"
+                class="text-danger"
+              >
+                Ingrese una imagen
+              </p>
+            </div>
+            <img
+              *ngIf="previsualizacion"
+              [src]="previsualizacion"
+              id="img-base"
+            />
+          </div>
+        </div>
+        <div class="modal-footer botones">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="clearValidatorsAdd()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            [disabled]="!addProductForm.valid"
+          >
+            Aceptar
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

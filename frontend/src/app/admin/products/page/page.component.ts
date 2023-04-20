@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AdminService } from '../../services/admin.service';
+import { Category } from 'src/app/shared/models/store/products/product';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-page',
@@ -14,10 +16,13 @@ export class PageComponent implements OnInit {
   public archivo:string="";
   previsualizacion: any;
 
+  categoryList!: Category[]
+
   constructor(
     private sanitizer: DomSanitizer,
     private adminService:AdminService,
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private productService: ProductService,
   ) {
     // Formulario Nuevo Producto
     this.addProductForm = this.formBuilder.group(
@@ -32,6 +37,13 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllCategories();
+  }
+
+  getAllCategories(){
+    this.productService.getAllCategories().subscribe(Categories => {
+      this.categoryList = Categories;
+    });
   }
 
 
@@ -47,8 +59,8 @@ export class PageComponent implements OnInit {
     formData.append('category_name', newProduct.category_name);
     if (this.addProductForm.get('file')?.value) {
       formData.append('file', this.addProductForm.get('file')?.value);
-    }    
-    
+    }
+
     this.adminService.saveProduct(formData).subscribe({
       next: (_res) => {
       },
@@ -62,8 +74,8 @@ export class PageComponent implements OnInit {
     )
   }
 
-  // VALIDATORS  
-  get NameAdd() { 
+  // VALIDATORS
+  get NameAdd() {
     return this.addProductForm.get('name');
   }
   get DescriptionAdd() {

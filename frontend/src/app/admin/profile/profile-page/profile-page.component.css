@@ -1,16 +1,19 @@
+section{
+  background: linear-gradient(to right, #5EA7E7, #FCE6EF, #E5BDE2, #FCE6EF, #8EC6FF);
+}
 #profile {
-    min-height: 80vh;
-    height:max-content;
-    padding:40px;
-    text-align:center
+  min-height: 80vh;
+  height: max-content;
+  padding: 40px;
+  text-align: center;
 }
 .body {
-    margin-top:20px
+  margin-top: 20px;
 }
 .data {
-    text-align:center;
-    margin:0 auto
+  text-align: center;
+  margin: 0 auto;
 }
 app-profile-form {
-    margin:0 auto;
+  margin: 0 auto;
 }
