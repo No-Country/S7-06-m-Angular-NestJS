@@ -1,52 +1,45 @@
 <section class="banner-container">
-<swiper class="banner-swiper"
-[config]="config"
->
-  <ng-template swiperSlide >
-    <div>
-      <div class="col">
-        <div>
-          <img
-            src="../../../../assets/img/logo1.png"
-            [alt]=""
-            class="card-img-top"
-            id="bannerImg"
-          >
+  <swiper class="banner-swiper" [config]="config">
+    <ng-template swiperSlide>
+      <div>
+        <div class="col">
+          <div>
+            <img
+              src="../../../../assets/img/logo1.png"
+              [alt]=""
+              class="card-img-top"
+              id="bannerImg"
+            />
+          </div>
+        </div>
+        <div class="containerInfoBanner">
+          <div class="infoBanner">
+            <span>
+              <span id="info-banner">Bienvenidos a Mimu Store</span>
+            </span>
+          </div>
         </div>
       </div>
-      <div class="containerInfoBanner">
-        <div class="infoBanner">
-          <span>
-            <span id="info-banner">Bienvenidos a Mimu Store</span>
-          </span>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div>
+        <div class="col">
+          <div class="bannerImg">
+            <img [src]="" [alt]="" class="card-img-top" />
+          </div>
+        </div>
+        <div class="containerInfoBanner">
+          <div class="infoBanner">
+            <span>
+              <span
+                >"Neque porro quisquam est qui dolorem ipsum quia dolor sit
+                amet, consectetur, adipisci velit..."s</span
+              >
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-
-  </ng-template>
-  
-  <ng-template swiperSlide >
-    <div>
-      <div class="col">
-        <div class="bannerImg">
-          <img
-            [src]=""
-            [alt]=""
-            class="card-img-top"
-          >
-        </div>
-      </div>
-      <div class="containerInfoBanner">
-        <div class="infoBanner">
-          <span>
-            <span>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."s</span>          </span>
-        </div>
-      </div>
-    </div>
-
-  </ng-template>
-  
-</swiper>
-
-
+    </ng-template>
+  </swiper>
 </section>

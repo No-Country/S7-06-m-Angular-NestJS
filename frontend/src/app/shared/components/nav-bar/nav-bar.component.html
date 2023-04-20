@@ -9,14 +9,47 @@
       </div>
       <div class="container-navigation">
         <div class="nav-icon-group">
-          <button
-            (click)="navigateToLoginOrUser()"
-            class="nav-profile nav-icon"
-            type="button"
-          >
-            <i class="bi bi-person"></i
-            ><span class="nav-text">Iniciar sesión</span>
-          </button>
+          <div class="login">
+            <button
+              (click)="navigateToLoginOrUser()"
+              class="nav-profile nav-icon"
+              type="button"
+            >
+              <i class="bi bi-person"></i>
+              <span class="nav-text">Iniciar sesión</span>
+            </button>
+          </div>
+
+          <div class="user">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              Sharon
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" routerLink="/profile" tabindex="”0”">
+                    Perfil
+                  </a>
+                </li>
+                <!-- <li>
+                  <a class="dropdown-item" routerLink="/orders" tabindex="”0”">
+                    Pedidos
+                  </a>
+                </li> -->
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" (click)="onLogout()" tabindex="”0”">
+                    <strong>Cerrar Sesión</strong>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </div>
           <button
             class="nav-chart nav-icon"
             (click)="navigateToCart()"

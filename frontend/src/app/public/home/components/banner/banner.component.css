@@ -1,20 +1,25 @@
+
+
 .banner-container {
   padding: 0;
   width: 100%;
 }
 
 .banner-swiper {
-  height: 320px;
+  height: 600px;
 }
+
 #bannerImg {
   height: 220px;
   width: 100%;
   object-fit: cover;
 }
+
 .infoBanner {
   text-align: center;
   margin-top: 10px;
 }
+
 #info-banner {
   font-size: 15px;
   font-weight: 500;
