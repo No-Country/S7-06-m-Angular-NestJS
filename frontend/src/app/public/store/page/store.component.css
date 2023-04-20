@@ -1,3 +1,6 @@
-*{
+section{
   background: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
