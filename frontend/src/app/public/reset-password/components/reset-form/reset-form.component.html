@@ -20,14 +20,14 @@
       </div>
     </div>
      <!----Repetir contraseña--->
-     <div class="field">
+    <div class="field">
       <label class="label" for="confirm_Password">Repetir contraseña</label>
       <input [type]="ocultar?'password':'text'" id="confirm_Password" name="confirm_Password" formControlName="confirm_Password" class="input-password form-control" [ngClass]="{'is-valid':!ConfirmPassword?.errors&&ConfirmPassword?.touched}"/>
       <label class="eye-icon" for="confirmPpassword"><i [class]="ocultar ? 'bi bi-eye' : 'bi bi-eye-slash'" (click)="ocultar = !ocultar"></i></label>
       <div *ngIf="ConfirmPassword?.errors && ConfirmPassword?.touched">
         <p *ngIf="ConfirmPassword?.hasError('matchOther')" class="text-danger">La contraseñas no coinciden</p>
-      </div>      
-    </div> 
+      </div> 
+    </div>
     <!----Footer de registro--->
     <div class="footer">
       <div class="descript">
