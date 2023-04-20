@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductAdmin } from 'src/app/admin/models/product-admin';
 import { AdminService } from 'src/app/admin/services/admin.service';
+import { Category } from 'src/app/shared/models/store/products/product';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
@@ -13,34 +14,42 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 })
 export class ProductListComponent implements OnInit {
 
-  productList:ProductAdmin[]=[];
-  editId:string="";
-  deleteId:string="";
-  trashProduct:string="";
+  productList: ProductAdmin[] = [];
+  categoryList!: Category[]
+  editId: string = "";
+  deleteId: string = "";
+  trashProduct: string = "";
   editProductForm: FormGroup;
 
-  public archivo:string="";
+  public archivo: string = "";
   previsualizacion: any;
 
-  constructor(private sanitizer: DomSanitizer, private adminService:AdminService,private productService:ProductService,private router:Router, private formBuilder:FormBuilder) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private adminService: AdminService,
+    private productService: ProductService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
 
     // Formulario Editar Producto
     this.editProductForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        description: ['',[Validators.required]],
-        price:[0,[Validators.required,Validators.min(0)]],
-        category_name:['',[Validators.required,Validators.maxLength(14)]],
-        file:[null]
+        description: ['', [Validators.required]],
+        price: [0, [Validators.required, Validators.min(0)]],
+        category_name: ['', [Validators.required, Validators.maxLength(14)]],
+        file: [null]
       }
     )
   }
 
   ngOnInit(): void {
-    this.getAllProducts()
+    this.getAllProducts();
+    this.getAllCategories();
   }
 
-  getAllProducts(){
+  getAllProducts() {
     this.productService.getAll().subscribe({
       next: (res) => {
         this.productList = res;
@@ -48,17 +57,23 @@ export class ProductListComponent implements OnInit {
       error: (error) => {
         console.error(error)
       },
-      complete: () => {}
+      complete: () => { }
     })
   }
 
-  navigateTo(event:Event,id:string,product:ProductAdmin){
+  getAllCategories(){
+    this.productService.getAllCategories().subscribe(Categories => {
+      this.categoryList = Categories;
+    });
+  }
+
+  navigateTo(event: Event, id: string, product: ProductAdmin) {
     event.preventDefault();
     event.stopPropagation();
     //this.producto=JSON.stringify(product);
     //sessionStorage.setItem("productDetail",this.producto);
-    if (id){
-      sessionStorage.setItem("idProduct",id)
+    if (id) {
+      sessionStorage.setItem("idProduct", id)
       this.router.navigateByUrl("admin/productdetail")
     }
   }
@@ -70,7 +85,7 @@ export class ProductListComponent implements OnInit {
   /*--------EDITAR PRODUCTO------------*/
 
   //Boton abrir modal: Capturar Id y producto
-  editableId(id:any,product: any){
+  editableId(id: any, product: any) {
     const editableProduct = product;
     this.previsualizacion = editableProduct.images[0].url;
     this.editId = id;
@@ -79,24 +94,24 @@ export class ProductListComponent implements OnInit {
     this.editProductForm.controls['description'].setValue(editableProduct.description);
     this.editProductForm.controls['price'].setValue(editableProduct.price);
     this.editProductForm.controls['category_name'].setValue(editableProduct.categories.name);
-    this.editProductForm.controls['file'].setValue("");   
+    this.editProductForm.controls['file'].setValue("");
   }
 
   // Actualizar PRODUCTO
-  updateProduct(): void{
+  updateProduct(): void {
     const newProduct = this.editProductForm.value;
     const editId = this.editId;
 
     /*-------------------------------- */
-    newProduct.images=this.archivo; 
+    newProduct.images = this.archivo;
 
     const formData = new FormData();
     formData.append('name', newProduct.name);
     formData.append('description', newProduct.description);
     formData.set('price', newProduct.price);
     formData.append('category_name', newProduct.category_name);
-    
-    if (this.editProductForm.get('file')?.value){
+
+    if (this.editProductForm.get('file')?.value) {
       formData.append('file', this.editProductForm.get('file')?.value);
     }
     formData.forEach((value: any, key: string) => {
@@ -105,14 +120,14 @@ export class ProductListComponent implements OnInit {
     /*-------------------------------- */
 
 
-    this.adminService.updateProduct(editId,formData).subscribe({
-      next: (res) => {        
+    this.adminService.updateProduct(editId, formData).subscribe({
+      next: (res) => {
         console.log(res)
       },
       error: (error) => {
         console.log(error)
       },
-      complete:()=>{
+      complete: () => {
         this.getAllProducts();
         location.reload();
       }
@@ -122,20 +137,20 @@ export class ProductListComponent implements OnInit {
   /*------BORRAR GASTO-------------------*/
 
   //BOTON abrir modal: Capturar Id y GASTO
-  trashId(id:any,product:any): void{
+  trashId(id: any, product: any): void {
     this.deleteId = id;
     this.trashProduct = product.name;
   }
 
   // deleteProduct:  ELIMINAR PRODUCTO
-  deleteProduct(): void{
+  deleteProduct(): void {
     this.adminService.deleteProduct(this.deleteId).subscribe({
       next: (res) => {
       },
       error: (error) => {
         console.log(error)
       },
-      complete:()=>{
+      complete: () => {
         this.getAllProducts();
         this.ngOnInit()
       }
@@ -162,14 +177,15 @@ export class ProductListComponent implements OnInit {
     this.editProductForm.reset(this.editProductForm.value);
   }
 
-  captureFile(event:any){
+  captureFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.editProductForm.get('file')?.setValue(file);
       this.extraerBase64(file).then((imagen: any) => {
         this.previsualizacion = imagen.base;
       })
-  }}
+    }
+  }
 
   extraerBase64 = async ($event: any) => {
     try {

@@ -1,60 +1,63 @@
+section{
+  background: linear-gradient(to right, #5EA7E7, #FCE6EF, #E5BDE2, #FCE6EF, #8EC6FF);
+}
 #products {
-    min-height:80vh;
-    height:max-content;
-    padding:50px 10px
+  min-height: 80vh;
+  height: max-content;
+  padding: 50px 10px;
 }
 hr {
-    margin-top:50px
+  margin-top: 50px;
 }
 .present {
-    display:flex;
-    justify-content:space-between;
-    padding:0px 50px
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 50px;
 }
 .filter {
-    display:flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .filter p {
-    padding:0 auto;
-    margin:0 auto
+  padding: 0 auto;
+  margin: 0 auto;
 }
 .form-select {
-    padding:0px 5px
+  padding: 0px 5px;
 }
 
 @media screen and (max-width: 500px) {
-    #products {
-        padding:50px 3px
-    }
+  #products {
+    padding: 50px 3px;
+  }
 }
 
 /*--------MODAL--------*/
 
 .modal-agregar {
-    background-color: #FAFAFA;
-    text-align: center;
+  background-color: #fafafa;
+  text-align: center;
 }
 .modal-agregar select {
-    width:100%;
-    padding:5px
+  width: 100%;
+  padding: 5px;
 }
 .btn-aceptar {
-    background:#FF8328;
-    color:white;   
+  background: #ff8328;
+  color: white;
 }
 .form-group {
-    width:80%;
-    margin:0 auto 10px;
+  width: 80%;
+  margin: 0 auto 10px;
 }
 
 .botones {
-    display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 #img-base {
-    width:200px;
-    height:auto;
-    margin-top:25px
+  width: 200px;
+  height: auto;
+  margin-top: 25px;
 }

@@ -17,6 +17,9 @@ export const PRODUCT_BY_ID_URL = PRODUCT_URL + '';
 // Trae todas las categorias - GET - POST
 export const PRODUCT_CATEGORIES_URL = BASE_URL + 'categories';
 
+// Elimina una categoria por ID - DELETE
+export const PRODUCT_DELETE_CATEGORY_URL = PRODUCT_CATEGORIES_URL + '';
+
 
 // -----------------------USER------------------------------------------------
 

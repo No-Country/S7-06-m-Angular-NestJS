@@ -1,0 +1,6 @@
+*{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  background: linear-gradient(to right, #5EA7E7, #FCE6EF, #E5BDE2, #FCE6EF, #8EC6FF);
+}
