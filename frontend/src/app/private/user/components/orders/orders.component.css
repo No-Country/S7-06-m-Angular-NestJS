@@ -3,6 +3,7 @@
 }
 
 .card{
+    box-shadow: 5px 3px 10px 2px #000000be;
     margin: 20px auto;
     height: 20vh;
     width: 80%;

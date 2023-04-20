@@ -13,8 +13,6 @@ import { PaymentMethodsComponent } from './payment/components/payment-methods/pa
 import { PaymentResumeComponent } from './payment/components/payment-resume/payment-resume.component';
 import { WireTransferDataComponent } from './payment/components/wire-transfer-data/wire-transfer-data.component';
 import { OrdersComponent } from './user/components/orders/orders.component';
-import { OrdersCardsComponent } from './user/components/orders/components/orders-cards/orders-cards.component';
-
 
 @NgModule({
   declarations: [
@@ -25,7 +23,7 @@ import { OrdersCardsComponent } from './user/components/orders/components/orders
     PaymentComponent, 
     PaymentMethodsComponent, 
     PaymentResumeComponent, 
-    WireTransferDataComponent, OrdersComponent, OrdersCardsComponent
+    WireTransferDataComponent, OrdersComponent
   ],
   imports: [
     CommonModule,
