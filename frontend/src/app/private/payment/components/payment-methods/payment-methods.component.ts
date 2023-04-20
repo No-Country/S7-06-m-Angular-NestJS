@@ -26,6 +26,7 @@ export class PaymentMethodsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getCart();
   }
 
 
@@ -33,6 +34,12 @@ export class PaymentMethodsComponent implements OnInit {
     this.user = this.sUser.getDataUser();
   }
 
+  getCart(){
+    const productList = localStorage.getItem("Cart");
+    if (productList){
+        this.cart = JSON.parse(productList)
+        }
+    }
 
 //post Order
 getOrderItems(): OrderItem[]{
@@ -62,7 +69,7 @@ postOrder(){
           console.log(error)
           },
           complete:()=>{
-           localStorage.removeItem('Cart');
+            sessionStorage.removeItem('Cart')
           }
           }
       )
@@ -74,11 +81,11 @@ postOrder(){
     const type = sessionStorage.getItem("dataUser");
     if (type?.includes("firstName") &&
         type?.includes("lastName") &&
-        type?.includes("email") //&&
-//      type?.includes("contact") &&
-//      type?.includes("address")
+        type?.includes("email")  // &&
+    //   type?.includes("contact") &&
+    //   type?.includes("address")
           ){
-     this.postOrder();
+     this.postOrder()
      this.router.navigateByUrl('user/banking')
     } else {
       this.userDataIncomplete()

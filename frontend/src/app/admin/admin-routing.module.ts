@@ -7,6 +7,7 @@ import { PageComponent } from './products/page/page.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 import { AdminCategoryComponent } from './admin-category/page/admin-category.component';
 
+
 const routes: Routes = [
   {
     path: '',component:AdminComponent,

@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
 
   user!:NewUser;
 
+  viewMyOrders = false;
 
   constructor(
     private router: Router,
@@ -38,6 +39,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/mimu/home")
   }
 
+  viewOrders(){
+    this.viewMyOrders = !this.viewMyOrders
+  }
   // ALERT: Close Session
   closeSession() {
     Swal.fire({

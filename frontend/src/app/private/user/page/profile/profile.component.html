@@ -9,10 +9,9 @@
           <button class="col-4 btn btn-secondary col" (click)="navigateEdit()">Tu cuenta</button>
           <button class="col-4 btn btn-secondary col">Tu lista de deseos</button>
           <button class="col-4 btn btn-secondary col" (click)="closeSession()">Cerrar sesión</button>
-          <button class="col-4 btn btn-secondary col">Tus pedidos</button>
+          <button class="col-4 btn btn-secondary col" (click)="viewOrders()">Tus pedidos</button>
         </div>
       </div>
 
-      <app-products-carrusel [visibleCarrusel]="true" title="Comprar otra vez" ></app-products-carrusel>
-
+      <app-orders *ngIf="viewMyOrders == true"></app-orders>
 </section>
