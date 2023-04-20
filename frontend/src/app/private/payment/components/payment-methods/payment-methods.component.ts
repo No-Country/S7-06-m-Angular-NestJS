@@ -26,7 +26,6 @@ export class PaymentMethodsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.getOrderItems();
   }
 
 
