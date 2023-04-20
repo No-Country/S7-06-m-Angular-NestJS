@@ -29,14 +29,14 @@ section{
   padding: 0 5em;
 }
 
-.category a{
+.category button{
   font-size: 17px;
   padding: 0.4rem 0.9rem;
   border-radius: 10rem;
   font-weight: 600;
-  border: 2px solid #fff;
-  background-color: #8d02ff98;
-  color: #fff;
+  border: 2px solid #40353F;
+  background-color: #85D3F2;
+  color: #40353F;
   text-decoration: none;
 }
 

@@ -17,7 +17,7 @@ SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 export class ProductsCarruselComponent implements OnInit {
 
   @Input()
-  title = "";
+  title!:string;;
 
   @Input()
   visibleCarrusel = false;
@@ -45,15 +45,18 @@ export class ProductsCarruselComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    // console.log(this.title)
+    setTimeout(() => {
+    this.getProductsByCategory(this.title);
+    }, 1000);
   }
 
-  getAllProducts(){
-    this.productService.getAllProducts().subscribe(data => {
+  getProductsByCategory(category:string){
+    this.productService.getProductByCategory(category).subscribe(data => {
       this.products = data;
     }, error => {
       console.log(error);
-    })
+    });
   }
 
 }

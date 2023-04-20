@@ -18,7 +18,7 @@ import { AdminGuardGuard } from './guards/admin-guard.guard';
     NavBarComponent,
     FooterComponent,
     ProductsCarruselComponent,
-    LoadingComponent  
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +46,6 @@ import { AdminGuardGuard } from './guards/admin-guard.guard';
   providers: [
     AdminGuardGuard // registra el guard en el módulo
   ],
-  
+
 })
 export class SharedModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/shared/models/store/products/product';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 import SwiperCore, { Navigation, Pagination, Mousewheel, Autoplay, SwiperOptions } from 'swiper';
 
 SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
@@ -13,6 +14,7 @@ SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
 export class NotepadsCarruselComponent implements OnInit {
 
+  products!: Product[];
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -27,11 +29,21 @@ export class NotepadsCarruselComponent implements OnInit {
     }
   }
 
-  products!: Product[];
 
-  constructor() { }
+  constructor(
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
+    this.getProductsByCategory('libretas');
+  }
+
+  getProductsByCategory(category:string){
+    this.productService.getProductByCategory(category).subscribe(data => {
+      this.products = data;
+    }, error => {
+      console.log(error);
+    })
   }
 
 }

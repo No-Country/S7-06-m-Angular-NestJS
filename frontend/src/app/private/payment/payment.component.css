@@ -80,8 +80,8 @@
         justify-content: space-around;
     }
     #back > .btn{
-        height: 46px;
-        width: 30%;
+        height: 36px;
+        width: 15%;
     }
     }
 
@@ -138,8 +138,8 @@
     }
     #back > .btn{
         margin-bottom: 20px;
-        height: 46px;
-        width: 50vw;
+        height: 36px;
+        width: 30vw;
     }
     
 }

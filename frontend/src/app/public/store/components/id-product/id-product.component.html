@@ -5,7 +5,7 @@
     <swiper [config]="config" class="mySwiper">
       <ng-template swiperSlide *ngFor="let img of product.images">
         <div class="image">
-          <img [src]="img.url" />
+          <img [src]="img.url">
         </div>
       </ng-template>
     </swiper>

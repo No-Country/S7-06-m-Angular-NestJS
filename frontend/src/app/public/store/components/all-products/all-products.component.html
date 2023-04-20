@@ -6,14 +6,15 @@
 
     <div class="category" *ngIf="categories && categories.length">
       <!-- *ngIf="products && products.length" -->
-      <a routerLink="/mimu/store">Todos</a>
-      <a
+      <button (click)="getAllProducts()">Todos</button>
+      <button
         *ngFor="let tag of categories"
-        routerLink="/mimu/store/category/{{ tag.name }}"
+        (click)="getProductsByCategory(tag.name)"
         class="tag"
       >
         <strong>{{ tag.name | titlecase }}</strong>
-      </a>
+      </button>
+
     </div>
   </div>
 

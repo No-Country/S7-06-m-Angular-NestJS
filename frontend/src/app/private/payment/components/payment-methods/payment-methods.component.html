@@ -12,15 +12,19 @@
         </div>
         <div class="user-data">
             <h2>Tel./Cel.:</h2>
-            <span>{{user.email}}</span>
+            <span>{{user.contact}}</span>
         </div>
         <div class="user-data">
             <h2>Dirección:</h2>
             <div id="adress-select">
-                <input class="inputs" type="text" name="adress" value={{user.email}} [disabled]="!edit">
+                <input class="inputs" type="text" name="adress" value={{user.address}} [disabled]="!edit">
                 <button class="btn" type="button" *ngIf="!edit" (click)="edit=!edit"><i class="bi bi-pencil-square"></i></button>
                 <button class="btn" type="button" *ngIf="edit" (click)="edit=!edit"><i class="bi bi-check2-square"></i></button>
             </div>
         </div>
     </div>
+    <div id="confirm-container">
+        <button class="btn btn-primary" (click)="confirmData()">Confirmar</button>
+    </div>
+   
 </section>
